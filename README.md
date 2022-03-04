@@ -1,5 +1,22 @@
 # WatchTrackerAndroidApp
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#project-overview">Project overview</a>
+      <ul>
+        <li><a href="#motivation">Motivation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#functional-requirements">Functional requirements</a>
+    </li>
+    <li><a href="#non-functional-requirements">Non functional requirements</a></li>
+  </ol>
+</details>
+
 ## Project overview
 The Project has been created as a part of an android assignment from the 4th semester at VIA University College. The project aims to create an android application for viewing movie description and sorting them as well as keeping track of them.
 
