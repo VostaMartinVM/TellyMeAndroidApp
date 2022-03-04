@@ -11,7 +11,7 @@ As a lot of movies have been coming out, it has become a large problem for curre
 3.	As a user I would like to have a “Watch Later” list for the movies that I would like to see in the future.
 4.	As a user I would like to have a list of the movies that I have already watched to keep track of them.
 5.	As a user, I would like to add movies to my favorite list to have my favorite movies in one place.
-6.	As a user, I want to search the movie by its name to view the information about it. 
+6.	As a user, I want to search specific movies so I can add them to my list. 
 7.	As a user I would like to view the lists of movies sorted by genres to narrow down the searching process. 
 8.	As a user, I would like to rate the movie to show how enjoyable the movie was.
 9.	As a user I want to give reviews to the films I have already watched to express my opinion about them.
