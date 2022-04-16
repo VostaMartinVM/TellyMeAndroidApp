@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">WatchTracker</string>
+
+    <string name="app_name">CCTV</string>
+
+    <!-- Activity main -->
+    <string name="logo_content_description">Logo</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
