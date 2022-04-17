@@ -4,18 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.watchtracker.R;
 import com.example.watchtracker.TVShowsFragment;
 import com.example.watchtracker.view.fragment.HomeFragment;
 import com.example.watchtracker.view.fragment.MoviesFragment;
 import com.example.watchtracker.view.fragment.MyListFragment;
+import com.example.watchtracker.view.fragment.SearchFragment;
 import com.example.watchtracker.view.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity{
+
+    HomeFragment homeFragment;
+    MyListFragment myListFragment;
+    TVShowsFragment tvShowsFragment;
+    MoviesFragment moviesFragment;
+    UserFragment userFragment;
+
+    Fragment lastFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +46,49 @@ public class MainActivity extends AppCompatActivity{
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        HomeFragment homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment();
+        myListFragment = new MyListFragment();
+        tvShowsFragment = new TVShowsFragment();
+        moviesFragment = new MoviesFragment();
+
+        FloatingActionButton searchActionButton = findViewById(R.id.searchButton);
+        searchActionButton.setOnClickListener(view -> {
+            Toolbar toolbar = (androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar);
+            ImageView logoIcon = findViewById(R.id.logoIcon);
+            if (!(getCurrentFragment() instanceof SearchFragment))
+            {
+                SearchFragment searchFragment = new SearchFragment();
+                lastFragment = getCurrentFragment();
+                changeFragment(searchFragment);
+                toolbar.setVisibility(View.GONE);
+                logoIcon.setVisibility(View.GONE);
+            }
+            else {
+                toolbar.setVisibility(View.VISIBLE);
+                logoIcon.setVisibility(View.VISIBLE);
+                goToLastFragment();
+            }
+        });
+
         changeFragment(homeFragment);
 
         //noinspection deprecation
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+                Toolbar toolbar = (androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar);
+                ImageView logoIcon = findViewById(R.id.logoIcon);
+                toolbar.setVisibility(View.VISIBLE);
+                logoIcon.setVisibility(View.VISIBLE);
             switch(menuItem.getItemId()){
                 case R.id.home_item:
                     changeFragment(homeFragment); // change fragmentFirst
                     break;
                 case R.id.my_list_item:
-                    MyListFragment myListFragment = new MyListFragment();
                     changeFragment(myListFragment); // change fragmentSecond
                     break;
                 case R.id.tv_series_item:
-                    TVShowsFragment tvShowsFragment = new TVShowsFragment();
                     changeFragment(tvShowsFragment);
                     break;
                 case R.id.movies_item:
-                    MoviesFragment moviesFragment = new MoviesFragment();
                     changeFragment(moviesFragment);
                     break;
                 default:
@@ -67,7 +105,7 @@ public class MainActivity extends AppCompatActivity{
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()){
                 case R.id.user_button:
-                    UserFragment userFragment = new UserFragment();
+                    userFragment = new UserFragment();
                     changeFragment(userFragment);
             }
             return true;
@@ -78,5 +116,15 @@ public class MainActivity extends AppCompatActivity{
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayout, fragment).commit();
     }
 
+    public void goToLastFragment() {
+       changeFragment(lastFragment);
+    }
+
+    private Fragment getCurrentFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int stackCount = fragmentManager.getBackStackEntryCount();
+        if( fragmentManager.getFragments() != null ) return fragmentManager.getFragments().get( stackCount > 0 ? stackCount-1 : stackCount );
+        else return null;
+    }
 
 }
