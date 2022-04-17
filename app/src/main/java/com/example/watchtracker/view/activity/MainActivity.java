@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.TVShowsFragment;
+import com.example.watchtracker.view.fragment.TVShowsFragment;
 import com.example.watchtracker.view.fragment.HomeFragment;
 import com.example.watchtracker.view.fragment.MoviesFragment;
 import com.example.watchtracker.view.fragment.MyListFragment;

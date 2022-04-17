@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="96dp"
+            android:clickable="true"
+            android:foreground="@drawable/message_icon"
+            app:backgroundTint="#7780FF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="315dp"

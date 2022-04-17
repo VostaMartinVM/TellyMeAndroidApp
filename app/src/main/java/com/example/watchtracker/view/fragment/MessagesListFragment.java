@@ -11,28 +11,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.watchtracker.viewModel.MoviesViewModel;
-import com.example.watchtracker.viewModel.MoviesViewModel;
+
 import com.example.watchtracker.R;
+import com.example.watchtracker.viewModel.MessagesListViewModel;
 
-public class MoviesFragment extends Fragment {
+public class MessagesListFragment extends Fragment {
 
-    private MoviesViewModel mViewModel;
+    private MessagesListViewModel mViewModel;
 
-    public static MoviesFragment newInstance() {
-        return new MoviesFragment();
+    public static MessagesListFragment newInstance() {
+        return new MessagesListFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.movies_fragment, container, false);
+        return inflater.inflate(R.layout.messages_list_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(MessagesListViewModel.class);
         // TODO: Use the ViewModel
     }
 
