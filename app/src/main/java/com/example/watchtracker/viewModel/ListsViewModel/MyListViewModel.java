@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel;
+package com.example.watchtracker.viewModel.ListsViewModel;
 
 import android.os.Bundle;
 import android.widget.ListView;

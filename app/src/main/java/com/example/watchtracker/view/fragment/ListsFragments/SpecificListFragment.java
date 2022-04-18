@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment;
+package com.example.watchtracker.view.fragment.ListsFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,32 +11,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import com.example.watchtracker.viewModel.MyListViewModel;
 import com.example.watchtracker.R;
+import com.example.watchtracker.viewModel.ListsViewModel.SpecificListViewModel;
 
-public class MyListFragment extends Fragment {
+public class SpecificListFragment extends Fragment {
 
-    private MyListViewModel mViewModel;
+    private SpecificListViewModel mViewModel;
 
-    ListView listView;
-
-    public static MyListFragment newInstance() {
-        return new MyListFragment();
+    public static SpecificListFragment newInstance() {
+        return new SpecificListFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.my_list_fragment, container, false);
-
+        return inflater.inflate(R.layout.specific_list_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MyListViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SpecificListViewModel.class);
         // TODO: Use the ViewModel
     }
 

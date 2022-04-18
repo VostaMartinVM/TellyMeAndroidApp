@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.MoviesFragments.MoviesFragment">
+    tools:context=".TVShowsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,34 +16,33 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="0dp">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContainerView"
-                android:name="com.example.watchtracker.view.fragment.MoviesFragments.WatchListMoviesFragment"
+                android:id="@+id/fragmentContainerView2"
+                android:name="com.example.watchtracker.view.fragment.ShowsFragments.WatchListShowsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/WatchList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="140dp"
             android:layout_height="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="28dp"
-            android:text="WatchList" />
+            android:text="WatchList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Upcoming"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="140dp"
             android:layout_height="32dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="32dp"
-            android:text="Upcoming" />
+            android:text="Upcoming"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

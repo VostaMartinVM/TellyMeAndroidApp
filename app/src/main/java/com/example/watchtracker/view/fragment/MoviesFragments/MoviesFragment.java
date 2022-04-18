@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment;
+package com.example.watchtracker.view.fragment.MoviesFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,28 +11,27 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.watchtracker.viewModel.MoviesFragments.MoviesViewModel;
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.MessagesListViewModel;
 
-public class MessagesListFragment extends Fragment {
+public class MoviesFragment extends Fragment {
 
-    private MessagesListViewModel mViewModel;
+    private MoviesViewModel mViewModel;
 
-    public static MessagesListFragment newInstance() {
-        return new MessagesListFragment();
+    public static MoviesFragment newInstance() {
+        return new MoviesFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.messages_list_fragment, container, false);
+        return inflater.inflate(R.layout.movies_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MessagesListViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(MoviesViewModel.class);
         // TODO: Use the ViewModel
     }
 

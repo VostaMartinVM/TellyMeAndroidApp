@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel;
+package com.example.watchtracker.viewModel.UserFragments;
 
 import androidx.lifecycle.ViewModel;
 

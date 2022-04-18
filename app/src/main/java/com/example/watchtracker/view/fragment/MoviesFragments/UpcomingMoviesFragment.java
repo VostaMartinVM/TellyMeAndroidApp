@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment;
+package com.example.watchtracker.view.fragment.MoviesFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.UserViewModel;
+import com.example.watchtracker.viewModel.MoviesFragments.UpcomingMoviesViewModel;
 
-public class UserFragment extends Fragment {
+public class UpcomingMoviesFragment extends Fragment {
 
-    private UserViewModel mViewModel;
+    private UpcomingMoviesViewModel mViewModel;
 
-    public static UserFragment newInstance() {
-        return new UserFragment();
+    public static UpcomingMoviesFragment newInstance() {
+        return new UpcomingMoviesFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_fragment, container, false);
+        return inflater.inflate(R.layout.upcoming_movies_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(UpcomingMoviesViewModel.class);
         // TODO: Use the ViewModel
     }
 

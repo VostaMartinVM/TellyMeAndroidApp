@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment;
+package com.example.watchtracker.view.fragment.UserFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.SearchViewModel;
+import com.example.watchtracker.viewModel.UserFragments.UserViewModel;
 
-public class SearchFragment extends Fragment {
+public class UserFragment extends Fragment {
 
-    private SearchViewModel mViewModel;
+    private UserViewModel mViewModel;
 
-    public static SearchFragment newInstance() {
-        return new SearchFragment();
+    public static UserFragment newInstance() {
+        return new UserFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.search_fragment, container, false);
+        return inflater.inflate(R.layout.user_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         // TODO: Use the ViewModel
     }
 

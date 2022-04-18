@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel;
+package com.example.watchtracker.viewModel.SeachViewModel;
 
 import androidx.lifecycle.ViewModel;
 

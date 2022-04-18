@@ -11,20 +11,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.view.fragment.TVShowsFragment;
-import com.example.watchtracker.view.fragment.HomeFragment;
-import com.example.watchtracker.view.fragment.MoviesFragment;
-import com.example.watchtracker.view.fragment.MyListFragment;
-import com.example.watchtracker.view.fragment.SearchFragment;
-import com.example.watchtracker.view.fragment.UserFragment;
+import com.example.watchtracker.view.fragment.ShowsFragments.ShowsFragment;
+import com.example.watchtracker.view.fragment.HomeFragments.HomeFragment;
+import com.example.watchtracker.view.fragment.MoviesFragments.MoviesFragment;
+import com.example.watchtracker.view.fragment.ListsFragments.MyListsFragment;
+import com.example.watchtracker.view.fragment.SearchFragments.SearchFragment;
+import com.example.watchtracker.view.fragment.UserFragments.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity{
 
     HomeFragment homeFragment;
-    MyListFragment myListFragment;
-    TVShowsFragment tvShowsFragment;
+    MyListsFragment myListFragment;
+    ShowsFragment showsFragment;
     MoviesFragment moviesFragment;
     UserFragment userFragment;
 
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity{
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
         homeFragment = new HomeFragment();
-        myListFragment = new MyListFragment();
-        tvShowsFragment = new TVShowsFragment();
+        myListFragment = new MyListsFragment();
+        showsFragment = new ShowsFragment();
         moviesFragment = new MoviesFragment();
 
         FloatingActionButton searchActionButton = findViewById(R.id.searchButton);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
                     changeFragment(myListFragment); // change fragmentSecond
                     break;
                 case R.id.tv_series_item:
-                    changeFragment(tvShowsFragment);
+                    changeFragment(showsFragment);
                     break;
                 case R.id.movies_item:
                     changeFragment(moviesFragment);
