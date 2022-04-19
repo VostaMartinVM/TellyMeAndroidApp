@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.example.watchtracker.R;
 import com.example.watchtracker.viewModel.SeachViewModel.SearchViewModel;
@@ -26,7 +28,18 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.search_fragment, container, false);
+        View view = inflater.inflate(R.layout.search_fragment, container, false);
+        FrameLayout searchLayout = view.findViewById(R.id.search_frame);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                searchLayout.setScaleX(15);
+                searchLayout.setScaleY(15);
+            }
+        }, 445);
+
+        return view;
     }
 
     @Override

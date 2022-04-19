@@ -28,7 +28,25 @@
             android:layout_height="match_parent">
 
         </FrameLayout>
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logoIcon"
+        android:layout_width="36dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/black"
+        android:contentDescription="@string/logo_content_description"
+        app:srcCompat="@drawable/logo_icon" />
+
+    <FrameLayout
+        android:id="@+id/searchFragmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/searchButton"
@@ -36,8 +54,12 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
         android:src="@drawable/search_icon"
+        android:translationZ="3dp"
         app:backgroundTint="#7780FF"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:borderWidth="0dp"
+        app:fabCustomSize="60dp"
+        app:layout_anchor="@id/bottomAppBar"
+        app:maxImageSize="30dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -55,19 +77,9 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-            android:translationZ="2dp"
+            android:translationZ="3dp"
             app:menu="@menu/bottom_menu" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <ImageView
-        android:id="@+id/logoIcon"
-        android:layout_width="36dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/black"
-        android:contentDescription="@string/logo_content_description"
-        app:srcCompat="@drawable/logo_icon" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
