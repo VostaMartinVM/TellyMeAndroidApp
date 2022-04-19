@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_list_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.ListsFragments.MyListsFragment">
@@ -26,9 +27,9 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <ListView
+            android:id="@+id/Lists"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/Lists"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity{
     private void toolbarCreate()
     {
         Toolbar toolbar = findViewById(R.id.toolbar);
-
+        changeUserColorIcon(-1);
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()){
                 case R.id.user_button:

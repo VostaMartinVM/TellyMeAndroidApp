@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/home_message_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
@@ -24,18 +24,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:maxImageSize="30dp" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/openPostWindow"
             android:layout_width="315dp"
             android:layout_height="49dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_edit_text"
-            android:ems="10"
-            android:hint="post..."
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textColorHint="#686868"
+            android:backgroundTint="@color/white"
+            android:text="Post..."
+            android:textAllCaps="false"
+            android:textColor="#686868"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,11 +43,18 @@
             android:id="@+id/imageView"
             android:layout_width="41dp"
             android:layout_height="32dp"
+            android:elevation="2dp"
             android:src="@drawable/avatar_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/openPostWindow"
+            app:layout_constraintStart_toStartOf="@+id/openPostWindow"
+            app:layout_constraintTop_toTopOf="@+id/openPostWindow"
             app:tint="#686868" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/post_dummy_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="568dp" />
 
 </FrameLayout>
