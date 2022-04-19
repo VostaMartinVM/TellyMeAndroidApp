@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
                         searchFrame.setScaleX(1);
                         searchFrame.setScaleY(1);
                     }
-                }, 5);
+                }, 10);
                 searchOpened = false;
                 onBackPressed();
             }
