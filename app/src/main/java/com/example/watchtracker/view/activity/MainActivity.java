@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity{
     MoviesFragment moviesFragment;
     UserFragment userFragment;
 
+    int customColor = -8945409;
     boolean searchOpened = false;
 
     @Override
@@ -71,6 +72,33 @@ public class MainActivity extends AppCompatActivity{
             });
         }
         super.onBackPressed();
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentLayout);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        if (fragment instanceof HomeFragment)
+        {
+            bottomNavigationView.getMenu().getItem(0).setChecked(true);
+            changeUserColorIcon(-1);
+        }
+        else if (fragment instanceof MyListsFragment)
+        {
+            bottomNavigationView.getMenu().getItem(1).setChecked(true);
+            changeUserColorIcon(-1);
+        }
+        else if (fragment instanceof ShowsFragment)
+        {
+            bottomNavigationView.getMenu().getItem(3).setChecked(true);
+            changeUserColorIcon(-1);
+        }
+        else if (fragment instanceof MoviesFragment)
+        {
+            bottomNavigationView.getMenu().getItem(4).setChecked(true);
+            changeUserColorIcon(-1);
+        }
+        else if (fragment instanceof UserFragment)
+        {
+            bottomNavigationView.getMenu().getItem(2).setChecked(true);
+            changeUserColorIcon(customColor);
+        }
     }
 
     private void bottomNavigationCreate()
@@ -199,7 +227,7 @@ public class MainActivity extends AppCompatActivity{
             switch (menuItem.getItemId()){
                 case R.id.user_button:
                     searchOpened = false;
-                    changeUserColorIcon(-8945409);
+                    changeUserColorIcon(customColor);
                     if (userFragment == null)
                     {
                         userFragment = UserFragment.newInstance();

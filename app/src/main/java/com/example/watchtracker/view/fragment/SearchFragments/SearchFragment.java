@@ -12,15 +12,21 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.example.watchtracker.R;
+import com.example.watchtracker.model.Utils;
 import com.example.watchtracker.view.activity.MainActivity;
 import com.example.watchtracker.viewModel.SeachViewModel.SearchViewModel;
 
 public class SearchFragment extends Fragment {
 
     private SearchViewModel mViewModel;
+
+    EditText searchText;
+    ImageView searchImage;
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -31,17 +37,28 @@ public class SearchFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search_fragment, container, false);
         FrameLayout searchLayout = view.findViewById(R.id.search_frame);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                searchLayout.setScaleX(20);
-                searchLayout.setScaleY(20);
-            }
-        }, 395);
+        searchText = view.findViewById(R.id.search_edit_text);
+        searchImage = view.findViewById(R.id.search_image_view);
 
+        searchText.setVisibility(View.GONE);
+        searchImage.setVisibility(View.GONE);
+        Utils.delay(50, () ->{
+            searchText.setVisibility(View.VISIBLE);
+            searchImage.setVisibility(View.VISIBLE);
+        });
+        Utils.delay(395, () -> {
+            searchLayout.setScaleX(20);
+            searchLayout.setScaleY(20);
 
+        });
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        searchText.setVisibility(View.GONE);
+        searchImage.setVisibility(View.GONE);
+        super.onPause();
     }
 
     @Override
