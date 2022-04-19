@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,12 +23,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.watchtracker.R;
+import com.example.watchtracker.model.Utils;
 import com.example.watchtracker.view.fragment.ShowsFragments.ShowsFragment;
 import com.example.watchtracker.view.fragment.HomeFragments.HomeFragment;
 import com.example.watchtracker.view.fragment.MoviesFragments.MoviesFragment;
 import com.example.watchtracker.view.fragment.ListsFragments.MyListsFragment;
 import com.example.watchtracker.view.fragment.SearchFragments.SearchFragment;
 import com.example.watchtracker.view.fragment.UserFragments.UserFragment;
+import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -39,7 +44,6 @@ public class MainActivity extends AppCompatActivity{
 
     boolean searchOpened = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +53,38 @@ public class MainActivity extends AppCompatActivity{
         toolbarCreate();
     }
 
+    @Override
+    public void onBackPressed() {
+        FrameLayout searchFrame = findViewById(R.id.search_frame);
+        FrameLayout fragmentLayout = findViewById(R.id.fragmentLayout);
+        if (searchOpened) {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.getMenu().getItem(0).setEnabled(true);
+            Utils.delay(10, () -> {
+                if (searchFrame != null) {
+                    searchFrame.setScaleX(1);
+                    searchFrame.setScaleY(1);
+                }
+                if (fragmentLayout != null) {
+                    fragmentLayout.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+        super.onBackPressed();
+    }
+
     private void bottomNavigationCreate()
     {
+        //setting initial visualization for bottom navigation view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(2).setEnabled(false);
 
-        homeFragment = new HomeFragment();
-        myListFragment = new MyListsFragment();
-        showsFragment = new ShowsFragment();
-        moviesFragment = new MoviesFragment();
+        //setting home page shown at the start
+        homeFragment = HomeFragment.newInstance();
+        changeFragment(homeFragment);
 
+        //Search floating action button functionality
         FloatingActionButton searchActionButton = findViewById(R.id.searchButton);
         searchActionButton.setCompatElevation(0);
         searchActionButton.setOnClickListener(view -> {
@@ -67,46 +92,95 @@ public class MainActivity extends AppCompatActivity{
             {
                 SearchFragment searchFragment = new SearchFragment();
                 searchOpened = true;
+                searchActionButton.setClickable(false);
+                Toolbar toolbar = findViewById(R.id.toolbar);
+                toolbar.getMenu().getItem(0).setEnabled(false);
                 changeFragment(searchFragment);
+                FrameLayout fragmentLayout = findViewById(R.id.fragmentLayout);
+                for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+                    bottomNavigationView.getMenu().getItem(i).setEnabled(false);
+                }
+                Utils.delay(250, new Utils.DelayCallback() {
+                    @Override
+                    public void afterDelay() {
+                        searchActionButton.setClickable(true);
+                        fragmentLayout.setVisibility(View.GONE);
+                        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+                            if (i != 2)
+                            {
+                                bottomNavigationView.getMenu().getItem(i).setEnabled(true);
+                            }
+                        }
+                    }
+                });
             }
             else {
                 FrameLayout searchFrame = findViewById(R.id.search_frame);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                Utils.delay(10, () -> {
                         searchFrame.setScaleX(1);
                         searchFrame.setScaleY(1);
-                    }
-                }, 10);
+                });
+                FrameLayout fragmentLayout = findViewById(R.id.fragmentLayout);
+                fragmentLayout.setVisibility(View.VISIBLE);
+                Toolbar toolbar = findViewById(R.id.toolbar);
+                toolbar.getMenu().getItem(0).setEnabled(true);
                 searchOpened = false;
                 onBackPressed();
             }
         });
 
-        changeFragment(homeFragment);
-
+        //functionality for specific items in bottom navigation view
         //noinspection deprecation
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
-                Toolbar toolbar = (androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar);
-                ImageView logoIcon = findViewById(R.id.logoIcon);
-                toolbar.setVisibility(View.VISIBLE);
-                logoIcon.setVisibility(View.VISIBLE);
+            FrameLayout searchFrame = findViewById(R.id.search_frame);
+            FrameLayout fragmentLayout = findViewById(R.id.fragmentLayout);
+            changeUserColorIcon(-1);
+            if (searchOpened)
+            {
+                Toolbar toolbar = findViewById(R.id.toolbar);
+                toolbar.getMenu().getItem(0).setEnabled(true);
+                Utils.delay(10, () -> {
+                    if (searchFrame != null)
+                    {
+                        searchFrame.setScaleX(1);
+                        searchFrame.setScaleY(1);
+                    }
+                    if (fragmentLayout != null)
+                    {
+                    fragmentLayout.setVisibility(View.VISIBLE);
+                    }
+                });
+                onBackPressed();
+            }
+
             switch(menuItem.getItemId()){
                 case R.id.home_item:
                     searchOpened = false;
+                    homeFragment = HomeFragment.newInstance();
                     changeFragment(homeFragment);
                     break;
                 case R.id.my_list_item:
                     searchOpened = false;
+                    if (myListFragment == null)
+                    {
+                        myListFragment = MyListsFragment.newInstance();
+                    }
                     changeFragment(myListFragment);
                     break;
                 case R.id.tv_series_item:
                     searchOpened = false;
+                    if (showsFragment == null)
+                    {
+                        showsFragment = ShowsFragment.newInstance();
+                    }
                     changeFragment(showsFragment);
                     break;
                 case R.id.movies_item:
                     searchOpened = false;
+                    if (moviesFragment == null)
+                    {
+                        moviesFragment = MoviesFragment.newInstance();
+                    }
                     changeFragment(moviesFragment);
                     break;
                 default:
@@ -116,21 +190,37 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    //toolbar functionality
     private void toolbarCreate()
     {
-        Toolbar toolbar = (androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()){
                 case R.id.user_button:
                     searchOpened = false;
-                    userFragment = new UserFragment();
+                    changeUserColorIcon(-8945409);
+                    if (userFragment == null)
+                    {
+                        userFragment = UserFragment.newInstance();
+                    }
+                    BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+                    bottomNavigationView.getMenu().getItem(2).setChecked(true);
                     changeFragment(userFragment);
             }
             return true;
         });
     }
 
+    private void changeUserColorIcon(int color)
+    {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        Drawable drawable = toolbar.getMenu().getItem(0).getIcon();
+        drawable.mutate();
+        drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    //navigating between pages
     private void changeFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

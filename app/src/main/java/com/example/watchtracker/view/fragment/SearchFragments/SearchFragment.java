@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.example.watchtracker.R;
+import com.example.watchtracker.view.activity.MainActivity;
 import com.example.watchtracker.viewModel.SeachViewModel.SearchViewModel;
 
 public class SearchFragment extends Fragment {
@@ -34,10 +35,11 @@ public class SearchFragment extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                searchLayout.setScaleX(15);
-                searchLayout.setScaleY(15);
+                searchLayout.setScaleX(20);
+                searchLayout.setScaleY(20);
             }
-        }, 445);
+        }, 395);
+
 
         return view;
     }
