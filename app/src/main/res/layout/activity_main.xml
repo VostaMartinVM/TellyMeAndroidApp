@@ -78,6 +78,7 @@
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:translationZ="3dp"
+            app:itemIconTint="@drawable/custom_bottom_navigation"
             app:menu="@menu/bottom_menu" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
