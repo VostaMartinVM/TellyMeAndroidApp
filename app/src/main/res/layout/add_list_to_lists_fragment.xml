@@ -4,7 +4,7 @@
     android:id="@+id/add_list_to_lists_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.ListsFragments.AddListToListsFragment">
+    tools:context=".view.fragment.listsFragments.AddListToListsFragment">
 
     <TextView
         android:layout_width="match_parent"

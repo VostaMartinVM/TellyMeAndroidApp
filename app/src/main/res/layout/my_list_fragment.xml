@@ -5,7 +5,7 @@
     android:id="@+id/my_list_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.ListsFragments.MyListsFragment">
+    tools:context=".view.fragment.listsFragments.MyListsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

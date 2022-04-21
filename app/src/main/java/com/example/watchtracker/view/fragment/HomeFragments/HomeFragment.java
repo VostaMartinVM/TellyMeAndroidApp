@@ -1,6 +1,7 @@
 package com.example.watchtracker.view.fragment.HomeFragments;
 
 import androidx.annotation.ColorInt;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,8 +22,10 @@ import android.widget.FrameLayout;
 
 import com.example.watchtracker.view.activity.MainActivity;
 import com.example.watchtracker.view.activity.MessageSystem;
+import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.HomeViewModels.HomeViewModel;
 import com.example.watchtracker.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
@@ -42,6 +45,15 @@ public class HomeFragment extends Fragment {
         postButtonFunctionality(view);
         messageButtonFunctionality(view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(0).setChecked(true);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ToolBarUtils.changeUserIcon(-1, toolbar);
+        super.onResume();
     }
 
     private void startMessageActivity()

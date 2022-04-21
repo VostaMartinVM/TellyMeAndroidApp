@@ -1,9 +1,9 @@
-package com.example.watchtracker.model;
+package com.example.watchtracker.view.utils;
 
 import android.os.Handler;
 
 
-public class Utils {
+public class DelayUtils {
 
     // Delay mechanism
 
@@ -18,6 +18,6 @@ public class Utils {
             public void run() {
                 delayCallback.afterDelay();
             }
-        }, milliseconds); // afterDelay will be executed after (secs*1000) milliseconds.
+        }, milliseconds);
     }
 }

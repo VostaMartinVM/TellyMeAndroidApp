@@ -1,5 +1,6 @@
-package com.example.watchtracker.view.fragment.ShowsFragments;
+package com.example.watchtracker.view.fragment.showsFragments;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,11 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.ShowsFragments.ShowsViewModel;
 import com.example.watchtracker.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ShowsFragment extends Fragment {
 
@@ -30,6 +31,15 @@ public class ShowsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shows_fragment, container, false);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(3).setChecked(true);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ToolBarUtils.changeUserIcon(-1, toolbar);
+        super.onResume();
     }
 
     @Override

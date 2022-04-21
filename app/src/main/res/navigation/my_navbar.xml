@@ -12,7 +12,7 @@
         tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.watchtracker.view.fragment.ListsFragments.MyListsFragment"
+        android:name="com.example.watchtracker.view.fragment.listsFragments.MyListsFragment"
         android:label="fragment_second"
         tools:layout="@layout/my_list_fragment" />
     <fragment
@@ -22,7 +22,7 @@
         tools:layout="@layout/shows_fragment" />
     <fragment
         android:id="@+id/fourthFragment"
-        android:name="com.example.watchtracker.view.fragment.MoviesFragments.MoviesFragment"
+        android:name="com.example.watchtracker.view.fragment.moviesFragments.MoviesFragment"
         android:label="fragment_fourth"
         tools:layout="@layout/movies_fragment" />
 </navigation>

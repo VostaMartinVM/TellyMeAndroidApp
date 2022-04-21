@@ -1,5 +1,6 @@
-package com.example.watchtracker.view.fragment.ListsFragments;
+package com.example.watchtracker.view.fragment.listsFragments;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.ListsViewModel.MyListViewModel;
 import com.example.watchtracker.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MyListsFragment extends Fragment {
 
@@ -31,6 +34,15 @@ public class MyListsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.my_list_fragment, container, false);
 
+    }
+
+    @Override
+    public void onResume() {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(1).setChecked(true);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ToolBarUtils.changeUserIcon(-1, toolbar);
+        super.onResume();
     }
 
     @Override
