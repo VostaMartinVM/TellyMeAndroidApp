@@ -11,10 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-import com.example.watchtracker.view.activity.ListsItem;
-import com.example.watchtracker.view.activity.MainActivity;
 import com.example.watchtracker.viewModel.HomeViewModel;
 import com.example.watchtracker.R;
 

@@ -1,17 +1,13 @@
 package com.example.watchtracker.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.watchtracker.R;
 import com.example.watchtracker.view.fragment.homeFragments.HomeFragment;
@@ -54,6 +50,7 @@ public class MainActivity extends AppCompatActivity{
         super.onBackPressed();
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void bottomNavigationCreate()
     {
         //setting initial visualization for bottom navigation view
@@ -142,13 +139,11 @@ public class MainActivity extends AppCompatActivity{
         ToolBarUtils.changeUserIcon(-1, toolbar);
         FragmentManager fragmentManager = getSupportFragmentManager();
         toolbar.setOnMenuItemClickListener(menuItem -> {
-            switch (menuItem.getItemId()){
-                case R.id.user_button:
-                    if (userFragment == null)
-                    {
-                        userFragment = UserFragment.newInstance();
-                    }
-                    FragmentUtils.changeFragment(userFragment, R.id.fragmentLayout, "mf", fragmentManager);
+            if (menuItem.getItemId() == R.id.user_button) {
+                if (userFragment == null) {
+                    userFragment = UserFragment.newInstance();
+                }
+                FragmentUtils.changeFragment(userFragment, R.id.fragmentLayout, "mf", fragmentManager);
             }
             return true;
         });
