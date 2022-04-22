@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment.ShowsFragments;
+package com.example.watchtracker.view.fragment.listsFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.ShowsFragments.UpcomingShowsViewModel;
+import com.example.watchtracker.viewModel.ListsViewModel.AddListToListsViewModel;
 
-public class UpcomingShowsFragment extends Fragment {
+public class AddListToListsFragment extends Fragment {
 
-    private UpcomingShowsViewModel mViewModel;
+    private AddListToListsViewModel mViewModel;
 
-    public static UpcomingShowsFragment newInstance() {
-        return new UpcomingShowsFragment();
+    public static AddListToListsFragment newInstance() {
+        return new AddListToListsFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.upcoming_shows_fragment, container, false);
+        return inflater.inflate(R.layout.add_list_to_lists_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(UpcomingShowsViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(AddListToListsViewModel.class);
         // TODO: Use the ViewModel
     }
 

@@ -1,5 +1,6 @@
-package com.example.watchtracker.view.fragment.ListsFragments;
+package com.example.watchtracker.view.fragment.listsFragments;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,10 +17,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.watchtracker.view.fragment.HomeFragments.CreatePostFragment;
+import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.ListsViewModel.MyListViewModel;
 import com.example.watchtracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MyListsFragment extends Fragment {
 
@@ -51,6 +53,15 @@ public class MyListsFragment extends Fragment {
             fragmentTransaction.addToBackStack("cl");
             fragmentTransaction.commit();
         });
+    }
+
+    @Override
+    public void onResume() {
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(1).setChecked(true);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ToolBarUtils.changeUserIcon(-1, toolbar);
+        super.onResume();
     }
 
     @Override

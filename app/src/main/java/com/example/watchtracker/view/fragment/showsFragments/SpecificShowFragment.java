@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment.ShowsFragments;
+package com.example.watchtracker.view.fragment.showsFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.ShowsFragments.EpisodesShowViewModel;
+import com.example.watchtracker.viewModel.ShowsFragments.SpecificShowViewModel;
 
-public class EpisodesShowFragment extends Fragment {
+public class SpecificShowFragment extends Fragment {
 
-    private EpisodesShowViewModel mViewModel;
+    private SpecificShowViewModel mViewModel;
 
-    public static EpisodesShowFragment newInstance() {
-        return new EpisodesShowFragment();
+    public static SpecificShowFragment newInstance() {
+        return new SpecificShowFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.episodes_show_fragment, container, false);
+        return inflater.inflate(R.layout.specific_show_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(EpisodesShowViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SpecificShowViewModel.class);
         // TODO: Use the ViewModel
     }
 
