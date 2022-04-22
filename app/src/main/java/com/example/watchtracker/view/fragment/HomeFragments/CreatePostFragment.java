@@ -1,4 +1,4 @@
-package com.example.watchtracker.view.fragment.HomeFragments;
+package com.example.watchtracker.view.fragment.homeFragments;
 
 import androidx.lifecycle.ViewModelProvider;
 

@@ -14,9 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.watchtracker.R;
+import com.example.watchtracker.view.fragment.homeFragments.HomeFragment;
 import com.example.watchtracker.view.utils.DelayUtils;
 import com.example.watchtracker.view.fragment.showsFragments.ShowsFragment;
-import com.example.watchtracker.view.fragment.HomeFragments.HomeFragment;
 import com.example.watchtracker.view.fragment.moviesFragments.MoviesFragment;
 import com.example.watchtracker.view.fragment.listsFragments.MyListsFragment;
 import com.example.watchtracker.view.fragment.searchFragments.SearchFragment;

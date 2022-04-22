@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.ListsViewModel.MyListViewModel;
 import com.example.watchtracker.R;
@@ -47,11 +48,8 @@ public class MyListsFragment extends Fragment {
         FloatingActionButton addListButton = view.findViewById(R.id.add_list_button);
         addListButton.setOnClickListener((tempView) -> {
             FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             AddListToListsFragment addListToListsFragment = AddListToListsFragment.newInstance();
-            fragmentTransaction.replace(R.id.list_dummy_fragment, addListToListsFragment, "cl");
-            fragmentTransaction.addToBackStack("cl");
-            fragmentTransaction.commit();
+            FragmentUtils.changeFragment(addListToListsFragment, R.id.list_dummy_fragment, "cl", fragmentManager);
         });
     }
 
