@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/create_post_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.homeFragments.CreatePostFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/post_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/rounded_edit_text"
+            android:gravity="top|left"
+            android:paddingLeft="15dp"
+            android:paddingTop="50dp"
+            android:paddingRight="70dp"
+            android:paddingBottom="50dp"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/delete_post_button"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/delete_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/post_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="@+id/post_edit_text"
+            app:layout_constraintTop_toTopOf="@+id/post_edit_text"
+            app:layout_constraintVertical_bias="0.03000000"
+            app:tint="#D60000" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/post_button_divider"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            app:layout_constraintBottom_toBottomOf="@+id/post_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="@+id/post_edit_text"
+            app:layout_constraintTop_toTopOf="@+id/post_edit_text"
+            app:layout_constraintVertical_bias="0.95">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_movie_to_post_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#7780FF"
+                android:clickable="true"
+                android:src="@drawable/plus_icon"
+                app:borderWidth="0dp"
+                app:fabCustomSize="40dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/send_post_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#7780FF"
+                android:clickable="true"
+                android:src="@drawable/send_icon"
+                app:borderWidth="0dp"
+                app:fabCustomSize="50dp"
+                tools:fabCustomSize="40dp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

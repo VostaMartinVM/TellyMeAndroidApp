@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.homeFragments.HomeFragment">
@@ -50,11 +51,17 @@
             app:layout_constraintTop_toTopOf="@+id/openPostWindow"
             app:tint="#686868" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/post_dummy_fragment"
+            android:layout_width="315dp"
+            android:layout_height="400dp"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/openPostWindow"
+            app:layout_constraintEnd_toEndOf="@+id/openPostWindow"
+            app:layout_constraintStart_toStartOf="@+id/openPostWindow"
+            app:layout_constraintTop_toTopOf="@+id/openPostWindow"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/post_dummy_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="568dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
