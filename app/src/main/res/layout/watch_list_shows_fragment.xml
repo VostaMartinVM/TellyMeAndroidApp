@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.showsFragments.WatchListShowsFragment">
 
-    <TextView
+    <ListView
+        android:id="@+id/watchlist_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ajaja" />
+        android:layout_height="match_parent" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/specific_show_dummy_fagment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>

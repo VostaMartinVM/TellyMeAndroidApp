@@ -33,4 +33,11 @@ public class FragmentUtils {
         fragmentTransaction.show(fragmentToShow);
         fragmentTransaction.commit();
     }
+
+    public  static void showFragment(Fragment fragmentToShow, FragmentManager fragmentManager)
+    {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.show(fragmentToShow);
+        fragmentTransaction.commit();
+    }
 }

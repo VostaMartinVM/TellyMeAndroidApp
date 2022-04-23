@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.showsFragments.UpcomingShowsFragment">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fck this ishit im out" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

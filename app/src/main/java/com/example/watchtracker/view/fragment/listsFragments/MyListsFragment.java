@@ -2,7 +2,6 @@ package com.example.watchtracker.view.fragment.listsFragments;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -14,11 +13,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
+import com.example.watchtracker.viewModel.ListsBaseAdapter;
 import com.example.watchtracker.viewModel.ListsViewModel.MyListViewModel;
 import com.example.watchtracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,7 +39,31 @@ public class MyListsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my_list_fragment, container, false);
         addListButtonFunctionality(view);
+        listsItems(view);
+
+
+
+
         return view;
+
+    }
+
+    private void listsItems(View view)
+    {
+        String[] listItems = {"My Shows", "My Movies", "Favorites"};
+        int [] listImages = {R.mipmap.lists_background, R.mipmap.lists_background, R.mipmap.lists_background};
+        ListView listView = (ListView) view.findViewById(R.id.specific_list);
+        ListsBaseAdapter listsBaseAdapter = new ListsBaseAdapter(getActivity().getApplicationContext(), listItems, listImages);
+        listView.setAdapter(listsBaseAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                SpecificListFragment specificListFragment = SpecificListFragment.newInstance();
+                FragmentUtils.changeFragment(specificListFragment, R.id.list_dummy_fragment, "ldf", fragmentManager);
+            }
+        });
 
     }
 
@@ -49,7 +73,7 @@ public class MyListsFragment extends Fragment {
         addListButton.setOnClickListener((tempView) -> {
             FragmentManager fragmentManager = getParentFragmentManager();
             AddListToListsFragment addListToListsFragment = AddListToListsFragment.newInstance();
-            FragmentUtils.changeFragment(addListToListsFragment, R.id.list_dummy_fragment, "cl", fragmentManager);
+            FragmentUtils.changeFragment(addListToListsFragment, R.id.list_dummy_fragment, "ldf", fragmentManager);
         });
     }
 

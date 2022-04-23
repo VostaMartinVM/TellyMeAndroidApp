@@ -4,26 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.model.List;
 
-import java.util.ArrayList;
-
-public class CustomBaseAdapter extends BaseAdapter {
+public class ListsBaseAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<List> List;
+    String listItems[];
+    int listImages[];
     LayoutInflater inflater;
 
 
-    public CustomBaseAdapter(Context context, ArrayList List)
-    {
-        this.List = List;
+    public ListsBaseAdapter(Context context, String[] listItems, int[] listImages) {
+        this.listImages = listImages;
+        this.listItems = listItems;
         this.context = context;
         inflater = LayoutInflater.from(context);
 
@@ -31,7 +28,7 @@ public class CustomBaseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return List.size();
+        return listItems.length;
     }
 
     @Override
@@ -49,8 +46,8 @@ public class CustomBaseAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.activity_lists_item, null);
         TextView textView = (TextView) view.findViewById(R.id.ListsText);
         ImageView imageView = (ImageView) view.findViewById(R.id.ListIcon);
-        textView.setText(List.get(i).getListText());
-        imageView.setImageResource(List.get(i).getListImage());
+        textView.setText(listItems[i]);
+        imageView.setImageResource(listImages[i]);
         return view;
     }
 }
