@@ -21,13 +21,13 @@
             android:theme="?attr/actionBarTheme"
             app:menu="@menu/top_menu" />
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentLayout"
-            android:name="com.example.watchtracker.FirstFragment"
+            android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </FrameLayout>
+        </androidx.fragment.app.FragmentContainerView>
 
     </LinearLayout>
 
@@ -44,7 +44,8 @@
     <FrameLayout
         android:id="@+id/searchFragmentLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment">
 
     </FrameLayout>
 
@@ -79,7 +80,9 @@
             android:background="@android:color/transparent"
             android:translationZ="3dp"
             app:itemIconTint="@drawable/custom_bottom_navigation"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/bottom_menu" >
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 

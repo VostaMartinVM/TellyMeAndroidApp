@@ -2,7 +2,6 @@ package com.example.watchtracker.view.fragment.homeFragments;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -16,8 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.example.watchtracker.view.activity.MessageSystem;
+import com.example.watchtracker.view.utils.FragmentUtils;
+import com.example.watchtracker.view.utils.KeyboardUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.HomeViewModels.HomeViewModel;
 import com.example.watchtracker.R;
@@ -27,8 +29,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
-
-
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -71,11 +71,9 @@ public class HomeFragment extends Fragment {
         Button openPostWindow = view.findViewById(R.id.openPostWindow);
         openPostWindow.setOnClickListener((tempView) -> {
             FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             CreatePostFragment createPostFragment = CreatePostFragment.newInstance();
-            fragmentTransaction.replace(R.id.post_dummy_fragment, createPostFragment, "hf");
-            fragmentTransaction.addToBackStack("hf");
-            fragmentTransaction.commit();
+            FragmentUtils.changeFragmentWithAnimation(createPostFragment, R.id.post_dummy_fragment, "pf", fragmentManager, 0, 0
+                    , R.anim.post_enter_from_bottom, R.anim.post_enter_from_top);
         });
     }
 
