@@ -36,6 +36,63 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/search_edit_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/search_edit_text"
+                app:layout_constraintTop_toBottomOf="@+id/search_edit_text">
+
+                <ImageButton
+                    android:id="@+id/search_people_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_marginRight="-20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="#1f1f1f"
+                    android:src="@drawable/people_icon" />
+
+                <ImageButton
+                    android:id="@+id/search_shows_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_marginRight="-20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="#1F1F1F"
+                    android:src="@drawable/tv_series_icon" />
+
+                <ImageButton
+                    android:id="@+id/search_movies_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="#1F1F1F"
+                    android:src="@drawable/movie_icon" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/search_list_dummy_frame"
+                android:layout_width="315dp"
+                android:layout_height="599dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            </FrameLayout>
+
             <EditText
                 android:id="@+id/search_edit_text"
                 android:layout_width="315dp"
@@ -62,9 +119,10 @@
                 app:layout_constraintBottom_toBottomOf="@+id/search_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/search_edit_text"
                 app:layout_constraintTop_toTopOf="@+id/search_edit_text"
-                app:tint="#686868"/>
+                app:tint="#686868" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 </FrameLayout>
