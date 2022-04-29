@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.watchtracker.viewModel.TVShowsViewModel;
 import com.example.watchtracker.R;
 
 public class TVShowsFragment extends Fragment {

@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
 import com.example.watchtracker.view.utils.ToolBarUtils;
-import com.example.watchtracker.viewModel.UserFragments.UserViewModel;
+import com.example.watchtracker.viewModel.UserViewModels.UserViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserFragment extends Fragment {

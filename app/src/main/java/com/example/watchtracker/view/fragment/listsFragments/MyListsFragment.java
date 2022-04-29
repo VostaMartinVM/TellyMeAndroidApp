@@ -18,8 +18,8 @@ import android.widget.ListView;
 
 import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
-import com.example.watchtracker.viewModel.ListsBaseAdapter;
-import com.example.watchtracker.viewModel.ListsViewModel.MyListViewModel;
+import com.example.watchtracker.viewModel.Adapters.ListsBaseAdapter;
+import com.example.watchtracker.viewModel.ListsViewModels.MyListViewModel;
 import com.example.watchtracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

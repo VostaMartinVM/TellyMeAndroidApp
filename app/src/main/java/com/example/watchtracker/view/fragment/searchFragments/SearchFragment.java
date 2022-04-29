@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -16,9 +15,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -27,9 +23,7 @@ import android.widget.ImageView;
 import com.example.watchtracker.R;
 import com.example.watchtracker.view.utils.DelayUtils;
 import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.view.utils.KeyboardUtils;
-import com.example.watchtracker.viewModel.SeachViewModel.SearchShowsViewModel;
-import com.example.watchtracker.viewModel.SeachViewModel.SearchViewModel;
+import com.example.watchtracker.viewModel.SeachViewModels.SearchViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

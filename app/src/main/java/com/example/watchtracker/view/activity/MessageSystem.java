@@ -1,7 +1,6 @@
 package com.example.watchtracker.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.viewModel.MessageListBaseAdapter;
+import com.example.watchtracker.viewModel.Adapters.MessageListBaseAdapter;
 
 public class MessageSystem extends AppCompatActivity {
 

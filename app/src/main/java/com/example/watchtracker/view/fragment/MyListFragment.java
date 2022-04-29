@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.watchtracker.viewModel.MyListViewModel;
 import com.example.watchtracker.R;
 
 public class MyListFragment extends Fragment {

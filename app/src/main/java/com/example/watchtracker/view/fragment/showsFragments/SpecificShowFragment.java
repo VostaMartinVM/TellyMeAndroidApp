@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.ShowsFragments.SpecificShowViewModel;
+import com.example.watchtracker.viewModel.ShowsViewModels.SpecificShowViewModel;
 
 public class SpecificShowFragment extends Fragment {
 

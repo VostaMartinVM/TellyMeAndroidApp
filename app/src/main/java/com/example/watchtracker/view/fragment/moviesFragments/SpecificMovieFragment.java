@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.MoviesFragments.SpecificMovieViewModel;
+import com.example.watchtracker.viewModel.MoviesViewModels.SpecificMovieViewModel;
 
 public class SpecificMovieFragment extends Fragment {
 

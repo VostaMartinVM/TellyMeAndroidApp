@@ -19,8 +19,8 @@ import com.example.watchtracker.R;
 import com.example.watchtracker.view.fragment.searchFragments.SearchFragment;
 import com.example.watchtracker.view.fragment.showsFragments.SpecificShowFragment;
 import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.viewModel.ListsBaseAdapter;
-import com.example.watchtracker.viewModel.ListsViewModel.SpecificListViewModel;
+import com.example.watchtracker.viewModel.Adapters.ListsBaseAdapter;
+import com.example.watchtracker.viewModel.ListsViewModels.SpecificListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SpecificListFragment extends Fragment {

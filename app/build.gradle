@@ -5,6 +5,27 @@ plugins {
 android {
     compileSdk 32
 
+    sourceSets {
+
+        main {
+
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/activities',
+                            'src/main/res/layouts/home_fragments',
+                            'src/main/res/layouts/list_items',
+                            'src/main/res/layouts/lists_fragments',
+                            'src/main/res/layouts/movies_fragments',
+                            'src/main/res/layouts/search_fragments',
+                            'src/main/res/layouts/shows_fragments',
+                            'src/main/res/layouts/user_fragments',
+
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
+        }
+    }
+
     viewBinding{
         enabled = true
     }

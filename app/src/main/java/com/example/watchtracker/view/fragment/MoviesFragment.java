@@ -11,8 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.watchtracker.viewModel.MoviesViewModel;
-import com.example.watchtracker.viewModel.MoviesViewModel;
+
 import com.example.watchtracker.R;
 
 public class MoviesFragment extends Fragment {

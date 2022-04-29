@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.SearchPeopleViewModel;
+import com.example.watchtracker.viewModel.SeachViewModels.SearchPeopleViewModel;
 
 public class SearchPeopleFragment extends Fragment {
 
