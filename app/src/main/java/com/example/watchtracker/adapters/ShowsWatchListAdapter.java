@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.watchtracker.R;
 
-public class ShowsListEpisodesBaseAdapter extends BaseAdapter{
+public class ShowsWatchListAdapter extends BaseAdapter{
 
 
     Context context;
@@ -20,7 +20,7 @@ public class ShowsListEpisodesBaseAdapter extends BaseAdapter{
     LayoutInflater inflater;
 
 
-    public ShowsListEpisodesBaseAdapter(Context context, String[] showName, String[] episodeName, int[] showPicture) {
+    public ShowsWatchListAdapter(Context context, String[] showName, String[] episodeName, int[] showPicture) {
         this.showName = showName;
         this.episodeName = episodeName;
         this.showPicture = showPicture;
@@ -46,10 +46,10 @@ public class ShowsListEpisodesBaseAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.activity_upcoming_watch_list_shows_item, null);
+        view = inflater.inflate(R.layout.shows_watch_list_item, null);
         TextView showNameTextView = (TextView) view.findViewById(R.id.show_name);
         TextView episodeNameTextView = (TextView) view.findViewById(R.id.episode_name);
-        ImageView imageView = (ImageView) view.findViewById(R.id.show_image);
+        ImageView imageView = (ImageView) view.findViewById(R.id.search_show_image);
 
         showNameTextView.setText(showName[i]);
         episodeNameTextView.setText(episodeName[i]);

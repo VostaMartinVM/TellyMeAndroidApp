@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.showsFragments.WatchListShowsFragment">
 
-    <ListView
-        android:id="@+id/watchlist_list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/watch_list_shows_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

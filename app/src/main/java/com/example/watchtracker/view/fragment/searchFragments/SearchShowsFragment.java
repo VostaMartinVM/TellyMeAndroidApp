@@ -38,11 +38,11 @@ public class SearchShowsFragment extends Fragment {
         view = inflater.inflate(R.layout.search_shows_fragment, container, false);
 
         //show all shows
-        RecyclerView recyclerView = view.findViewById(R.id.search_shows_list);
+        RecyclerView recyclerView = view.findViewById(R.id.search_shows_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        showsListAdapter = new SearchShowsListAdapter(shows);
+        showsListAdapter = new SearchShowsListAdapter(shows, getContext());
         recyclerView.setAdapter(showsListAdapter);
 
         mViewModel = new ViewModelProvider(this).get(SearchShowsViewModel.class);
@@ -50,7 +50,6 @@ public class SearchShowsFragment extends Fragment {
             if(showList != null) {
                 shows = showList;
                 showsListAdapter.setShows(showList);
-                System.out.println(shows.size());
             }
         });
         return view;

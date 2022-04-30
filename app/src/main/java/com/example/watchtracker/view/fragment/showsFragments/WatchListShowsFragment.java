@@ -18,7 +18,7 @@ import android.widget.ListView;
 import com.example.watchtracker.R;
 import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.viewModel.ShowsViewModels.WatchListShowsViewModel;
-import com.example.watchtracker.adapters.ShowsListEpisodesBaseAdapter;
+import com.example.watchtracker.adapters.ShowsWatchListAdapter;
 
 public class WatchListShowsFragment extends Fragment {
 
@@ -48,9 +48,9 @@ public class WatchListShowsFragment extends Fragment {
         String[] showName = {"kaguya", "batman", "moonknight"};
         String[] episodeName = {"ep1", "ep2", "ep3"};
         int [] showPicture = {R.mipmap.lists_background, R.mipmap.lists_background, R.mipmap.lists_background};
-        ListView listView = (ListView) view.findViewById(R.id.watchlist_list);
-        ShowsListEpisodesBaseAdapter showsListEpisodesBaseAdapter = new ShowsListEpisodesBaseAdapter(getActivity().getApplicationContext(), showName, episodeName, showPicture);
-        listView.setAdapter(showsListEpisodesBaseAdapter);
+        ListView listView = (ListView) view.findViewById(R.id.watch_list_shows_recycler_view);
+        ShowsWatchListAdapter showsWatchListAdapter = new ShowsWatchListAdapter(getActivity().getApplicationContext(), showName, episodeName, showPicture);
+        listView.setAdapter(showsWatchListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

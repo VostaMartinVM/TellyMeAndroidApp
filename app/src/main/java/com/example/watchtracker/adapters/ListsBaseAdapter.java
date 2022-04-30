@@ -43,7 +43,7 @@ public class ListsBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.activity_lists_item, null);
+        view = inflater.inflate(R.layout.lists_item, null);
         TextView textView = (TextView) view.findViewById(R.id.ListsText);
         ImageView imageView = (ImageView) view.findViewById(R.id.ListIcon);
         textView.setText(listItems[i]);
