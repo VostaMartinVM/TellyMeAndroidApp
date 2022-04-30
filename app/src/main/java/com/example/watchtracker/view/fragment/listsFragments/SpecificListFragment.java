@@ -19,7 +19,7 @@ import com.example.watchtracker.R;
 import com.example.watchtracker.view.fragment.searchFragments.SearchFragment;
 import com.example.watchtracker.view.fragment.showsFragments.SpecificShowFragment;
 import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.viewModel.Adapters.ListsBaseAdapter;
+import com.example.watchtracker.adapters.ListsBaseAdapter;
 import com.example.watchtracker.viewModel.ListsViewModels.SpecificListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

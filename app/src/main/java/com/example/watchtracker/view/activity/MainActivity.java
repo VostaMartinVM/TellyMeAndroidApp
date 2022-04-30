@@ -23,6 +23,7 @@ import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+
 public class MainActivity extends AppCompatActivity{
 
     private HomeFragment homeFragment;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bottomNavigationCreate();
         toolbarCreate();
     }
@@ -76,6 +76,15 @@ public class MainActivity extends AppCompatActivity{
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Search floating action button functionality
+        searchActionButton(fragmentManager);
+
+        //functionality for specific items in bottom navigation view
+        bottomNavigationButtonFun(fragmentManager);
+
+    }
+
+    private void searchActionButton(FragmentManager fragmentManager)
+    {
         FloatingActionButton searchActionButton = findViewById(R.id.searchButton);
         searchActionButton.setCompatElevation(0);
         SearchFragment searchFragment = SearchFragment.newInstance();
@@ -84,15 +93,24 @@ public class MainActivity extends AppCompatActivity{
             if (!(searchFragmentOpened instanceof SearchFragment) )
             {
                 FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.searchFragmentLayout, "sf", fragmentManager, R.anim.enter_from_bottom
-                , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
+                        , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
             }
             else {
+                if (fragmentManager.findFragmentByTag("sldf") != null)
+                {
+                    do {
+                        onBackPressed();
+                    }
+                    while (fragmentManager.findFragmentByTag("sldf") != null);
+                }
                 onBackPressed();
             }
         });
+    }
 
-        //functionality for specific items in bottom navigation view
-        //noinspection deprecation
+    private void bottomNavigationButtonFun(FragmentManager fragmentManager)
+    {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.searchFragmentLayout);
             if (searchFragmentOpened instanceof SearchFragment)

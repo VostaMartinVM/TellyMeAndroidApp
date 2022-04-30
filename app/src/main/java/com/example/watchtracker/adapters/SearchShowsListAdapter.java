@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel.Adapters;
+package com.example.watchtracker.adapters;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.watchtracker.R;
 import com.example.watchtracker.model.Show;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,15 +27,20 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.search_shows_fragment, parent, false);
+        View view = layoutInflater.inflate(R.layout.activity_search_shows_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.showTitle.setText(shows.get(position).getName());
-        Uri imageUri = Uri.parse("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdrop_path());
-        holder.showImage.setImageURI(imageUri);
+        if (shows.get(position).getBackdropPath() != null)
+        {
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdropPath()).into(holder.showImage);
+        }
+        else {
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getPosterPath()).into(holder.showImage);
+        }
     }
 
     @Override
@@ -42,10 +48,15 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         return shows.size();
     }
 
+    public void setShows(ArrayList<Show> shows) {
+        this.shows = shows;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView showTitle;
         private final ImageView showImage;
-        ViewHolder (View itemView)
+        ViewHolder (@NonNull View itemView)
         {
             super(itemView);
             this.showTitle = itemView.findViewById(R.id.show_title);

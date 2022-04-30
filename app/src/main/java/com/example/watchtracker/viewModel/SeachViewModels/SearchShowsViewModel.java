@@ -1,32 +1,34 @@
 package com.example.watchtracker.viewModel.SeachViewModels;
 
-import android.content.pm.ApplicationInfo;
+import android.app.Application;
 
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.watchtracker.model.Show;
+import com.example.watchtracker.model.ShowRequest;
+import com.example.watchtracker.network.ShowServiceInterface;
+import com.example.watchtracker.network.TMDBServiceGenerator;
+import com.example.watchtracker.repository.ShowRepository;
 
 import java.util.ArrayList;
 
-public class SearchShowsViewModel extends ViewModel {
-   MutableLiveData<ArrayList<Show>> showLiveData;
-   ArrayList<Show> showArrayList;
-   public SearchShowsViewModel (ApplicationInfo applicationInfo)
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class SearchShowsViewModel extends AndroidViewModel {
+    ShowRepository showRepository;
+
+   public SearchShowsViewModel (Application application)
    {
-       showLiveData = new MutableLiveData<>();
-       init();
+       super(application);
+       showRepository = ShowRepository.getInstance();
    }
 
-   public void init ()
+   public LiveData<ArrayList<Show>> getShows()
    {
-
-       populateList();
-       showLiveData.setValue(showArrayList);
-   }
-
-   public void populateList()
-   {
-       showArrayList = new ArrayList<>();
+       return showRepository.getShows();
    }
 }

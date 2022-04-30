@@ -18,7 +18,7 @@ import android.widget.ListView;
 import com.example.watchtracker.R;
 import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.viewModel.ShowsViewModels.WatchListShowsViewModel;
-import com.example.watchtracker.viewModel.Adapters.ShowsListEpisodesBaseAdapter;
+import com.example.watchtracker.adapters.ShowsListEpisodesBaseAdapter;
 
 public class WatchListShowsFragment extends Fragment {
 

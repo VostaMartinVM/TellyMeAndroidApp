@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel.Adapters;
+package com.example.watchtracker.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
