@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/search_show_image"
+        android:id="@+id/search_image"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:foreground="@drawable/rounded_list_item"
@@ -18,7 +18,7 @@
         />
 
     <TextView
-        android:id="@+id/search_show_title"
+        android:id="@+id/search_title"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:gravity="center"
@@ -26,7 +26,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/search_show_image"
+        app:layout_constraintStart_toStartOf="@+id/search_image"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@ public class ShowsWatchListAdapter extends BaseAdapter{
         view = inflater.inflate(R.layout.shows_watch_list_item, null);
         TextView showNameTextView = (TextView) view.findViewById(R.id.show_name);
         TextView episodeNameTextView = (TextView) view.findViewById(R.id.episode_name);
-        ImageView imageView = (ImageView) view.findViewById(R.id.search_show_image);
+        ImageView imageView = (ImageView) view.findViewById(R.id.search_image);
 
         showNameTextView.setText(showName[i]);
         episodeNameTextView.setText(episodeName[i]);

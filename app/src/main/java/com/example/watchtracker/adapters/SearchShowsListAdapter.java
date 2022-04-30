@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.search_shows_list_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.search_list_item, parent, false);
         int height = parent.getHeight()/6;
         int width = parent.getWidth();
         view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
@@ -66,8 +65,8 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
-            this.showTitle = itemView.findViewById(R.id.search_show_title);
-            this.showImage = itemView.findViewById(R.id.search_show_image);
+            this.showTitle = itemView.findViewById(R.id.search_title);
+            this.showImage = itemView.findViewById(R.id.search_image);
         }
     }
 }

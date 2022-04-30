@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesListAdapter.ViewHolder> {
 
     private ArrayList<Movie> movies;
+    private View view;
 
     public SearchMoviesListAdapter (ArrayList<Movie> movies){
         this.movies = movies;
@@ -25,7 +26,10 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.activity_search_movies_list_item, parent, false);
+        int height = parent.getHeight()/6;
+        int width = parent.getWidth();
+        view = layoutInflater.inflate(R.layout.search_list_item, parent, false);
+        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
@@ -34,10 +38,10 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
         holder.showTitle.setText(movies.get(position).getTitle());
         if (movies.get(position).getBackdropPath() != null)
         {
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).fit().centerCrop().into(holder.showImage);
         }
         else {
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getPosterPath()).into(holder.showImage);
+            Picasso.get().load("dummy path" + movies.get(position).getPosterPath()).into(holder.showImage);
         }
     }
 
@@ -57,8 +61,8 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
-            this.showTitle = itemView.findViewById(R.id.search_movie_title);
-            this.showImage = itemView.findViewById(R.id.search_movie_image);
+            this.showTitle = itemView.findViewById(R.id.search_title);
+            this.showImage = itemView.findViewById(R.id.search_image);
         }
     }
 }

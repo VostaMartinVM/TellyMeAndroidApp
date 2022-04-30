@@ -30,11 +30,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="2">
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -82,17 +84,6 @@
                     android:layout_weight="2" />
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/search_list_dummy_frame"
-                android:layout_width="315dp"
-                android:layout_height="599dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            </FrameLayout>
-
             <EditText
                 android:id="@+id/search_edit_text"
                 android:layout_width="315dp"
@@ -122,6 +113,21 @@
                 app:tint="#686868" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/search_list_dummy_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

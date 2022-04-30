@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/search_show_image"
+            app:layout_constraintStart_toEndOf="@+id/search_image"
             tools:layout_editor_absoluteY="-1dp">
 
             <TextView
@@ -39,7 +39,7 @@
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/search_show_image"
+            android:id="@+id/search_image"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

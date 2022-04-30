@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,19 +49,7 @@ public class WatchListShowsFragment extends Fragment {
         String[] showName = {"kaguya", "batman", "moonknight"};
         String[] episodeName = {"ep1", "ep2", "ep3"};
         int [] showPicture = {R.mipmap.lists_background, R.mipmap.lists_background, R.mipmap.lists_background};
-        ListView listView = (ListView) view.findViewById(R.id.watch_list_shows_recycler_view);
-        ShowsWatchListAdapter showsWatchListAdapter = new ShowsWatchListAdapter(getActivity().getApplicationContext(), showName, episodeName, showPicture);
-        listView.setAdapter(showsWatchListAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                SpecificShowFragment specificShowFragment = SpecificShowFragment.newInstance();
-                FragmentUtils.changeFragment(specificShowFragment, R.id.shows_fragment, "ldf", fragmentManager);
-            }
-        });
-
+        RecyclerView recyclerView = view.findViewById(R.id.watch_list_shows_recycler_view);
     }
 
 }
