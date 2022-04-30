@@ -18,10 +18,10 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.watchtracker.R;
+import com.example.watchtracker.adapters.MovieWatchListListAdapter;
 import com.example.watchtracker.model.Movie;
 import com.example.watchtracker.view.fragment.showsFragments.SpecificShowFragment;
 import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.viewModel.Adapters.MovieWatchListListAdapter;
 import com.example.watchtracker.viewModel.MoviesViewModels.WatchListMoviesViewModel;
 
 import java.util.ArrayList;

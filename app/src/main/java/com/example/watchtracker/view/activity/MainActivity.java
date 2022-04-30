@@ -45,8 +45,16 @@ public class MainActivity extends AppCompatActivity{
     public void onBackPressed() {
         Fragment searchFragment = getSupportFragmentManager().findFragmentByTag("sf");
         Fragment postFragment = getSupportFragmentManager().findFragmentByTag("pf");
+        FragmentManager fragmentManager = getSupportFragmentManager();
         if (searchFragment != null && searchFragment.isResumed())
         {
+            if (fragmentManager.findFragmentByTag("sldf") != null)
+            {
+                do {
+                    super.onBackPressed();
+                }
+                while (fragmentManager.findFragmentByTag("sldf") != null);
+            }
             super.onBackPressed();
         }
         else if (postFragment != null && postFragment.isResumed())
@@ -96,13 +104,6 @@ public class MainActivity extends AppCompatActivity{
                         , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
             }
             else {
-                if (fragmentManager.findFragmentByTag("sldf") != null)
-                {
-                    do {
-                        onBackPressed();
-                    }
-                    while (fragmentManager.findFragmentByTag("sldf") != null);
-                }
                 onBackPressed();
             }
         });

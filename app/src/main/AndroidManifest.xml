@@ -12,21 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fab_Bottom_app_bar">
         <activity
-            android:name=".view.activity.MovieWatchListItem"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.SearchMoviesListItem"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.SearchShowsListItem"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.SearchPeopleListItem"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.UpcomingWatchListShowsItem"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.Messages"
             android:exported="false" />
         <activity

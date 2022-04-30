@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.watchtracker.model.Movie;
 import com.example.watchtracker.view.utils.ToolBarUtils;
-import com.example.watchtracker.viewModel.Adapters.MovieWatchListListAdapter;
 import com.example.watchtracker.viewModel.MoviesViewModels.MoviesViewModel;
 import com.example.watchtracker.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
