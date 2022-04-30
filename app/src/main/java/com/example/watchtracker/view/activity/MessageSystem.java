@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.viewModel.Adapters.MessageListBaseAdapter;
+import com.example.watchtracker.adapters.MessageListBaseAdapter;
 
 public class MessageSystem extends AppCompatActivity {
 

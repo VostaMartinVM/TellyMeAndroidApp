@@ -2,6 +2,7 @@ package com.example.watchtracker.view.fragment;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,11 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.watchtracker.BuildConfig;
 import com.example.watchtracker.R;
 
 public class TVShowsFragment extends Fragment {
 
-    private TVShowsViewModel mViewModel;
+//    private TVShowsViewModel mViewModel;
 
     public static TVShowsFragment newInstance() {
         return new TVShowsFragment();
@@ -31,7 +33,7 @@ public class TVShowsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
+//        mViewModel = new ViewModelProvider(this).get(TVShowsViewModel.class);
         // TODO: Use the ViewModel
     }
 

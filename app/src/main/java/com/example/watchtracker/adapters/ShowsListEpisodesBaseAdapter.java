@@ -1,4 +1,4 @@
-package com.example.watchtracker.viewModel.Adapters;
+package com.example.watchtracker.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.watchtracker.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ShowsListEpisodesBaseAdapter extends BaseAdapter{
 
