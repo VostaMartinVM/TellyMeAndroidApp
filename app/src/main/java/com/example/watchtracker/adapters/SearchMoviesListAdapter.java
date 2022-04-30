@@ -7,45 +7,47 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.watchtracker.R;
+import com.example.watchtracker.model.Movie;
 import com.example.watchtracker.model.Show;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsListAdapter.ViewHolder> {
+public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesListAdapter.ViewHolder> {
 
-    private ArrayList<Show> shows;
-    public SearchShowsListAdapter (ArrayList<Show> shows){
-        this.shows = shows;
+    private ArrayList<Movie> movies;
+
+    public SearchMoviesListAdapter (ArrayList<Movie> movies){
+        this.movies = movies;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.activity_search_shows_list_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.activity_search_movies_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.showTitle.setText(shows.get(position).getName());
-        if (shows.get(position).getBackdropPath() != null)
+        holder.showTitle.setText(movies.get(position).getTitle());
+        if (movies.get(position).getBackdropPath() != null)
         {
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdropPath()).into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).into(holder.showImage);
         }
         else {
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getPosterPath()).into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getPosterPath()).into(holder.showImage);
         }
     }
 
     @Override
     public int getItemCount() {
-        return shows.size();
+        return movies.size();
     }
 
-    public void setShows(ArrayList<Show> shows) {
-        this.shows = shows;
+    public void setMovies(ArrayList<Movie> movies) {
+        this.movies = movies;
         notifyDataSetChanged();
     }
 
@@ -55,8 +57,8 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
-            this.showTitle = itemView.findViewById(R.id.show_title);
-            this.showImage = itemView.findViewById(R.id.show_image);
+            this.showTitle = itemView.findViewById(R.id.search_movie_title);
+            this.showImage = itemView.findViewById(R.id.search_movie_image);
         }
     }
 }

@@ -41,17 +41,6 @@ public class WatchListMoviesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.watch_list_movies_fragment, container, false);
-        RecyclerView movieWatchList;
-        MovieWatchListListAdapter movieWatchListListAdapter;
-
-        movieWatchList = view.findViewById(R.id.watch_list_movies);
-        movieWatchList.setHasFixedSize(true);
-        movieWatchList.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        ArrayList<Movie> movies = new ArrayList<>();
-        movies.add(new Movie("TrashTaste", R.mipmap.lists_background));
-        movieWatchListListAdapter = new MovieWatchListListAdapter(movies);
-        movieWatchList.setAdapter(movieWatchListListAdapter);
         return view;
     }
 
