@@ -3,6 +3,7 @@ package com.example.watchtracker.viewModel.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +18,13 @@ import java.util.ArrayList;
 public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchListListAdapter.ViewHolder> {
 
     private ArrayList<Movie> movies;
-    private View.OnClickListener onClickListener;
+    private AdapterView.OnItemClickListener onClickListener;
 
-    MovieWatchListListAdapter (ArrayList<Movie> movies){
+    public MovieWatchListListAdapter(ArrayList<Movie> movies){
         this.movies = movies;
     }
 
-    public void setOnClickListener(View.OnClickListener listener) {
+    public void setOnClickListener(AdapterView.OnItemClickListener listener) {
         this.onClickListener = listener;
     }
 
@@ -31,7 +32,7 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.activity_movie_watch_list_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.movie_watch_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -47,13 +48,13 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView movieTitle;
-        ImageView movieImage;
+        private final TextView movieTitle;
+        private final ImageView movieImage;
 
         ViewHolder(View itemView) {
             super(itemView);
-            movieTitle = itemView.findViewById(R.id.movie_title);
-            movieImage = itemView.findViewById(R.id.movie_image);
+            movieTitle = itemView.findViewById(R.id.movie_title_watchlist);
+            movieImage = itemView.findViewById(R.id.movie_image_watchlist);
         }
     }
 }
