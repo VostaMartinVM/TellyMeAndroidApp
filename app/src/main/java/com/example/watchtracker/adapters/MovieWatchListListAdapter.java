@@ -3,7 +3,6 @@ package com.example.watchtracker.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,15 +17,11 @@ import java.util.ArrayList;
 public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchListListAdapter.ViewHolder> {
 
     private ArrayList<Movie> movies;
-    private AdapterView.OnItemClickListener onClickListener;
 
     public MovieWatchListListAdapter(ArrayList<Movie> movies){
         this.movies = movies;
     }
 
-    public void setOnClickListener(AdapterView.OnItemClickListener listener) {
-        this.onClickListener = listener;
-    }
 
     @NonNull
     @Override
@@ -38,8 +33,7 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.movieImage.setImageResource(movies.get(position).getBackdrop_path());
-        holder.movieTitle.setText(movies.get(position).getName());
+
     }
 
     @Override
