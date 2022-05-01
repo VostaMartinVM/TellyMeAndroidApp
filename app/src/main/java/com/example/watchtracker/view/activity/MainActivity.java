@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -39,6 +42,12 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         bottomNavigationCreate();
         toolbarCreate();
+
+        ImageView logo = findViewById(R.id.logoIcon);
+        logo.setOnClickListener(view -> {
+            Intent i = new Intent(this, SignInActivity.class);
+            startActivity(i);
+        });
     }
 
     @Override

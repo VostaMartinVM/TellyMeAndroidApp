@@ -77,6 +77,7 @@
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/activities/layout/activity_sign_in.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/activities/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/home_fragments/layout/create_post_fragment.xml" value="0.35507246376811596" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/home_fragments/layout/home_fragment.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/activity_message_item.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/activity_movie_watch_list_item.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/activity_search_movies_list_item.xml" value="0.35507246376811596" />
@@ -91,12 +92,25 @@
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/search_people_list_item.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/search_shows_list_item.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/list_items/layout/shows_watch_list_item.xml" value="0.35507246376811596" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/lists_fragments/layout/add_list_to_lists_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/lists_fragments/layout/list_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/lists_fragments/layout/specific_list_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/movies_fragments/layout/movies_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/movies_fragments/layout/specific_movie_fragment.xml" value="0.353713768115942" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/movies_fragments/layout/upcoming_movies_fragment.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/movies_fragments/layout/watch_list_movies_fragment.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_fragment.xml" value="0.5" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_movies_fragment.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_people_fragment.xml" value="0.353713768115942" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_shows_fragment.xml" value="0.35507246376811596" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/about_show_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/episodes_show_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/shows_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/specific_show_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/tv_shows_fragment.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/upcoming_shows_fragment.xml" value="0.353713768115942" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/watch_list_shows_fragment.xml" value="0.35507246376811596" />
+        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/user_fragments/layout/user_fragment.xml" value="0.353713768115942" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/mipmap-anydpi-v26/ic_banner.xml" value="0.1995" />
         <entry key="..\:/Users/hansl/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/drawable/rounded_edit_text.xml" value="0.196" />
         <entry key="..\:/Users/hansl/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
