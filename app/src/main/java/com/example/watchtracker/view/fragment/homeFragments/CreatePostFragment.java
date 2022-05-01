@@ -79,7 +79,7 @@ public class CreatePostFragment extends Fragment {
         KeyboardUtils.showSoftKeyboard(getActivity(), postEditText);
         //animation
         postDefaultHeight = postEditText.getHeight();
-        ObjectAnimator animator = ObjectAnimator.ofInt(postEditText, new HeightProperty(), postDefaultHeight, 1100);
+        ObjectAnimator animator = ObjectAnimator.ofInt(postEditText, new HeightProperty(), postDefaultHeight, 1000);
         animator.setDuration(500);
         animator.setInterpolator(new DecelerateInterpolator());
         animator.start();
