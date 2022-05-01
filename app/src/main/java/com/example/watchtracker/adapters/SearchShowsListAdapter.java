@@ -19,11 +19,9 @@ import java.util.ArrayList;
 public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsListAdapter.ViewHolder> {
 
     private ArrayList<Show> shows;
-    private Context context;
 
-    public SearchShowsListAdapter (ArrayList<Show> shows, Context context){
+    public SearchShowsListAdapter (ArrayList<Show> shows){
         this.shows = shows;
-        this.context = context;
     }
 
     @NonNull
