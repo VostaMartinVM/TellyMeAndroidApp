@@ -10,4 +10,7 @@
     <color name="custom_purple">#7780FF</color>
     <color name="toast_background">#99000000</color>
     <color name="toast_text">#c4c4c4</color>
+    <color name="hint_text_color">#686868</color>
+    <color name="delete_post">#D60000</color>
+    <color name="grey_background_color">#1f1f1f</color>
 </resources>

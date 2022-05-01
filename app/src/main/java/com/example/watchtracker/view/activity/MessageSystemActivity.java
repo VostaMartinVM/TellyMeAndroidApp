@@ -11,7 +11,7 @@ import android.widget.ListView;
 import com.example.watchtracker.R;
 import com.example.watchtracker.adapters.MessageListBaseAdapter;
 
-public class MessageSystem extends AppCompatActivity {
+public class MessageSystemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MessageSystem extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MessageSystem.this,Messages.class));
+                startActivity(new Intent(MessageSystemActivity.this, MessagesActivity.class));
             }
         });
     }

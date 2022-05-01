@@ -5,10 +5,10 @@
     android:id="@+id/specific_show_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F1F1F"
+    android:background="@color/grey_background_color"
     tools:context=".view.fragment.showsFragments.SpecificShowFragment">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
+            android:contentDescription="@string/show_image"
             android:src="@mipmap/ic_banner_foreground" />
 
         <LinearLayout
@@ -29,19 +30,19 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="@string/about" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="@string/episodes" />
         </LinearLayout>
 
         <androidx.fragment.app.FragmentContainerView
@@ -49,6 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7" />
-    </LinearLayout>
+    </TableLayout>
 
 </FrameLayout>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.watchtracker">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,16 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fab_Bottom_app_bar">
         <activity
-            android:name=".view.activity.Messages"
+            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.MessageItem"
+            android:name=".view.activity.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.MessageSystem"
+            android:name=".view.activity.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.ListsItem"
+            android:name=".view.activity.MessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.MessageSystemActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.MainActivity"

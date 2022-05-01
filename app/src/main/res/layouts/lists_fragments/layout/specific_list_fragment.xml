@@ -5,7 +5,7 @@
     android:id="@+id/specific_list_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1f1f1f"
+    android:background="@color/grey_background_color"
     tools:context=".view.fragment.listsFragments.SpecificListFragment">
 
     <ListView
@@ -24,8 +24,10 @@
             android:layout_marginEnd="36dp"
             android:layout_marginBottom="96dp"
             android:clickable="true"
+            android:contentDescription="@string/add"
+            android:focusable="true"
             android:src="@drawable/plus_icon"
-            app:backgroundTint="#7780FF"
+            app:backgroundTint="@color/custom_purple"
             app:fabCustomSize="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

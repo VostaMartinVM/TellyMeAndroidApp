@@ -34,9 +34,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:contentDescription="@string/add"
         app:layout_constraintBottom_toBottomOf="@+id/search_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/search_image"
-        app:srcCompat="@drawable/plus_icon" />
+        app:srcCompat="@drawable/plus_icon"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

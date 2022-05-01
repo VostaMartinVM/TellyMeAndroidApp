@@ -53,20 +53,22 @@
                     android:id="@+id/search_people_button"
                     android:layout_width="0dp"
                     android:layout_height="75dp"
-                    android:layout_marginRight="-20dp"
+                    android:layout_marginEnd="-20dp"
                     android:layout_weight="1"
                     android:background="@drawable/bookmark_icon"
-                    android:backgroundTint="#1f1f1f"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_people"
                     android:src="@drawable/people_icon" />
 
                 <ImageButton
                     android:id="@+id/search_shows_button"
                     android:layout_width="0dp"
                     android:layout_height="75dp"
-                    android:layout_marginRight="-20dp"
+                    android:layout_marginEnd="-20dp"
                     android:layout_weight="1"
                     android:background="@drawable/bookmark_icon"
-                    android:backgroundTint="#1F1F1F"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_shows"
                     android:src="@drawable/tv_series_icon" />
 
                 <ImageButton
@@ -75,7 +77,8 @@
                     android:layout_height="75dp"
                     android:layout_weight="1"
                     android:background="@drawable/bookmark_icon"
-                    android:backgroundTint="#1F1F1F"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_movies"
                     android:src="@drawable/movie_icon" />
 
                 <Space
@@ -90,11 +93,12 @@
                 android:layout_height="49dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_edit_text"
-                android:hint="Search..."
+                android:hint="@string/search_hint"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                android:textColor="#000000"
-                android:textColorHint="#686868"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -104,13 +108,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:contentDescription="@string/search_icon"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:src="@drawable/search_icon"
                 app:layout_constraintBottom_toBottomOf="@+id/search_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/search_edit_text"
                 app:layout_constraintTop_toTopOf="@+id/search_edit_text"
-                app:tint="#686868" />
+                app:tint="@color/hint_text_color" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

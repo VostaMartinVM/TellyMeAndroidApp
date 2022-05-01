@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.watchtracker.R;
 
-public class Messages extends AppCompatActivity {
+public class MessagesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

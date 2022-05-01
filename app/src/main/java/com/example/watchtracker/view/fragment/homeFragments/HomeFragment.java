@@ -15,11 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
-import com.example.watchtracker.view.activity.MessageSystem;
+import com.example.watchtracker.view.activity.MessageSystemActivity;
 import com.example.watchtracker.view.utils.FragmentUtils;
-import com.example.watchtracker.view.utils.KeyboardUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
 import com.example.watchtracker.viewModel.HomeViewModels.HomeViewModel;
 import com.example.watchtracker.R;
@@ -54,7 +52,7 @@ public class HomeFragment extends Fragment {
 
     private void startMessageActivity()
     {
-        Intent i = new Intent(getActivity(), MessageSystem.class);
+        Intent i = new Intent(getActivity(), MessageSystemActivity.class);
         startActivity(i);
     }
 

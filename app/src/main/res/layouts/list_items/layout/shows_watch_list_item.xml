@@ -28,15 +28,15 @@
                 android:id="@+id/show_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:gravity="left|center_vertical"
-                android:text="TextView" />
+                android:gravity="start|center_vertical"
+                android:text="@string/show_title" />
 
             <TextView
                 android:id="@+id/episode_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:gravity="left|center_vertical"
-                android:text="TextView" />
+                android:gravity="start|center_vertical"
+                android:text="@string/episode_title" />
 
         </LinearLayout>
 
@@ -44,13 +44,14 @@
             android:id="@+id/search_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:contentDescription="@string/show_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

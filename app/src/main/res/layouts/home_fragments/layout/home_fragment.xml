@@ -18,12 +18,15 @@
             android:layout_marginEnd="36dp"
             android:layout_marginBottom="96dp"
             android:clickable="true"
+            android:contentDescription="@string/message_button"
+            android:focusable="true"
             android:src="@drawable/message_icon"
-            app:backgroundTint="#7780FF"
+            app:backgroundTint="@color/custom_purple"
             app:fabCustomSize="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="30dp" />
+            app:maxImageSize="30dp"
+            tools:ignore="RedundantDescriptionCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/openPostWindow"
@@ -32,9 +35,9 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_edit_text"
             android:backgroundTint="@color/white"
-            android:text="Post..."
+            android:text="@string/post_edit_text"
             android:textAllCaps="false"
-            android:textColor="#686868"
+            android:textColor="@color/hint_text_color"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,12 +47,13 @@
             android:id="@+id/imageView"
             android:layout_width="41dp"
             android:layout_height="32dp"
+            android:contentDescription="@string/user_icon"
             android:elevation="2dp"
             android:src="@drawable/avatar_icon"
             app:layout_constraintBottom_toBottomOf="@+id/openPostWindow"
             app:layout_constraintStart_toStartOf="@+id/openPostWindow"
             app:layout_constraintTop_toTopOf="@+id/openPostWindow"
-            app:tint="#686868" />
+            app:tint="@color/hint_text_color" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/post_dummy_fragment"
