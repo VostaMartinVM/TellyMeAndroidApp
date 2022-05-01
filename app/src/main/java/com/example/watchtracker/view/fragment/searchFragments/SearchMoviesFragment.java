@@ -39,12 +39,12 @@ public class SearchMoviesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.search_movies_fragment, container, false);
-        //show all shows
+        //show all movies
         RecyclerView recyclerView = view.findViewById(R.id.search_movies_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        moviesListAdapter = new SearchMoviesListAdapter(movies);
+        moviesListAdapter = new SearchMoviesListAdapter(movies, getContext());
         recyclerView.setAdapter(moviesListAdapter);
 
         mViewModel = new ViewModelProvider(this).get(SearchMoviesViewModel.class);

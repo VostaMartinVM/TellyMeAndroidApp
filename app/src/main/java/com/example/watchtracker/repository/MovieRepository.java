@@ -1,5 +1,9 @@
 package com.example.watchtracker.repository;
 
+import android.content.Context;
+import android.text.Html;
+import android.widget.Toast;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.watchtracker.model.Movie;
@@ -8,8 +12,11 @@ import com.example.watchtracker.model.ShowRequest;
 import com.example.watchtracker.network.MovieServiceInterface;
 import com.example.watchtracker.network.ShowServiceInterface;
 import com.example.watchtracker.network.TMDBServiceGenerator;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,10 +25,12 @@ import retrofit2.Response;
 public class MovieRepository {
     private static MovieRepository instance;
     private final MutableLiveData<ArrayList<Movie>> movies;
-
+    private FirebaseFirestore db;
+    private Context context;
 
     public MovieRepository() {
         movies = new MutableLiveData<>();
+        db = FirebaseFirestore.getInstance();
     }
 
     public static MovieRepository getInstance() {
@@ -47,6 +56,19 @@ public class MovieRepository {
             }
         });
         return movies;
+    }
+
+    public void addMovieToList(int movieID){
+        Map<String, Object> movie = new HashMap<>();
+        movie.put("movieId", movieID);
+        db.collection("Default Movie List")
+                .add(movie)
+                .addOnSuccessListener(documentReference -> Toast.makeText(context, Html.fromHtml("<big>Successfully added</big>"), Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(documentReference ->  Toast.makeText(context, Html.fromHtml("<big>Error, could not be added</big>"), Toast.LENGTH_SHORT));
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
 }

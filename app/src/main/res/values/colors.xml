@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_purple">#7780FF</color>
+    <color name="toast_background">#99000000</color>
+    <color name="toast_text">#c4c4c4</color>
 </resources>

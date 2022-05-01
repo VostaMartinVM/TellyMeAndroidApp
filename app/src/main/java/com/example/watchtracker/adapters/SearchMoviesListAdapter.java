@@ -1,4 +1,5 @@
 package com.example.watchtracker.adapters;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.watchtracker.R;
 import com.example.watchtracker.model.Movie;
 import com.example.watchtracker.model.Show;
+import com.example.watchtracker.repository.MovieRepository;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -17,9 +20,12 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
 
     private ArrayList<Movie> movies;
     private View view;
+    private MovieRepository movieRepository;
 
-    public SearchMoviesListAdapter (ArrayList<Movie> movies){
+    public SearchMoviesListAdapter (ArrayList<Movie> movies, Context context){
         this.movies = movies;
+        movieRepository = MovieRepository.getInstance();
+        movieRepository.setContext(context);
     }
 
     @NonNull
@@ -35,14 +41,17 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.showTitle.setText(movies.get(position).getTitle());
+        holder.movieTitle.setText(movies.get(position).getTitle());
         if (movies.get(position).getBackdropPath() != null)
         {
-            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).fit().centerCrop().into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).fit().centerCrop().into(holder.movieImage);
         }
         else {
-            Picasso.get().load("dummy path" + movies.get(position).getPosterPath()).into(holder.showImage);
+            Picasso.get().load("dummy path" + movies.get(position).getPosterPath()).into(holder.movieImage);
         }
+        holder.movieButton.setOnClickListener(view -> {
+            movieRepository.addMovieToList(movies.get(position).getId());
+        });
     }
 
     @Override
@@ -56,13 +65,16 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        private final TextView showTitle;
-        private final ImageView showImage;
+        private final TextView movieTitle;
+        private final ImageView movieImage;
+        private final FloatingActionButton movieButton;
+
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
-            this.showTitle = itemView.findViewById(R.id.search_title);
-            this.showImage = itemView.findViewById(R.id.search_image);
+            this.movieTitle = itemView.findViewById(R.id.search_title);
+            this.movieImage = itemView.findViewById(R.id.search_image);
+            this.movieButton = itemView.findViewById(R.id.search_add_button);
         }
     }
 }

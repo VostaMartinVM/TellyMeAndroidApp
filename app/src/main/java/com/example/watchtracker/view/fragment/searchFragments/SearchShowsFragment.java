@@ -42,7 +42,7 @@ public class SearchShowsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        showsListAdapter = new SearchShowsListAdapter(shows);
+        showsListAdapter = new SearchShowsListAdapter(shows, getContext());
         recyclerView.setAdapter(showsListAdapter);
 
         mViewModel = new ViewModelProvider(this).get(SearchShowsViewModel.class);

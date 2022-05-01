@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "216804294862",
+    "project_id": "watchtracker-4067b",
+    "storage_bucket": "watchtracker-4067b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216804294862:android:519683bcb6bc3b225ad09f",
+        "android_client_info": {
+          "package_name": "com.example.watchtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216804294862-n1alaghpgp540ntk95hs1njpln91qvpu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiPhUAPzwXuw5PvabM7ek5ZnSRK0y9TFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216804294862-n1alaghpgp540ntk95hs1njpln91qvpu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
