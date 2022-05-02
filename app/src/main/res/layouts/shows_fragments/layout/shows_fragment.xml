@@ -43,7 +43,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView1"
-            android:name="com.example.watchtracker.view.fragment.showsFragments.WatchListShowsFragment"
+            android:name="com.example.tellyme.view.fragment.showsFragments.WatchListShowsFragment"
             android:layout_width="match_parent"
             android:layout_height="682dp"
             android:layout_weight="7" />

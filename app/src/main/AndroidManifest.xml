@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.watchtracker">
+    package="com.example.tellyme">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,22 +15,22 @@
         android:theme="@style/Theme.Fab_Bottom_app_bar"
         tools:targetApi="m">
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name="com.example.tellyme.view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.CreateAccountActivity"
+            android:name="com.example.tellyme.view.activity.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.SignInActivity"
+            android:name="com.example.tellyme.view.activity.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.MessagesActivity"
+            android:name="com.example.tellyme.view.activity.MessagesActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.MessageSystemActivity"
+            android:name="com.example.tellyme.view.activity.MessageSystemActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.example.tellyme.view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,11 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <meta-data
-            android:name="com.google.android.gms.wallet.api.enabled"
-            android:value="true" />
 
     </application>
 

@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "216804294862",
-    "project_id": "watchtracker-4067b",
-    "storage_bucket": "watchtracker-4067b.appspot.com"
+    "project_number": "521645695023",
+    "project_id": "tellyme-4ec38",
+    "storage_bucket": "tellyme-4ec38.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:216804294862:android:519683bcb6bc3b225ad09f",
+        "mobilesdk_app_id": "1:521645695023:android:358832813f2c3d7731e6da",
         "android_client_info": {
-          "package_name": "com.example.watchtracker"
+          "package_name": "com.example.tellyme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "216804294862-n1alaghpgp540ntk95hs1njpln91qvpu.apps.googleusercontent.com",
+          "client_id": "521645695023-g9b4ajh599neeui51ikh2crtqkku35qr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tellyme",
+            "certificate_hash": "94657f6d041ffdc8d523c28c2bd3dba1daacea42"
+          }
+        },
+        {
+          "client_id": "521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAiPhUAPzwXuw5PvabM7ek5ZnSRK0y9TFE"
+          "current_key": "AIzaSyBhjE4GRPIA--lPs8KtniGWx09GfWH_C6A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "216804294862-n1alaghpgp540ntk95hs1njpln91qvpu.apps.googleusercontent.com",
+              "client_id": "521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

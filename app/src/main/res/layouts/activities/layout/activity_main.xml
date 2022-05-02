@@ -23,7 +23,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentLayout"
-            android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment"
+            android:name="com.example.tellyme.view.fragment.homeFragments.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/home_fragment">
