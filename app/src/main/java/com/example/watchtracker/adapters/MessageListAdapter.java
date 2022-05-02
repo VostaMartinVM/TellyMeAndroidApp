@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.watchtracker.R;
 
-public class MessageListBaseAdapter extends BaseAdapter {
+public class MessageListAdapter extends BaseAdapter {
 
     Context context;
     String personsName[];
@@ -19,7 +19,7 @@ public class MessageListBaseAdapter extends BaseAdapter {
     LayoutInflater inflater;
 
 
-    public MessageListBaseAdapter(Context context, String[] personsName, String[] personsLastMessage, int [] personsProfilePicture)
+    public MessageListAdapter(Context context, String[] personsName, String[] personsLastMessage, int [] personsProfilePicture)
     {
         this.personsName = personsName;
         this.personsLastMessage = personsLastMessage;

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.moviesFragments.MoviesFragment">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -15,39 +15,37 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/WatchList"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="28dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="WatchList" />
+                android:text="@string/watchlist" />
 
             <TextView
-                android:id="@+id/Upcoming"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="32dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Upcoming" />
+                android:text="@string/upcoming" />
         </LinearLayout>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView1"
+            android:id="@+id/fragmentContainerView2"
             android:name="com.example.watchtracker.view.fragment.moviesFragments.WatchListMoviesFragment"
             android:layout_width="match_parent"
-            android:layout_height="682dp"
+            android:layout_height="0dp"
             android:layout_weight="7" />
 
-    </LinearLayout>
+    </TableLayout>
 
 </FrameLayout>

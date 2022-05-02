@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.watchtracker.R;
-import com.example.watchtracker.adapters.MessageListBaseAdapter;
+import com.example.watchtracker.adapters.MessageListAdapter;
 
 public class MessageSystemActivity extends AppCompatActivity {
 
@@ -21,8 +21,8 @@ public class MessageSystemActivity extends AppCompatActivity {
         String[] personsLastMessage = {"ajaja", "oniiiichan", "ara ara"};
         int[] personsProfilePicture = {R.mipmap.lists_background, R.mipmap.lists_background, R.mipmap.lists_background};
         ListView listView = (ListView) findViewById(R.id.message_list);
-        MessageListBaseAdapter messageListBaseAdapter = new MessageListBaseAdapter(getApplicationContext(), personsName, personsLastMessage, personsProfilePicture);
-        listView.setAdapter(messageListBaseAdapter);
+        MessageListAdapter messageListAdapter = new MessageListAdapter(getApplicationContext(), personsName, personsLastMessage, personsProfilePicture);
+        listView.setAdapter(messageListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -46,8 +46,8 @@ public class CustomBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.lists_item, null);
-        TextView textView = (TextView) view.findViewById(R.id.ListsText);
-        ImageView imageView = (ImageView) view.findViewById(R.id.ListIcon);
+        TextView textView = (TextView) view.findViewById(R.id.lists_text);
+        ImageView imageView = (ImageView) view.findViewById(R.id.lists_image);
         textView.setText(List.get(i).getListText());
         imageView.setImageResource(List.get(i).getListImage());
         return view;
