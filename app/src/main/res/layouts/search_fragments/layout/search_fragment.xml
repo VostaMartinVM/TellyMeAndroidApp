@@ -123,9 +123,7 @@
             android:id="@+id/search_list_dummy_frame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:layout_weight="7">
 
         </FrameLayout>
 

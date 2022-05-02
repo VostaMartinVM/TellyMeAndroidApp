@@ -8,8 +8,8 @@
     android:background="@color/grey_background_color"
     tools:context=".view.fragment.listsFragments.SpecificListFragment">
 
-    <ListView
-        android:id="@+id/specific_list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/specific_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

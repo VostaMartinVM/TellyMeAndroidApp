@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +18,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.watchtracker.model.DummyData;
 import com.example.watchtracker.view.utils.FragmentUtils;
 import com.example.watchtracker.view.utils.ToolBarUtils;
-import com.example.watchtracker.adapters.ListsBaseAdapter;
+import com.example.watchtracker.adapters.ListsAdapter;
 import com.example.watchtracker.viewModel.ListsViewModels.MyListViewModel;
 import com.example.watchtracker.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class MyListsFragment extends Fragment {
 
-    private MyListViewModel mViewModel;
-
-    ListView listView;
+    private ArrayList<DummyData> dummyData = new ArrayList<>();
+    private ListsAdapter listsAdapter;
 
     public static MyListsFragment newInstance() {
         return new MyListsFragment();
@@ -37,44 +41,24 @@ public class MyListsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        dummyData.add(new DummyData("Shows", R.mipmap.lists_background));
+        dummyData.add(new DummyData("Movies", R.mipmap.lists_background));
+        dummyData.add(new DummyData("Favorites", R.mipmap.lists_background));
+
         View view = inflater.inflate(R.layout.list_fragment, container, false);
-        addListButtonFunctionality(view);
-        listsItems(view);
+        RecyclerView recyclerView = view.findViewById(R.id.lists_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
 
 
 
+
+        listsAdapter = new ListsAdapter(dummyData);
+        recyclerView.setAdapter(listsAdapter);
 
         return view;
 
-    }
-
-    private void listsItems(View view)
-    {
-        String[] listItems = {"My Shows", "My Movies", "Favorites"};
-        int [] listImages = {R.mipmap.lists_background, R.mipmap.lists_background, R.mipmap.lists_background};
-        ListView listView = (ListView) view.findViewById(R.id.specific_list);
-        ListsBaseAdapter listsBaseAdapter = new ListsBaseAdapter(getActivity().getApplicationContext(), listItems, listImages);
-        listView.setAdapter(listsBaseAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                SpecificListFragment specificListFragment = SpecificListFragment.newInstance();
-                FragmentUtils.changeFragment(specificListFragment, R.id.list_dummy_fragment, "ldf", fragmentManager);
-            }
-        });
-
-    }
-
-    private void addListButtonFunctionality(View view)
-    {
-        FloatingActionButton addListButton = view.findViewById(R.id.add_list_button);
-        addListButton.setOnClickListener((tempView) -> {
-            FragmentManager fragmentManager = getParentFragmentManager();
-            AddListToListsFragment addListToListsFragment = AddListToListsFragment.newInstance();
-            FragmentUtils.changeFragment(addListToListsFragment, R.id.list_dummy_fragment, "ldf", fragmentManager);
-        });
     }
 
     @Override
@@ -89,7 +73,6 @@ public class MyListsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MyListViewModel.class);
         // TODO: Use the ViewModel
     }
 
