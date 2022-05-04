@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tmdb_api_key">23840f43207af50d077b3fccc094a034</string>
+    <string name="default_google_web_client_id">521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">399151515159428</string>
+    <string name="facebook_client_token">2145dfde4644655f74080536a9ffada8</string>
+    <string name="fb_login_protocol_scheme">fb399151515159428</string>
+</resources>
