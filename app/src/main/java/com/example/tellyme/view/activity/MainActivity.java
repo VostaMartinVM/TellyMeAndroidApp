@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.tellyme.Authentication.AuthWithGoogle;
 import com.example.tellyme.R;
 import com.example.tellyme.view.fragment.homeFragments.HomeFragment;
 import com.example.tellyme.view.utils.DelayUtils;
@@ -22,8 +23,13 @@ import com.example.tellyme.view.fragment.searchFragments.SearchFragment;
 import com.example.tellyme.view.fragment.userFragments.UserFragment;
 import com.example.tellyme.view.utils.FragmentUtils;
 import com.example.tellyme.view.utils.ToolBarUtils;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -39,14 +45,27 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationCreate();
-        toolbarCreate();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+        {
+            bottomNavigationCreate();
+            toolbarCreate();
 
-        ImageView logo = findViewById(R.id.logoIcon);
-        logo.setOnClickListener(view -> {
+            //logout
+            ImageView logo = findViewById(R.id.logoIcon);
+            logo.setOnClickListener(view -> {
+                LoginManager.getInstance().logOut();
+                GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+                        .signOut();
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(this, SignInActivity.class);
+                startActivity(i);
+            });
+        }
+        else {
             Intent i = new Intent(this, SignInActivity.class);
             startActivity(i);
-        });
+        }
     }
 
     @Override

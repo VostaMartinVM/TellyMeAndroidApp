@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.example.tellyme.Authentication.AuthWithGoogle;
 import com.example.tellyme.R;
 import com.example.tellyme.network.GoogleClient;
-import com.facebook.CallbackManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SignInActivity extends AppCompatActivity {
@@ -23,32 +22,48 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         googleLogIn();
-        CallbackManager mCallBackManager = CallbackManager.Factory.create();
-        FloatingActionButton facebookButton = findViewById(R.id.facebook_authentication_button);
-
+        facebookLogIn();
+        twitterLogin();
     }
 
+    @SuppressWarnings("deprecation")
     private void googleLogIn()
     {
         googleClient = GoogleClient.getInstance(getApplicationContext());
         authWithGoogle = new AuthWithGoogle();
         FloatingActionButton google = findViewById(R.id.google_authentication_button);
         google.setOnClickListener(view -> {
-            signIn();
+            Intent signInIntent = googleClient.getGoogleSignInClient().getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
         });
     }
 
-    @SuppressWarnings("deprecation")
-    private void signIn()
+
+    private void facebookLogIn()
     {
-        Intent signInIntent = googleClient.getGoogleSignInClient().getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        FloatingActionButton facebook = findViewById(R.id.facebook_authentication_button);
+        facebook.setOnClickListener(view -> {
+            Intent signInIntent = new Intent(SignInActivity.this, FacebookAuth.class);
+            signInIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(signInIntent);
+            overridePendingTransition(0,0);
+        });
+    }
+
+    private void twitterLogin()
+    {
+        FloatingActionButton twitter = findViewById(R.id.twitter_authentication_button);
+        twitter.setOnClickListener(view -> {
+            Intent signInIntent = new Intent(SignInActivity.this, TwitterAuth.class);
+            signInIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(signInIntent);
+            overridePendingTransition(0,0);
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         authWithGoogle.activityResult(this, requestCode, data, RC_SIGN_IN);
-
     }
 }

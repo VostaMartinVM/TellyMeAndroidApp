@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import com.example.tellyme.view.activity.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -53,7 +54,8 @@ public class AuthWithGoogle {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             currentUser = auth.getCurrentUser();
-                            System.out.println(currentUser);
+                            Intent i = new Intent(activity, MainActivity.class);
+                            activity.startActivity(i);
                         }
                         else {
 

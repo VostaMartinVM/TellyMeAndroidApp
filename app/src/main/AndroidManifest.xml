@@ -8,29 +8,35 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_icon"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fab_Bottom_app_bar"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name="com.example.tellyme.view.activity.LoginActivity"
+            android:name=".view.activity.TwitterAuth"
             android:exported="false" />
         <activity
-            android:name="com.example.tellyme.view.activity.CreateAccountActivity"
+            android:name=".view.activity.FacebookAuth"
             android:exported="false" />
         <activity
-            android:name="com.example.tellyme.view.activity.SignInActivity"
+            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.tellyme.view.activity.MessagesActivity"
+            android:name=".view.activity.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.tellyme.view.activity.MessageSystemActivity"
+            android:name=".view.activity.SignInActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.tellyme.view.activity.MainActivity"
+            android:name=".view.activity.MessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.MessageSystemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,6 +45,12 @@
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
     </application>
 
 </manifest>

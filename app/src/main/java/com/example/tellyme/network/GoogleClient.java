@@ -22,7 +22,7 @@ public class GoogleClient {
     private GoogleClient(Context context)
     {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(BuildConfig.DEFAULT_GOOGLE_WEB_CLIENT_ID)
+                .requestIdToken(context.getString(R.string.default_google_web_client_id))
                 .requestEmail().build();
 
         googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions);
