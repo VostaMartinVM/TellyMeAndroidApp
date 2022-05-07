@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/search_image"
+        android:id="@+id/user_image"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
@@ -29,21 +29,21 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/search_add_button"
-        app:layout_constraintStart_toStartOf="@+id/search_image"
+        app:layout_constraintStart_toStartOf="@+id/user_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search_add_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:clickable="true"
         android:contentDescription="@string/add"
         android:focusable="true"
-        app:backgroundTint="@color/custom_purple"
-        app:layout_constraintBottom_toBottomOf="@+id/search_image"
-        app:layout_constraintEnd_toEndOf="@+id/search_image"
-        app:layout_constraintTop_toTopOf="@+id/search_image"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/user_image"
+        app:layout_constraintEnd_toEndOf="@+id/user_image"
+        app:layout_constraintTop_toTopOf="@+id/user_image"
         app:srcCompat="@drawable/plus_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

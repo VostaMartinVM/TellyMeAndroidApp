@@ -2,11 +2,14 @@ package com.example.tellyme.view.fragment.listsFragments;
 
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +22,7 @@ import com.example.tellyme.view.utils.ToolBarUtils;
 import com.example.tellyme.adapters.ListsAdapter;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +30,7 @@ public class MyListsFragment extends Fragment {
 
     private ArrayList<DummyData> dummyData = new ArrayList<>();
     private ListsAdapter listsAdapter;
+    private ListsAdapter.RecyclerViewOnClickListener listener;
 
     public static MyListsFragment newInstance() {
         return new MyListsFragment();
@@ -40,18 +45,29 @@ public class MyListsFragment extends Fragment {
         dummyData.add(new DummyData("Favorites", R.mipmap.lists_background));
 
         View view = inflater.inflate(R.layout.list_fragment, container, false);
+        setOnClickListener();
+
         RecyclerView recyclerView = view.findViewById(R.id.lists_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-
-
-
-        listsAdapter = new ListsAdapter(dummyData);
+        listsAdapter = new ListsAdapter(dummyData, listener);
         recyclerView.setAdapter(listsAdapter);
 
         return view;
 
+    }
+    private void setOnClickListener(){
+        listener = new ListsAdapter.RecyclerViewOnClickListener() {
+            @Override
+            public void onCLick(View view, int position) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                SpecificListFragment specificListFragment = new SpecificListFragment();
+                fragmentTransaction.replace(R.id.list_dummy_fragment, specificListFragment);
+                fragmentTransaction.commit();
+            }
+        };
     }
 
     @Override

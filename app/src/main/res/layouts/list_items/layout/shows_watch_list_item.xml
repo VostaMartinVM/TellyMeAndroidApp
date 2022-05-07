@@ -19,11 +19,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/search_image"
+            android:id="@+id/show_watchlist_image"
             android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:contentDescription="@string/show_image"
-            tools:ignore="ImageContrastCheck" />
+            android:layout_height="80dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -32,16 +30,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/show_name"
+                android:id="@+id/show_watchlist_title"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginStart="5dp"
                 android:gravity="start|center_vertical"
                 android:text="@string/show_title" />
 
             <TextView
-                android:id="@+id/episode_name"
+                android:id="@+id/episode_watchlist_title"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginStart="5dp"
                 android:gravity="start|center_vertical"
                 android:text="@string/episode_title" />
 
@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton5"
+        android:id="@+id/button_show_watchlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

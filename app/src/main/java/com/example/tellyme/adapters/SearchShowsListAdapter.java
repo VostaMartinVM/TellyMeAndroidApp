@@ -22,9 +22,11 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
 
     private ArrayList<Show> shows;
     private ShowRepository showRepository;
+    private RecyclerViewOnClickListener listener;
 
-    public SearchShowsListAdapter (ArrayList<Show> shows, Context context){
+    public SearchShowsListAdapter (ArrayList<Show> shows, Context context, RecyclerViewOnClickListener listener){
         this.shows = shows;
+        this.listener = listener;
         showRepository = ShowRepository.getInstance();
         showRepository.setContext(context);
     }
@@ -65,7 +67,7 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView showTitle;
         private final ShapeableImageView showImage;
         private final FloatingActionButton showButton;
@@ -74,8 +76,19 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         {
             super(itemView);
             this.showTitle = itemView.findViewById(R.id.search_title);
-            this.showImage = itemView.findViewById(R.id.search_image);
+            this.showImage = itemView.findViewById(R.id.user_image);
             this.showButton = itemView.findViewById(R.id.search_add_button);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAbsoluteAdapterPosition());
+        }
+
+    }
+
+    public interface RecyclerViewOnClickListener{
+        void onClick(View view, int position);
     }
 }

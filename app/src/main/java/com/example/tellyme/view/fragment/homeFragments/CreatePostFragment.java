@@ -83,7 +83,7 @@ public class CreatePostFragment extends Fragment {
         addToPostButton.setOnClickListener(view -> {
             SearchFragment searchFragment = SearchFragment.newInstance();
             FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.searchFragmentLayout, "sf", fragmentManager, R.anim.enter_from_bottom
+            FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.search_fragment_layout, "sf", fragmentManager, R.anim.enter_from_bottom
                     , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
         });
         super.onResume();

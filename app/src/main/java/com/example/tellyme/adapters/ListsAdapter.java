@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> {
 
     private ArrayList<DummyData> dummyData;
+    private RecyclerViewOnClickListener listener;
 
-    public ListsAdapter (ArrayList<DummyData> dummyData){
+    public ListsAdapter (ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
         this.dummyData = dummyData;
+        this.listener = listener;
 
     }
 
@@ -40,6 +43,7 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.listTitle.setText(dummyData.get(position).getName());
         Picasso.get().load(dummyData.get(position).getImage()).fit().centerCrop().into(holder.listImage);
+
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView listTitle;
         private final ShapeableImageView listImage;
 
@@ -57,6 +61,16 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
             super(itemView);
             this.listTitle = itemView.findViewById(R.id.lists_text);
             this.listImage = itemView.findViewById(R.id.lists_image);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onCLick(view, getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnClickListener{
+        void onCLick(View view, int position);
     }
 }

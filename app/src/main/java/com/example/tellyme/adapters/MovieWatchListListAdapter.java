@@ -20,9 +20,12 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
 
 
     private ArrayList<DummyData> dummyData;
+    private RecyclerViewOnClickListener listener;
 
-    public MovieWatchListListAdapter(ArrayList<DummyData> dummyData){
+
+    public MovieWatchListListAdapter(ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
         this.dummyData = dummyData;
+        this.listener = listener;
     }
 
 
@@ -48,16 +51,27 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
         return dummyData.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView movieTitle;
         private final ImageView movieImage;
-        private final FloatingActionButton checkButtonMovieWatchList;
+        private final FloatingActionButton movieButton;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView)
+        {
             super(itemView);
             movieTitle = itemView.findViewById(R.id.movie_title_watchlist);
             movieImage = itemView.findViewById(R.id.movie_image_watchlist);
-            checkButtonMovieWatchList = itemView.findViewById(R.id.check_button_movie_watch_list);
+            movieButton = itemView.findViewById(R.id.button_movie_watch_list);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnClickListener{
+        void onClick(View view, int position);
     }
 }

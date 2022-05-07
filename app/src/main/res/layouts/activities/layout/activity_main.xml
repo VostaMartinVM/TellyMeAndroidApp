@@ -43,7 +43,7 @@
         app:srcCompat="@drawable/logo_icon" />
 
     <FrameLayout
-        android:id="@+id/searchFragmentLayout"
+        android:id="@+id/search_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment">
