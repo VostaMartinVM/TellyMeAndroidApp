@@ -20,7 +20,6 @@ import com.example.tellyme.view.fragment.showsFragments.ShowsFragment;
 import com.example.tellyme.view.fragment.moviesFragments.MoviesFragment;
 import com.example.tellyme.view.fragment.listsFragments.MyListsFragment;
 import com.example.tellyme.view.fragment.searchFragments.SearchFragment;
-import com.example.tellyme.view.fragment.userFragments.UserFragment;
 import com.example.tellyme.view.utils.FragmentUtils;
 import com.example.tellyme.view.utils.ToolBarUtils;
 import com.facebook.login.LoginManager;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity{
     private MyListsFragment myListFragment;
     private ShowsFragment showsFragment;
     private MoviesFragment moviesFragment;
-    private UserFragment userFragment;
 
 
     @Override
@@ -67,6 +65,7 @@ public class MainActivity extends AppCompatActivity{
             startActivity(i);
         }
     }
+
 
     @Override
     public void onBackPressed() {
@@ -124,10 +123,10 @@ public class MainActivity extends AppCompatActivity{
         searchActionButton.setCompatElevation(0);
         SearchFragment searchFragment = SearchFragment.newInstance();
         searchActionButton.setOnClickListener(view -> {
-            Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.searchFragmentLayout);
+            Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.search_fragment_layout);
             if (!(searchFragmentOpened instanceof SearchFragment) )
             {
-                FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.searchFragmentLayout, "sf", fragmentManager, R.anim.enter_from_bottom
+                FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.search_fragment_layout, "sf", fragmentManager, R.anim.enter_from_bottom
                         , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
             }
             else {
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
     {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
-            Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.searchFragmentLayout);
+            Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.search_fragment_layout);
             if (searchFragmentOpened instanceof SearchFragment)
             {
                 onBackPressed();
@@ -181,9 +180,8 @@ public class MainActivity extends AppCompatActivity{
         FragmentManager fragmentManager = getSupportFragmentManager();
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.user_button) {
-                userFragment = UserFragment.newInstance();
-                checkIfPostOpened();
-                FragmentUtils.changeFragment(userFragment, R.id.fragmentLayout, "mf", fragmentManager);
+                Intent intent = new Intent(this, UserPage.class);
+                startActivity(intent);
             }
             return true;
         });

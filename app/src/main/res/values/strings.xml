@@ -42,6 +42,5 @@
     <string name="episodes">Episodes</string>
     <string name="login_with_email">Login with email</string>
     <string name="check_button">Check button</string>
-
-
+    <string name="timer">000 DAYS</string>
 </resources>

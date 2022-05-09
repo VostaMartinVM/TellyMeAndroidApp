@@ -135,7 +135,7 @@ public class SearchFragment extends Fragment {
         });
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentUtils.hideAndShowFragment(fragmentManager.findFragmentById(R.id.fragmentLayout),
-                fragmentManager.findFragmentById(R.id.searchFragmentLayout), fragmentManager);
+                fragmentManager.findFragmentById(R.id.search_fragment_layout), fragmentManager);
 
         super.onAttach(activity);
     }

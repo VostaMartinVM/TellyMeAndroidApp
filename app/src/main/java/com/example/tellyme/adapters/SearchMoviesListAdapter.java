@@ -20,9 +20,11 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
     private ArrayList<Movie> movies;
     private View view;
     private MovieRepository movieRepository;
+    private RecyclerViewOnClickListener listener;
 
-    public SearchMoviesListAdapter (ArrayList<Movie> movies, Context context){
+    public SearchMoviesListAdapter (ArrayList<Movie> movies, Context context, RecyclerViewOnClickListener listener){
         this.movies = movies;
+        this.listener = listener;
         movieRepository = MovieRepository.getInstance();
         movieRepository.setContext(context);
     }
@@ -63,7 +65,7 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView movieTitle;
         private final ImageView movieImage;
         private final FloatingActionButton movieButton;
@@ -72,8 +74,19 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
         {
             super(itemView);
             this.movieTitle = itemView.findViewById(R.id.search_title);
-            this.movieImage = itemView.findViewById(R.id.search_image);
+            this.movieImage = itemView.findViewById(R.id.user_image);
             this.movieButton = itemView.findViewById(R.id.search_add_button);
+            itemView.setOnClickListener(this);
         }
+
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnClickListener{
+        void onClick(View view, int position);
     }
 }

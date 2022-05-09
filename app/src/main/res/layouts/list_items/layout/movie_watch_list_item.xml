@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/movie_image_watchlist"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -17,6 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/roundedImageView"
         tools:layout_weight="1" />
 
     <TextView
@@ -27,13 +28,15 @@
         android:layout_marginEnd="10dp"
         android:gravity="center"
         android:text="@string/movie_title"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/movie_image_watchlist"
-        app:layout_constraintEnd_toStartOf="@+id/check_button_movie_watch_list"
+        app:layout_constraintEnd_toStartOf="@+id/button_movie_watch_list"
         app:layout_constraintStart_toStartOf="@+id/movie_image_watchlist"
         app:layout_constraintTop_toTopOf="@+id/movie_image_watchlist" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/check_button_movie_watch_list"
+        android:id="@+id/button_movie_watch_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

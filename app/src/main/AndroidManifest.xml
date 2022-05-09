@@ -15,13 +15,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".view.activity.UserPage"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.SpecificShow"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.SpecificMovie"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.LoginActivity"
             android:name=".view.activity.TwitterAuth"
             android:exported="false" />
         <activity
             android:name=".view.activity.FacebookAuth"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.CreateAccountActivity"

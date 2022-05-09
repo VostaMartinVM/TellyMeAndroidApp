@@ -1,7 +1,10 @@
 package com.example.tellyme.view.fragment.searchFragments;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +20,9 @@ import android.view.ViewGroup;
 import com.example.tellyme.R;
 import com.example.tellyme.adapters.SearchShowsListAdapter;
 import com.example.tellyme.model.Show;
+import com.example.tellyme.view.activity.MessageSystemActivity;
+import com.example.tellyme.view.activity.SpecificShow;
+import com.example.tellyme.view.utils.DelayUtils;
 import com.example.tellyme.viewModel.SeachViewModels.SearchShowsViewModel;
 
 import java.util.ArrayList;
@@ -26,6 +32,7 @@ public class SearchShowsFragment extends Fragment {
     private SearchShowsViewModel mViewModel;
     private ArrayList<Show> shows = new ArrayList<>();
     private SearchShowsListAdapter showsListAdapter;
+    private SearchShowsListAdapter.RecyclerViewOnClickListener listener;
     private View view;
 
     public static SearchShowsFragment newInstance() {
@@ -36,13 +43,13 @@ public class SearchShowsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.search_shows_fragment, container, false);
-
+        setOnClickListener();
         //show all shows
         RecyclerView recyclerView = view.findViewById(R.id.search_shows_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        showsListAdapter = new SearchShowsListAdapter(shows, getContext());
+        showsListAdapter = new SearchShowsListAdapter(shows, getContext(), listener);
         recyclerView.setAdapter(showsListAdapter);
 
         mViewModel = new ViewModelProvider(this).get(SearchShowsViewModel.class);
@@ -54,6 +61,18 @@ public class SearchShowsFragment extends Fragment {
         });
         return view;
     }
+    private void setOnClickListener()
+    {
+        listener = new SearchShowsListAdapter.RecyclerViewOnClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                DelayUtils.delay(10, () -> getActivity().onBackPressed());
+                Intent i = new Intent(getActivity(), SpecificShow.class);
+                startActivity(i);
+            }
+        };
+    }
+
 
 
     @Override

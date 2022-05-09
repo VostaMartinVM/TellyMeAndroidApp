@@ -19,9 +19,11 @@ import java.util.ArrayList;
 public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapter.ViewHolder> {
 
     private ArrayList<DummyData> dummyData;
+    private RecyclerViewOnClickListener listener;
 
-    public SpecificListAdapter (ArrayList<DummyData> dummyData){
+    public SpecificListAdapter (ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
         this.dummyData = dummyData;
+        this.listener = listener;
 
     }
 
@@ -48,7 +50,7 @@ public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapte
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView listTitle;
         private final ShapeableImageView listImage;
 
@@ -57,6 +59,16 @@ public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapte
             super(itemView);
             this.listTitle = itemView.findViewById(R.id.lists_text);
             this.listImage = itemView.findViewById(R.id.lists_image);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onCLick(view, getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnClickListener{
+        void onCLick(View view, int position);
     }
 }
