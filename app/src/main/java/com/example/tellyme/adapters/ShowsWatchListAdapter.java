@@ -3,6 +3,7 @@ package com.example.tellyme.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.watch_list_shows_fragment, parent, false);
+        View view = layoutInflater.inflate(R.layout.shows_watch_list_item, parent, false);
         int height = parent.getHeight()/8;
         int width = parent.getWidth();
         view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
@@ -54,7 +55,7 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
         private final TextView showTitle;
         private final TextView episodeTitle;
         private final FloatingActionButton showButton;
-        private final ShapeableImageView showImage;
+        private final ImageView showImage;
 
         ViewHolder (@NonNull View itemView)
         {

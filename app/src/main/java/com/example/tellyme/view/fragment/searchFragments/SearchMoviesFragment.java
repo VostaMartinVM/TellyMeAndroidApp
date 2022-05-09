@@ -1,5 +1,6 @@
 package com.example.tellyme.view.fragment.searchFragments;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -69,9 +70,12 @@ public class SearchMoviesFragment extends Fragment {
         listener = new SearchMoviesListAdapter.RecyclerViewOnClickListener() {
             @Override
             public void onClick(View view, int position) {
-                DelayUtils.delay(10, () -> getActivity().onBackPressed());
+                FragmentActivity activity = getActivity();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificMovie.class);
                 startActivity(i);
+                fragmentManager.popBackStackImmediate();
+                fragmentManager.popBackStackImmediate();
             }
         };
     }

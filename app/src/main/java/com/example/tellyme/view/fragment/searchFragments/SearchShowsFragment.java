@@ -1,5 +1,6 @@
 package com.example.tellyme.view.fragment.searchFragments;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,6 +22,7 @@ import com.example.tellyme.R;
 import com.example.tellyme.adapters.SearchShowsListAdapter;
 import com.example.tellyme.model.Show;
 import com.example.tellyme.view.activity.MessageSystemActivity;
+import com.example.tellyme.view.activity.SpecificMovie;
 import com.example.tellyme.view.activity.SpecificShow;
 import com.example.tellyme.view.utils.DelayUtils;
 import com.example.tellyme.viewModel.SeachViewModels.SearchShowsViewModel;
@@ -66,9 +68,12 @@ public class SearchShowsFragment extends Fragment {
         listener = new SearchShowsListAdapter.RecyclerViewOnClickListener() {
             @Override
             public void onClick(View view, int position) {
-                DelayUtils.delay(10, () -> getActivity().onBackPressed());
+                FragmentActivity activity = getActivity();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificShow.class);
                 startActivity(i);
+                fragmentManager.popBackStackImmediate();
+                fragmentManager.popBackStackImmediate();
             }
         };
     }
