@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,19 +20,20 @@ import android.view.ViewGroup;
 import com.example.tellyme.R;
 import com.example.tellyme.adapters.ShowsWatchListAdapter;
 import com.example.tellyme.model.DummyData2;
+import com.example.tellyme.model.Show;
 import com.example.tellyme.view.activity.MessageSystemActivity;
 import com.example.tellyme.view.activity.SpecificShow;
+import com.example.tellyme.viewModel.ShowsViewModels.WatchListShowsViewModel;
 
 import java.util.ArrayList;
 
 public class WatchListShowsFragment extends Fragment {
 
-    private ArrayList<DummyData2> dummyData2 = new ArrayList<>();
+    private WatchListShowsViewModel watchListShowsViewModel;
+    private ArrayList<Show> shows = new ArrayList<>();
     private ShowsWatchListAdapter showsWatchListAdapter;
     private ShowsWatchListAdapter.RecyclerViewOnClickListener listener;
     private View view;
-
-
 
     public static WatchListShowsFragment newInstance() {
         return new WatchListShowsFragment();
@@ -41,10 +43,6 @@ public class WatchListShowsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        dummyData2.add(new DummyData2("Shows", "episode", R.mipmap.lists_background));
-        dummyData2.add(new DummyData2("Movies", "episode", R.mipmap.lists_background));
-        dummyData2.add(new DummyData2("Favorites", "episode", R.mipmap.lists_background));
-
         view = inflater.inflate(R.layout.watch_list_shows_fragment, container, false);
         setOnClickListener();
 
@@ -53,8 +51,16 @@ public class WatchListShowsFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        showsWatchListAdapter = new ShowsWatchListAdapter(dummyData2, listener);
+        showsWatchListAdapter = new ShowsWatchListAdapter(shows, listener);
         recyclerView.setAdapter(showsWatchListAdapter);
+
+        watchListShowsViewModel = new ViewModelProvider(this).get(WatchListShowsViewModel.class);
+        watchListShowsViewModel.getShows().observe(getViewLifecycleOwner(), showList -> {
+            if (showList != null)
+            {
+                shows = showList;
+            }
+        });
 
         return view;
     }

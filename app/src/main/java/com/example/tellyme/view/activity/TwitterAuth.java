@@ -2,6 +2,7 @@ package com.example.tellyme.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,9 @@ public class TwitterAuth extends SignInActivity {
                     .addOnSuccessListener(
                             authResult -> {
                                 Intent intent = new Intent(TwitterAuth.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
+                                ActivityCompat.finishAffinity(TwitterAuth.this);
                             })
                     .addOnFailureListener(
                             e -> e.printStackTrace());
@@ -42,7 +45,9 @@ public class TwitterAuth extends SignInActivity {
                     .addOnSuccessListener(
                             authResult -> {
                                 Intent intent = new Intent(TwitterAuth.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
+                                ActivityCompat.finishAffinity(TwitterAuth.this);
                             })
                     .addOnFailureListener(
                             e -> {

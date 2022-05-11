@@ -53,7 +53,7 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
             Picasso.get().load("dummy path").into(holder.showImage);
         }
         holder.showButton.setOnClickListener(view -> {
-            showRepository.addShowToList(shows.get(position).getId());
+            showRepository.addShowToList("Watch list", shows.get(position).getId());
         });
     }
 

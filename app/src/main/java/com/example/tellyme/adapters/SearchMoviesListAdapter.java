@@ -51,7 +51,7 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
             Picasso.get().load("dummy path" + movies.get(position).getPosterPath()).into(holder.movieImage);
         }
         holder.movieButton.setOnClickListener(view -> {
-            movieRepository.addMovieToList(movies.get(position).getId());
+            movieRepository.addMovieToList("Watch list" ,movies.get(position).getId());
         });
     }
 

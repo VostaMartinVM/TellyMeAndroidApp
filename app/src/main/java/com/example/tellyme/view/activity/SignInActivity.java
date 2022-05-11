@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.tellyme.Authentication.AuthWithGoogle;
 import com.example.tellyme.R;
@@ -24,6 +26,21 @@ public class SignInActivity extends AppCompatActivity {
         googleLogIn();
         facebookLogIn();
         twitterLogin();
+        buttonsFunctionalities();
+    }
+
+    private void buttonsFunctionalities()
+    {
+        Button loginButton = findViewById(R.id.login_with_email_button);
+        Button createAccountButton = findViewById(R.id.create_account_button);
+        loginButton.setOnClickListener(view -> {
+            Intent intent = new Intent(SignInActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+        createAccountButton.setOnClickListener(view -> {
+            Intent intent = new Intent(SignInActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
+        });
     }
 
     @SuppressWarnings("deprecation")

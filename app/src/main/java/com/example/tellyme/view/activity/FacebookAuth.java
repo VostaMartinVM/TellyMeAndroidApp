@@ -1,6 +1,7 @@
 package com.example.tellyme.view.activity;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -73,6 +74,8 @@ public class FacebookAuth extends SignInActivity {
 
     private void updateUI() {
         Intent intent = new Intent(FacebookAuth.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        ActivityCompat.finishAffinity(FacebookAuth.this);
     }
 }

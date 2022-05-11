@@ -10,7 +10,10 @@ import com.example.tellyme.model.Movie;
 import com.example.tellyme.model.MovieRequest;
 import com.example.tellyme.network.MovieServiceInterface;
 import com.example.tellyme.network.TMDBServiceGenerator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,12 +26,14 @@ import retrofit2.Response;
 public class MovieRepository {
     private static MovieRepository instance;
     private final MutableLiveData<ArrayList<Movie>> movies;
+    private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private Context context;
 
     public MovieRepository() {
         movies = new MutableLiveData<>();
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public static MovieRepository getInstance() {
@@ -56,11 +61,12 @@ public class MovieRepository {
         return movies;
     }
 
-    public void addMovieToList(int movieID){
+    public void addMovieToList(String listName, int movieID){
         Map<String, Object> movie = new HashMap<>();
-        movie.put("movieId", movieID);
-        db.collection("Default Movie List")
-                .add(movie)
+        movie.put(listName, FieldValue.arrayUnion(movieID));
+        db.collection(mAuth.getCurrentUser().getUid())
+                .document("Movie lists")
+                .set(movie, SetOptions.merge())
                 .addOnSuccessListener(documentReference -> Toast.makeText(context, Html.fromHtml("<big>Successfully added</big>"), Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(documentReference ->  Toast.makeText(context, Html.fromHtml("<big>Error, could not be added</big>"), Toast.LENGTH_SHORT));
     }

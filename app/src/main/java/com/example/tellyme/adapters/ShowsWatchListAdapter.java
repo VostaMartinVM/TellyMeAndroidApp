@@ -10,20 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
-import com.example.tellyme.model.DummyData2;
+import com.example.tellyme.model.Show;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAdapter.ViewHolder>{
 
-    private ArrayList<DummyData2> dummyData2;
+    private ArrayList<Show> shows;
     private RecyclerViewOnClickListener listener;
 
 
-    public ShowsWatchListAdapter(ArrayList<DummyData2> dummyData2, RecyclerViewOnClickListener listener) {
-        this.dummyData2 = dummyData2;
+    public ShowsWatchListAdapter(ArrayList<Show> shows, RecyclerViewOnClickListener listener) {
+        this.shows = shows;
         this.listener = listener;
 
     }
@@ -41,14 +42,20 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
 
     @Override
     public void onBindViewHolder(@NonNull ShowsWatchListAdapter.ViewHolder holder, int position) {
-        holder.showTitle.setText(dummyData2.get(position).getName());
-        holder.episodeTitle.setText(dummyData2.get(position).getName2());
-        holder.showImage.setImageResource(dummyData2.get(position).getImage());
+        holder.showTitle.setText(shows.get(position).getName());
+        holder.episodeTitle.setText(shows.get(position).getName());
+        if (shows.get(position).getBackdropPath() != null)
+        {
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdropPath()).fit().centerCrop().into(holder.showImage);
+        }
+        else {
+            Picasso.get().load("dummy path").into(holder.showImage);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return dummyData2.size();
+        return shows.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
