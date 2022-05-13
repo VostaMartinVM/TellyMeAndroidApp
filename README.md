@@ -1,5 +1,5 @@
 # TellyMeAndroidApp
-The Project has been created as a part of an android assignment from the 4th semester at VIA University College. The project aims to create an android application for viewing movie and shows description and sorting them as well as keeping track of them. Further users should be able to post about shows and movies as well as see posts from other people and be able to chat with them.
+This Project has been created as a part of an android assignment from the 4th semester at VIA University College. The project aims to create an android application for viewing movie and shows description and sorting them as well as keeping track of them. Further users should be able to post about shows and movies as well as see posts from other people and be able to chat with them.
 
 1.	As a user I would like to create an account to be able to view the movies/shows information. - DONE
 2.	As a user I want to view a movie/show description to see the concrete information about this specific movie/show. - IN PROGRESS
