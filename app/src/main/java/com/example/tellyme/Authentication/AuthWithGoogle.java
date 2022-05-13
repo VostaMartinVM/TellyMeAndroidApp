@@ -6,6 +6,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.tellyme.repository.UserRepository;
 import com.example.tellyme.view.activity.FacebookAuth;
 import com.example.tellyme.view.activity.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -20,18 +21,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AuthWithGoogle {
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private UserRepository userRepository;
 
     public AuthWithGoogle()
     {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-    }
-
-    public FirebaseUser getCurrentUser() {
-        return currentUser;
+        userRepository = UserRepository.getInstance();
     }
 
     public void activityResult(Activity activity, int requestCode, Intent data, int RC_SIGN_IN) {
@@ -56,6 +58,10 @@ public class AuthWithGoogle {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("email",auth.getCurrentUser().getEmail());
+                            user.put("username", auth.getCurrentUser().getDisplayName());
+                            userRepository.newUser(user, auth.getUid());
                             currentUser = auth.getCurrentUser();
                             Intent intent = new Intent(activity, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

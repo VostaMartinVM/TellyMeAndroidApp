@@ -58,6 +58,11 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
         return shows.size();
     }
 
+    public void updateShows(ArrayList<Show> shows) {
+        this.shows = shows;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView showTitle;
         private final TextView episodeTitle;

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import androidx.core.app.ActivityCompat;
 
+import com.example.tellyme.repository.UserRepository;
 import com.example.tellyme.view.activity.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,12 +15,11 @@ import java.util.HashMap;
 
 public class AuthWithEmailAndPass {
     private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-
+    private UserRepository userRepository;
 
     public AuthWithEmailAndPass() {
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        userRepository = UserRepository.getInstance();
     }
 
     public void createAccount(Activity activity, String email, String username, String password, String confirmationPass)
@@ -29,11 +29,10 @@ public class AuthWithEmailAndPass {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(activity, task -> {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            HashMap<String, Object> username1 = new HashMap<>();
-                            username1.put("email", email);
-                            username1.put("username", username);
-                            db.collection(task.getResult().getUser().getUid()).document("Personal information").set(username1);
+                            HashMap<String, Object> user = new HashMap<>();
+                            user.put("email", email);
+                            user.put("username", username);
+                            userRepository.newUser(user, task.getResult().getUser().getUid());
                             Intent intent = new Intent(activity, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             activity.startActivity(intent);
@@ -59,7 +58,6 @@ public class AuthWithEmailAndPass {
     {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> {
             if (task.isSuccessful()) {
-                FirebaseUser user = mAuth.getCurrentUser();
                 Intent intent = new Intent(activity, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity.startActivity(intent);

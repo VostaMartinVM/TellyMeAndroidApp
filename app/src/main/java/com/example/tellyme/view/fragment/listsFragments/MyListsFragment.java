@@ -2,7 +2,6 @@ package com.example.tellyme.view.fragment.listsFragments;
 
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,11 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tellyme.model.DummyData;
-import com.example.tellyme.view.utils.ToolBarUtils;
+import com.example.tellyme.utils.FragmentUtils;
+import com.example.tellyme.utils.ToolBarUtils;
 import com.example.tellyme.adapters.ListsAdapter;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -62,10 +61,8 @@ public class MyListsFragment extends Fragment {
             @Override
             public void onCLick(View view, int position) {
                 FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                SpecificListFragment specificListFragment = new SpecificListFragment();
-                fragmentTransaction.replace(R.id.list_dummy_fragment, specificListFragment);
-                fragmentTransaction.commit();
+                SpecificListFragment specificListFrag = new SpecificListFragment();
+                FragmentUtils.changeFragment(specificListFrag, R.id.list_dummy_fragment, "ldf", fragmentManager);
             }
         };
     }

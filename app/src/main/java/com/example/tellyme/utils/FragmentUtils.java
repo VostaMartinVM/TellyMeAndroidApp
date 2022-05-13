@@ -1,4 +1,4 @@
-package com.example.tellyme.view.utils;
+package com.example.tellyme.utils;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,10 +25,24 @@ public class FragmentUtils {
             fragmentTransaction.commit();
     }
 
-    public  static void hideAndShowFragment(Fragment fragmentToHide, Fragment fragmentToShow, FragmentManager fragmentManager)
+    public static void hideAndShowFragment(Fragment fragmentToHide, Fragment fragmentToShow, FragmentManager fragmentManager)
     {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.hide(fragmentToHide);
+        fragmentTransaction.show(fragmentToShow);
+        fragmentTransaction.commit();
+    }
+
+    public static void hideFragment(Fragment fragmentToHide, FragmentManager fragmentManager)
+    {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.hide(fragmentToHide);
+        fragmentTransaction.commit();
+    }
+
+    public static void showFragment(Fragment fragmentToShow, FragmentManager fragmentManager)
+    {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.show(fragmentToShow);
         fragmentTransaction.commit();
     }

@@ -21,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,18 +30,21 @@ import retrofit2.Response;
 
 public class ShowRepository {
     private static ShowRepository instance;
-    private final MutableLiveData<ArrayList<Show>> shows;
+    private MutableLiveData<ArrayList<Show>> shows;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private Context context;
 
-    private Map<String, Object> showIds;
+    private ArrayList<Long> showIds;
+    private ArrayList<Show> showListHelper;
+
 
     public ShowRepository() {
         shows = new MutableLiveData<>();
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        showIds = new HashMap<>();
+        showIds = new ArrayList<>();
+        showListHelper = new ArrayList<>();
     }
 
     public static ShowRepository getInstance() {
@@ -54,6 +56,7 @@ public class ShowRepository {
     }
 
     public MutableLiveData<ArrayList<Show>> getShows() {
+        shows = new MutableLiveData<>();
         ShowServiceInterface apiService = TMDBServiceGenerator.getRetrofitInstance().create(ShowServiceInterface.class);
         Call<ShowRequest> call = apiService.getAllShows();
         call.enqueue(new Callback<ShowRequest>() {
@@ -82,6 +85,7 @@ public class ShowRepository {
 
     public MutableLiveData<ArrayList<Show>> getShowsForSpecificList(String listName)
     {
+        shows = new MutableLiveData<>();
         DocumentReference docRef = db.collection(mAuth.getCurrentUser().getUid()).document("Show lists");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -89,14 +93,41 @@ public class ShowRepository {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        showIds = document.getData();
-                        System.out.println(showIds.get(listName));
+                        showIds = (ArrayList<Long>) document.get(listName);
+                        Integer[] showIdsArray = new Integer[showIds.size()];
+                        for (int i = 0; i < showIds.size(); i++) {
+                            showIdsArray[i] = ((Long) showIds.get(i)).intValue();
+                        }
+
+                        showListHelper = new ArrayList<>();
+
+                        for (int i = 0; i < showIdsArray.length; i++) {
+                            getSpecificShowsHelper(showIdsArray[i]);
+                        }
                     }
                 }
             }
         });
         return shows;
     }
+
+    private void getSpecificShowsHelper(int id) {
+        ShowServiceInterface apiService = TMDBServiceGenerator.getRetrofitInstance().create(ShowServiceInterface.class);
+        Call<Show> call = apiService.getSpecificShow(id);
+        call.enqueue(new Callback<Show>() {
+            @Override
+            public void onResponse(Call<Show> call, Response<Show> response) {
+                showListHelper.add(response.body());
+                shows.setValue(showListHelper);
+            }
+
+            @Override
+            public void onFailure(Call<Show> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
 
     public void setContext(Context context) {
         this.context = context;

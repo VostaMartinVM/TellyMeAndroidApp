@@ -14,13 +14,13 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.tellyme.R;
 import com.example.tellyme.view.fragment.homeFragments.HomeFragment;
-import com.example.tellyme.view.utils.DelayUtils;
+import com.example.tellyme.utils.DelayUtils;
 import com.example.tellyme.view.fragment.showsFragments.ShowsFragment;
 import com.example.tellyme.view.fragment.moviesFragments.MoviesFragment;
 import com.example.tellyme.view.fragment.listsFragments.MyListsFragment;
 import com.example.tellyme.view.fragment.searchFragments.SearchFragment;
-import com.example.tellyme.view.utils.FragmentUtils;
-import com.example.tellyme.view.utils.ToolBarUtils;
+import com.example.tellyme.utils.FragmentUtils;
+import com.example.tellyme.utils.ToolBarUtils;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

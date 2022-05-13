@@ -1,4 +1,4 @@
-package com.example.tellyme.view.utils;
+package com.example.tellyme.utils;
 
 import android.os.Handler;
 

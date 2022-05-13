@@ -26,6 +26,7 @@
             android:name="com.example.tellyme.view.fragment.homeFragments.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
             tools:layout="@layout/home_fragment">
 
         </androidx.fragment.app.FragmentContainerView>
@@ -44,25 +45,11 @@
 
     <FrameLayout
         android:id="@+id/search_fragment_layout"
+        android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.watchtracker.view.fragment.homeFragments.HomeFragment">
+        android:layout_height="match_parent">
 
     </FrameLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/button"
-        android:src="@drawable/search_icon"
-        android:translationZ="3dp"
-        app:backgroundTint="@color/custom_purple"
-        app:borderWidth="0dp"
-        app:fabCustomSize="60dp"
-        app:layout_anchor="@id/bottomAppBar"
-        app:maxImageSize="30dp"
-        tools:ignore="RedundantDescriptionCheck" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -87,5 +74,19 @@
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/button"
+        android:src="@drawable/search_icon"
+        android:translationZ="3dp"
+        app:backgroundTint="@color/custom_purple"
+        app:borderWidth="0dp"
+        app:fabCustomSize="60dp"
+        app:layout_anchor="@id/bottomAppBar"
+        app:maxImageSize="30dp"
+        tools:ignore="RedundantDescriptionCheck" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

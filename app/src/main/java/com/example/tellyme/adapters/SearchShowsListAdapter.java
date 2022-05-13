@@ -62,7 +62,7 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
         return shows.size();
     }
 
-    public void setShows(ArrayList<Show> shows) {
+    public void updateShows(ArrayList<Show> shows) {
         this.shows = shows;
         notifyDataSetChanged();
     }
