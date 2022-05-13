@@ -7,6 +7,7 @@
     tools:context=".view.activity.UserPage">
 
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -78,7 +79,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/download" />
+        </LinearLayout>
 
     </TableLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_user_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/user_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

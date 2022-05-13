@@ -174,7 +174,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="3">
@@ -193,7 +193,19 @@
                 android:text="@string/create_account"
                 android:textSize="16sp"
                 tools:ignore="TextContrastCheck" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/login_error"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </TableLayout>
 

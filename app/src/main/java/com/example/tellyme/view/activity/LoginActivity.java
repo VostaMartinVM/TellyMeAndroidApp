@@ -21,13 +21,17 @@ public class LoginActivity extends AppCompatActivity {
         switchToCreateAcc();
     }
 
+    private EditText email;
+    private EditText password;
+
     private void login()
     {
         Button login = findViewById(R.id.login_button);
         login.setOnClickListener(view -> {
             AuthWithEmailAndPass auth = new AuthWithEmailAndPass();
-            EditText email = findViewById(R.id.email_login_field);
-            EditText password = findViewById(R.id.password_login_field);
+            email = findViewById(R.id.email_login_field);
+            password = findViewById(R.id.password_login_field);
+
             auth.login(this, email.getText().toString().trim(), password.getText().toString().trim());
         });
     }

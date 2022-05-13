@@ -43,4 +43,9 @@
     <string name="login_with_email">Login with email</string>
     <string name="check_button">Check button</string>
     <string name="timer">000 DAYS</string>
+    <string name="login_error">The email or password you entered is incorrect</string>
+    <string name="password_doest_match">Password and confirm password does not match</string>
+    <string name="password_must_include">Your password must include ...</string>
+    <string name="log_out">Log out</string>
+    <string name="settings">Settings</string>
 </resources>

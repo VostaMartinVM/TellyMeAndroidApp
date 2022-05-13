@@ -12,7 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.tellyme.Authentication.AuthWithGoogle;
 import com.example.tellyme.R;
 import com.example.tellyme.view.fragment.homeFragments.HomeFragment;
 import com.example.tellyme.view.utils.DelayUtils;
