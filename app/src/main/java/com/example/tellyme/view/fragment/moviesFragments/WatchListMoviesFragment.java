@@ -21,6 +21,7 @@ import com.example.tellyme.R;
 import com.example.tellyme.adapters.ListsAdapter;
 import com.example.tellyme.adapters.MovieWatchListListAdapter;
 import com.example.tellyme.model.DummyData;
+import com.example.tellyme.model.Movie;
 import com.example.tellyme.view.activity.SpecificMovie;
 import com.example.tellyme.view.activity.SpecificShow;
 import com.example.tellyme.view.fragment.listsFragments.SpecificListFragment;
@@ -30,7 +31,8 @@ import java.util.ArrayList;
 
 public class WatchListMoviesFragment extends Fragment {
 
-    private ArrayList<DummyData> dummyData = new ArrayList<>();
+    private WatchListMoviesViewModel watchListMoviesViewModel;
+    private ArrayList<Movie> movies = new ArrayList<>();
     private MovieWatchListListAdapter movieWatchListListAdapter;
     private MovieWatchListListAdapter.RecyclerViewOnClickListener listener;
     private View view;
@@ -44,22 +46,31 @@ public class WatchListMoviesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        dummyData.add(new DummyData("StarWars", R.mipmap.lists_background));
-        dummyData.add(new DummyData("F&F", R.mipmap.lists_background));
-        dummyData.add(new DummyData("fakt uz nevim", R.mipmap.lists_background));
-
         view = inflater.inflate(R.layout.watch_list_movies_fragment, container, false);
         setOnClickListener();
-        RecyclerView recyclerView = view.findViewById(R.id.watch_list_movies_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-
-        movieWatchListListAdapter = new MovieWatchListListAdapter(dummyData, listener);
-        recyclerView.setAdapter(movieWatchListListAdapter);
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RecyclerView recyclerView = view.findViewById(R.id.watch_list_movies_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+
+        movieWatchListListAdapter = new MovieWatchListListAdapter(movies, listener);
+        recyclerView.setAdapter(movieWatchListListAdapter);
+
+        watchListMoviesViewModel = new ViewModelProvider(this).get(WatchListMoviesViewModel.class);
+        watchListMoviesViewModel.getMovies().observe(getViewLifecycleOwner(), movieList -> {
+            if(movieList != null)
+            {
+                movies = movieList;
+                movieWatchListListAdapter.updateMovies(movieList);
+            }
+        });
+    }
 
     private void setOnClickListener(){
         listener = new MovieWatchListListAdapter.RecyclerViewOnClickListener() {

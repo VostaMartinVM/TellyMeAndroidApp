@@ -2,7 +2,6 @@ package com.example.tellyme.view.fragment.searchFragments;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -21,10 +20,7 @@ import android.view.ViewGroup;
 import com.example.tellyme.R;
 import com.example.tellyme.adapters.SearchShowsListAdapter;
 import com.example.tellyme.model.Show;
-import com.example.tellyme.view.activity.MessageSystemActivity;
-import com.example.tellyme.view.activity.SpecificMovie;
 import com.example.tellyme.view.activity.SpecificShow;
-import com.example.tellyme.view.utils.DelayUtils;
 import com.example.tellyme.viewModel.SeachViewModels.SearchShowsViewModel;
 
 import java.util.ArrayList;
@@ -58,7 +54,7 @@ public class SearchShowsFragment extends Fragment {
         mViewModel.getShows().observe(getViewLifecycleOwner(), showList -> {
             if(showList != null) {
                 shows = showList;
-                showsListAdapter.setShows(showList);
+                showsListAdapter.updateShows(showList);
             }
         });
         return view;

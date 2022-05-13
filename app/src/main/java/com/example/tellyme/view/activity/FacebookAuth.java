@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.tellyme.repository.UserRepository;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FacebookAuth extends SignInActivity {
 
@@ -65,7 +68,10 @@ public class FacebookAuth extends SignInActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("username", mAuth.getCurrentUser().getDisplayName());
+                        UserRepository userRepository = UserRepository.getInstance();
+                        userRepository.newUser(user, mAuth.getUid());
                         updateUI();
                     } else {
                     }

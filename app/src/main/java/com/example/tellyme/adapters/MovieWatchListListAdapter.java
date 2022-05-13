@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.DummyData;
+import com.example.tellyme.model.Movie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
@@ -19,12 +20,12 @@ import java.util.ArrayList;
 public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchListListAdapter.ViewHolder> {
 
 
-    private ArrayList<DummyData> dummyData;
+    private ArrayList<Movie> movies;
     private RecyclerViewOnClickListener listener;
 
 
-    public MovieWatchListListAdapter(ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
-        this.dummyData = dummyData;
+    public MovieWatchListListAdapter(ArrayList<Movie> movies, RecyclerViewOnClickListener listener){
+        this.movies = movies;
         this.listener = listener;
     }
 
@@ -42,13 +43,25 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.movieTitle.setText(dummyData.get(position).getName());
-        Picasso.get().load(dummyData.get(position).getImage()).fit().centerCrop().into(holder.movieImage);
+        holder.movieTitle.setText(movies.get(position).getTitle());
+        if (movies.get(position).getBackdropPath() != null)
+        {
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).fit().centerCrop().into(holder.movieImage);
+        }
+        else {
+            Picasso.get().load("dummy path").into(holder.movieImage);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return dummyData.size();
+        return movies.size();
+    }
+
+    public void updateMovies(ArrayList<Movie> movies)
+    {
+        this.movies = movies;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

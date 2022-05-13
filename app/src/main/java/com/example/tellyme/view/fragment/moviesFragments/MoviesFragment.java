@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tellyme.view.utils.ToolBarUtils;
+import com.example.tellyme.utils.ToolBarUtils;
 import com.example.tellyme.viewModel.MoviesViewModels.MoviesViewModel;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

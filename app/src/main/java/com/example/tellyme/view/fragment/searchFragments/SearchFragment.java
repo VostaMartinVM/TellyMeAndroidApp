@@ -21,8 +21,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.tellyme.R;
-import com.example.tellyme.view.utils.DelayUtils;
-import com.example.tellyme.view.utils.FragmentUtils;
+import com.example.tellyme.utils.DelayUtils;
+import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.viewModel.SeachViewModels.SearchViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +31,7 @@ public class SearchFragment extends Fragment {
 
     private SearchViewModel mViewModel;
 
+    private View view;
     private EditText searchText;
     private ImageView searchImage;
     private ImageButton showsButton;
@@ -44,13 +45,25 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.search_fragment, container, false);
-        FrameLayout searchLayout = view.findViewById(R.id.search_frame);
+        view = inflater.inflate(R.layout.search_fragment, container, false);
         searchText = view.findViewById(R.id.search_edit_text);
         searchImage = view.findViewById(R.id.search_image_view);
         showsButton = view.findViewById(R.id.search_shows_button);
         moviesButton = view.findViewById(R.id.search_movies_button);
         peopleButton = view.findViewById(R.id.search_people_button);
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        searchBox();
+    }
+
+    private void searchBox(){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        Fragment fragmentLayout = fragmentManager.findFragmentById(R.id.fragmentLayout);
+        FrameLayout searchLayout = view.findViewById(R.id.search_frame);
         view.post(() -> {
             searchText.setVisibility(View.GONE);
             searchImage.setVisibility(View.GONE);
@@ -64,6 +77,7 @@ public class SearchFragment extends Fragment {
             searchText.animate().translationY(0).setDuration(500).start();
             searchImage.animate().translationY(0).setDuration(500).start();
             DelayUtils.delay(400, () -> {
+                FragmentUtils.hideFragment(fragmentLayout, fragmentManager);
                 searchText.setVisibility(View.VISIBLE);
                 searchImage.setVisibility(View.VISIBLE);
             });
@@ -98,9 +112,6 @@ public class SearchFragment extends Fragment {
             SearchPeopleFragment searchPeopleFragment = SearchPeopleFragment.newInstance();
             FragmentUtils.changeFragment(searchPeopleFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager());
         });
-
-
-        return view;
     }
 
     @Override
@@ -141,12 +152,6 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-
-        super.onStart();
-    }
-
-    @Override
     public void onPause() {
         searchText.setAlpha(0);
         searchImage.setAlpha(0);
@@ -164,9 +169,9 @@ public class SearchFragment extends Fragment {
                 searchFrame.setScaleY(1);
             }
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.show(getActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentLayout));
-            fragmentTransaction.commit();
+
+            Fragment fragmentLayout = fragmentManager.findFragmentById(R.id.fragmentLayout);
+            FragmentUtils.showFragment(fragmentLayout, fragmentManager);
         });
         super.onPause();
     }

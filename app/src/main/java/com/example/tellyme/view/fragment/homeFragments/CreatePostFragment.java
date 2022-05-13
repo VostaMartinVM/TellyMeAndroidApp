@@ -20,10 +20,10 @@ import android.widget.ImageButton;
 
 import com.example.tellyme.R;
 import com.example.tellyme.view.fragment.searchFragments.SearchFragment;
-import com.example.tellyme.view.utils.DelayUtils;
-import com.example.tellyme.view.utils.FragmentUtils;
-import com.example.tellyme.view.utils.HeightProperty;
-import com.example.tellyme.view.utils.KeyboardUtils;
+import com.example.tellyme.utils.DelayUtils;
+import com.example.tellyme.utils.FragmentUtils;
+import com.example.tellyme.utils.HeightProperty;
+import com.example.tellyme.utils.KeyboardUtils;
 import com.example.tellyme.viewModel.HomeViewModels.CreatePostViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

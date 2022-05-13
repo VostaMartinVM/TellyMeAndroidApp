@@ -45,7 +45,12 @@ public class WatchListShowsFragment extends Fragment {
 
         view = inflater.inflate(R.layout.watch_list_shows_fragment, container, false);
         setOnClickListener();
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         RecyclerView recyclerView = view.findViewById(R.id.watch_list_shows_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -59,10 +64,9 @@ public class WatchListShowsFragment extends Fragment {
             if (showList != null)
             {
                 shows = showList;
+                showsWatchListAdapter.updateShows(showList);
             }
         });
-
-        return view;
     }
 
     private void setOnClickListener(){

@@ -17,8 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tellyme.view.activity.MessageSystemActivity;
-import com.example.tellyme.view.utils.FragmentUtils;
-import com.example.tellyme.view.utils.ToolBarUtils;
+import com.example.tellyme.utils.FragmentUtils;
+import com.example.tellyme.utils.ToolBarUtils;
 import com.example.tellyme.viewModel.HomeViewModels.HomeViewModel;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
