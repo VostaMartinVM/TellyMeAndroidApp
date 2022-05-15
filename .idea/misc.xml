@@ -3,22 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/drawable/rounded_background_white.xml" value="0.1" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/drawable/rounded_list_item.xml" value="0.1" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_about.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_create_account.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_main.xml" value="0.2921875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_message_system.xml" value="0.24031007751937986" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_messages.xml" value="0.24031007751937986" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_settings.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_specific_movie.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_specific_show.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_user.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_user_page.xml" value="0.22" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/home_fragments/layout/create_post_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/home_fragments/layout/home_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/lists_item.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/messages_item.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/movie_upcoming_list_item.xml" value="0.371875" />
@@ -29,26 +21,14 @@
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/shows_watch_list_item.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/lists_fragments/layout/add_list_to_lists_fragment.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/lists_fragments/layout/list_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/lists_fragments/layout/specific_list_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/movies_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/specific_movie_fragment.xml" value="0.371875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/upcoming_movies_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/watch_list_movies_fragment.xml" value="0.259375" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_movies_fragment.xml" value="0.1890625" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_people_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_shows_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/about_show_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/episodes_show_fragment.xml" value="0.24273255813953487" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/shows_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/specific_show_fragment.xml" value="0.2921875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/tv_shows_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/upcoming_shows_fragment.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/watch_list_shows_fragment.xml" value="0.2921875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/user_fragments/layout/user_fragment.xml" value="0.371875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/menu/bottom_menu.xml" value="0.371875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/menu/top_menu.xml" value="0.371875" />
-        <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/menu/user_menu.xml" value="0.371875" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/drawable-v24/custom_bottom_navigation.xml" value="0.324" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.324" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/drawable/rounded_edit_text.xml" value="0.3725" />
@@ -129,7 +109,34 @@
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_shows_fragment.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layouts/shows_fragments/layout/watch_list_shows_fragment.xml" value="0.35507246376811596" />
         <entry key="..\:/Users/Vosta/OneDrive/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/mipmap-anydpi-v26/ic_banner.xml" value="0.1995" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/drawable/rating_circle.xml" value="0.196" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/drawable/show_border.xml" value="0.3505" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_main.xml" value="0.190234375" />
         <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_sign_in.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_specific_movie.xml" value="0.33" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_specific_show.xml" value="0.22" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/activity_user_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/activities/layout/searched_programs_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/home_fragments/layout/create_post_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/home_fragments/layout/home_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/lists_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/messages_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/movie_upcoming_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/movie_watch_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/search_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/search_people_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/show_upcoming_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/list_items/layout/shows_watch_list_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/lists_fragments/layout/list_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/lists_fragments/layout/specific_list_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/movies_fragment.xml" value="0.228125" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/movies_fragments/layout/watch_list_movies_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_people_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/search_fragments/layout/search_shows_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/about_show_fragment.xml" value="0.228125" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/episodes_show_fragment.xml" value="0.228125" />
+        <entry key="..\:/Users/hansl/Documents/GitHub/TellyMeAndroidApp/app/src/main/res/layouts/shows_fragments/layout/shows_fragment.xml" value="0.228125" />
         <entry key="..\:/Users/hansl/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/drawable/rounded_edit_text.xml" value="0.196" />
         <entry key="..\:/Users/hansl/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/hansl/Documents/GitHub/WatchTrackerAndroidApp/app/src/main/res/layout/fragment_first.xml" value="0.358695652173913" />

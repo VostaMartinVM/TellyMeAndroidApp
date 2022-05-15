@@ -1,7 +1,5 @@
 package com.example.tellyme.view.fragment.moviesFragments;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -18,13 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tellyme.R;
-import com.example.tellyme.adapters.ListsAdapter;
 import com.example.tellyme.adapters.MovieWatchListListAdapter;
-import com.example.tellyme.model.DummyData;
 import com.example.tellyme.model.Movie;
 import com.example.tellyme.view.activity.SpecificMovie;
-import com.example.tellyme.view.activity.SpecificShow;
-import com.example.tellyme.view.fragment.listsFragments.SpecificListFragment;
 import com.example.tellyme.viewModel.MoviesViewModels.WatchListMoviesViewModel;
 
 import java.util.ArrayList;

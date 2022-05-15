@@ -3,24 +3,36 @@ package com.example.tellyme.view.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tellyme.R;
+import com.example.tellyme.viewModel.UserViewModels.UserPageViewModel;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 public class UserPageActivity extends AppCompatActivity {
+
+    private UserPageViewModel userPageViewModel;
 
     private static int PICK_PROFILE_IMAGE = 100;
     private static int PICK_AVATAR_IMAGE = 101;
@@ -28,16 +40,15 @@ public class UserPageActivity extends AppCompatActivity {
     private ImageView profileCover;
     private Uri avatarImageUri;
     private ImageView avatarImage;
-    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_page);
-        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        userPageViewModel = new ViewModelProvider(this).get(UserPageViewModel.class);
         TextView username = findViewById(R.id.username_text_view);
-        username.setText(user.getDisplayName());
+        username.setText(userPageViewModel.getUsername());
         toolbarCreate();
         setImages();
     }
@@ -79,6 +90,9 @@ public class UserPageActivity extends AppCompatActivity {
         profileCover = findViewById(R.id.profile_cover);
         avatarImage = findViewById(R.id.avatar_image);
 
+        profileCover.setImageBitmap(userPageViewModel.getImage("profile cover", profileCover));
+        avatarImage.setImageBitmap(userPageViewModel.getImage("avatar image", avatarImage));
+
         profileCover.setOnClickListener(view -> {
             openGalleryForProfile();
         });
@@ -91,12 +105,14 @@ public class UserPageActivity extends AppCompatActivity {
     private void openGalleryForProfile()
     {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        gallery.setType("image/*");
         startActivityForResult(gallery, PICK_PROFILE_IMAGE);
     }
 
     private void openGalleryForAvatar()
     {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        gallery.setType("image/*");
         startActivityForResult(gallery, PICK_AVATAR_IMAGE);
     }
 
@@ -107,11 +123,19 @@ public class UserPageActivity extends AppCompatActivity {
         {
             profileImageUri = data.getData();
             profileCover.setImageURI(profileImageUri);
+            userPageViewModel.uploadImage(this, profileImageUri, "profile cover");
         }
         if (resultCode == RESULT_OK && requestCode == PICK_AVATAR_IMAGE)
         {
             avatarImageUri = data.getData();
             avatarImage.setImageURI(avatarImageUri);
+            userPageViewModel.uploadImage(this, avatarImageUri, "avatar image");
         }
     }
+
+
+
+
+
+
 }

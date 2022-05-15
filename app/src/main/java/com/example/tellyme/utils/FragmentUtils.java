@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.tellyme.R;
+import com.example.tellyme.view.fragment.showsFragments.AboutShowFragment;
+
 public class FragmentUtils {
 
     public static void changeFragment(Fragment fragment, int id , String tag ,FragmentManager fragmentManager)
@@ -78,12 +81,24 @@ public class FragmentUtils {
         {
             args.putString(key, (String) argument);
         }
+        else {
+            String temp = ArgumentUtils.getGsonParser().toJson(argument);
+            args.putString(key, temp);
+        }
         fragment.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(enter, exit, popEnter, popExit);
         fragmentTransaction.replace(id, fragment, tag);
         fragmentTransaction.addToBackStack(tag);
         fragmentTransaction.commit();
+    }
+
+    public static void passArgument(Fragment fragment, int id ,FragmentManager fragmentManager, String key, Object argument){
+        Bundle args = new Bundle();
+        String temp = ArgumentUtils.getGsonParser().toJson(argument);
+        args.putString(key, temp);
+        fragment.setArguments(args);
+        fragmentManager.beginTransaction().replace(id, fragment).commit();
     }
 
 }

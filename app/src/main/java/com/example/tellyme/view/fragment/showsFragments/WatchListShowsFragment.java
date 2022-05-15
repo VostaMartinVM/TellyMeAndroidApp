@@ -1,8 +1,5 @@
 package com.example.tellyme.view.fragment.showsFragments;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.tellyme.R;
 import com.example.tellyme.adapters.ShowsWatchListAdapter;
-import com.example.tellyme.model.DummyData2;
 import com.example.tellyme.model.Show;
-import com.example.tellyme.view.activity.MessageSystemActivity;
 import com.example.tellyme.view.activity.SpecificShow;
 import com.example.tellyme.viewModel.ShowsViewModels.WatchListShowsViewModel;
 
