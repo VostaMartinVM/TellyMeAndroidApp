@@ -20,12 +20,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/show_watchlist_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:contentDescription="@string/show_image"
-            tools:ignore="ImageContrastCheck" />
+            app:shapeAppearanceOverlay="@style/halfRoundedImageView"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/black"
+            tools:ignore="ImageContrastCheck"
+/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -60,7 +64,7 @@
         android:clickable="true"
         android:contentDescription="@string/check_button"
         android:focusable="true"
-        app:backgroundTint="@color/custom_purple"
+        app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
         app:layout_constraintTop_toTopOf="@+id/linearLayout7"

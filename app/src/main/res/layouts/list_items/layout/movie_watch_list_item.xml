@@ -45,7 +45,7 @@
         android:clickable="true"
         android:contentDescription="@string/check_button"
         android:focusable="true"
-        app:backgroundTint="@color/custom_purple"
+        app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/movie_image_watchlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"

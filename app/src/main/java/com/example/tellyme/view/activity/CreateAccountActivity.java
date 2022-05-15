@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,10 +38,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         EditText username = findViewById(R.id.username_field);
         EditText password = findViewById(R.id.password_field);
         EditText confirmPass = findViewById(R.id.confirm_pass_field);
+        TextView errorMsg = findViewById(R.id.create_account_error_msg);
+
         createAccount.setOnClickListener(view -> {
-            AuthWithEmailAndPass auth = new AuthWithEmailAndPass();
-            auth.createAccount(this, email.getText().toString().trim(), username.getText().toString().trim()
-                    , password.getText().toString().trim(), confirmPass.getText().toString().trim());
+                        AuthWithEmailAndPass auth = new AuthWithEmailAndPass();
+                        auth.validate(this, email.getText().toString(), username.getText().toString(),
+                                password.getText().toString(), confirmPass.getText().toString(), errorMsg);
+                            errorMsg.setVisibility(View.INVISIBLE);
         });
+
+
+
+
     }
 }
