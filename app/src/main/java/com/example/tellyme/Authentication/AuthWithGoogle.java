@@ -6,12 +6,11 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.tellyme.repository.ListRepository;
 import com.example.tellyme.repository.UserRepository;
-import com.example.tellyme.view.activity.FacebookAuth;
 import com.example.tellyme.view.activity.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,12 +27,14 @@ public class AuthWithGoogle {
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
     private UserRepository userRepository;
+    private ListRepository listRepository;
 
     public AuthWithGoogle()
     {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         userRepository = UserRepository.getInstance();
+        listRepository = ListRepository.getInstance();
     }
 
     public void activityResult(Activity activity, int requestCode, Intent data, int RC_SIGN_IN) {
@@ -62,6 +63,7 @@ public class AuthWithGoogle {
                             user.put("email",auth.getCurrentUser().getEmail());
                             user.put("username", auth.getCurrentUser().getDisplayName());
                             userRepository.newUser(user, auth.getUid());
+                            listRepository.defaultLists();
                             currentUser = auth.getCurrentUser();
                             Intent intent = new Intent(activity, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

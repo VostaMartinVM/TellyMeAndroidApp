@@ -22,7 +22,7 @@ public class WatchListMoviesViewModel extends AndroidViewModel {
 
     public LiveData<ArrayList<Movie>> getMovies()
     {
-        return movieRepository.getMoviesForSpecificList("Watch list");
+        return movieRepository.getMoviesForSpecificList("Movies");
     }
 
 }

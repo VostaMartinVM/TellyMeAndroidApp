@@ -49,7 +49,7 @@ public class MessageListAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.messages_item, null);
         TextView personsNameView = (TextView) view.findViewById(R.id.message_username);
         TextView personsLastMsg = (TextView) view.findViewById(R.id.message_user_message);
-        ImageView imageView = (ImageView) view.findViewById(R.id.user_image);
+        ImageView imageView = (ImageView) view.findViewById(R.id.program_image);
         personsNameView.setText(personsName[i]);
         personsLastMsg.setText(personsLastMessage[i]);
         imageView.setImageResource(personsProfilePicture[i]);

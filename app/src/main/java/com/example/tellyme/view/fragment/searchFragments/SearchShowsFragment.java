@@ -47,9 +47,6 @@ public class SearchShowsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        showsListAdapter = new SearchShowsListAdapter(shows, getContext(), listener);
-        recyclerView.setAdapter(showsListAdapter);
-
         mViewModel = new ViewModelProvider(this).get(SearchShowsViewModel.class);
         mViewModel.getShows().observe(getViewLifecycleOwner(), showList -> {
             if(showList != null) {
@@ -57,6 +54,12 @@ public class SearchShowsFragment extends Fragment {
                 showsListAdapter.updateShows(showList);
             }
         });
+
+        Bundle args = getArguments();
+
+        showsListAdapter = new SearchShowsListAdapter(shows, mViewModel, getContext(), listener,
+                (String) args.get("enteredFrom"));
+        recyclerView.setAdapter(showsListAdapter);
         return view;
     }
     private void setOnClickListener()
@@ -67,6 +70,7 @@ public class SearchShowsFragment extends Fragment {
                 FragmentActivity activity = getActivity();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificShow.class);
+                i.putExtra("loadedShow", shows.get(position));
                 startActivity(i);
                 fragmentManager.popBackStackImmediate();
                 fragmentManager.popBackStackImmediate();

@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/user_image"
+        android:id="@+id/program_image"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
@@ -29,7 +31,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/search_add_button"
-        app:layout_constraintStart_toStartOf="@+id/user_image"
+        app:layout_constraintStart_toStartOf="@+id/program_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,9 +43,9 @@
         android:contentDescription="@string/add"
         android:focusable="true"
         app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/user_image"
-        app:layout_constraintEnd_toEndOf="@+id/user_image"
-        app:layout_constraintTop_toTopOf="@+id/user_image"
+        app:layout_constraintBottom_toBottomOf="@+id/program_image"
+        app:layout_constraintEnd_toEndOf="@+id/program_image"
+        app:layout_constraintTop_toTopOf="@+id/program_image"
         app:srcCompat="@drawable/plus_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

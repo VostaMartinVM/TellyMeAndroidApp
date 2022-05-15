@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity{
             Fragment searchFragmentOpened = getSupportFragmentManager().findFragmentById(R.id.search_fragment_layout);
             if (!(searchFragmentOpened instanceof SearchFragment) )
             {
-                FragmentUtils.changeFragmentWithAnimation(searchFragment, R.id.search_fragment_layout, "sf", fragmentManager, R.anim.enter_from_bottom
-                        , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom);
+                FragmentUtils.changeFragmentWithAnimationAndArgs(searchFragment, R.id.search_fragment_layout, "sf", fragmentManager, R.anim.enter_from_bottom
+                        , R.anim.exit_to_top, R.anim.enter_from_top, R.anim.exit_to_bottom, "enteredFrom", "");
             }
             else {
                 onBackPressed();

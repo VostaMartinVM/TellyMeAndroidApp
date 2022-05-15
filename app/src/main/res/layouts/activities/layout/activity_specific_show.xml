@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/specific_show_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -39,7 +39,7 @@
                 android:text="@string/about" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/specific_movie_title"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

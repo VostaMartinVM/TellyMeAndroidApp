@@ -23,6 +23,6 @@ public class WatchListShowsViewModel extends AndroidViewModel {
 
     public LiveData<ArrayList<Show>> getShows()
     {
-        return showRepository.getShowsForSpecificList("Watch list");
+        return showRepository.getShowsForSpecificList("Shows");
     }
 }

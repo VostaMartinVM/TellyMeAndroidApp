@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
-import com.example.tellyme.model.DummyData;
+import com.example.tellyme.model.Movie;
+import com.example.tellyme.model.Show;
+import com.example.tellyme.viewModel.ListsViewModels.SpecificListViewModel;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
@@ -18,13 +20,13 @@ import java.util.ArrayList;
 
 public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapter.ViewHolder> {
 
-    private ArrayList<DummyData> dummyData;
+    private ArrayList<Object> tvPrograms;
     private RecyclerViewOnClickListener listener;
 
-    public SpecificListAdapter (ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
-        this.dummyData = dummyData;
-        this.listener = listener;
 
+    public SpecificListAdapter (ArrayList<Object> tvPrograms, RecyclerViewOnClickListener listener){
+        this.tvPrograms = tvPrograms;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,21 +34,44 @@ public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.lists_item, parent, false);
-        int height = parent.getHeight()/8;
-        int width = parent.getWidth();
-        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.listTitle.setText(dummyData.get(position).getName());
-        Picasso.get().load(dummyData.get(position).getImage()).fit().centerCrop().into(holder.listImage);
+        if (tvPrograms.get(position) instanceof Show)
+        {
+            Show show = (Show) tvPrograms.get(position);
+            holder.listTitle.setText(show.getName());
+            if (show.getBackdropPath() != null)
+            {
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + show.getBackdropPath()).fit().centerCrop().into(holder.listImage);
+            }
+            else {
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + show.getPosterPath()).fit().centerCrop().into(holder.listImage);
+            }
+        }
+        else {
+            Movie movie = (Movie) tvPrograms.get(position);
+            holder.listTitle.setText(movie.getTitle());
+            if (movie.getBackdropPath() != null)
+            {
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getBackdropPath()).fit().centerCrop().into(holder.listImage);
+            }
+            else {
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getPosterPath()).fit().centerCrop().into(holder.listImage);
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return dummyData.size();
+        return tvPrograms.size();
+    }
+
+    public void updateTVPrograms(ArrayList<Object> tvPrograms){
+        this.tvPrograms = tvPrograms;
+        notifyDataSetChanged();
     }
 
 

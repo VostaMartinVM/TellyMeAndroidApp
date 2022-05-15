@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.DummyData;
+import com.example.tellyme.repository.ShowRepository;
+import com.example.tellyme.viewModel.ListsViewModels.MyListViewModel;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
@@ -19,13 +21,14 @@ import java.util.ArrayList;
 
 public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> {
 
-    private ArrayList<DummyData> dummyData;
+    private ArrayList<String> listsNames;
     private RecyclerViewOnClickListener listener;
+    private MyListViewModel myListViewModel;
 
-    public ListsAdapter (ArrayList<DummyData> dummyData, RecyclerViewOnClickListener listener){
-        this.dummyData = dummyData;
+    public ListsAdapter (ArrayList<String> listsNames, MyListViewModel myListViewModel, RecyclerViewOnClickListener listener){
+        this.listsNames = listsNames;
         this.listener = listener;
-
+        this.myListViewModel = myListViewModel;
     }
 
     @NonNull
@@ -33,22 +36,30 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.lists_item, parent, false);
-        int height = parent.getHeight()/8;
-        int width = parent.getWidth();
-        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.listTitle.setText(dummyData.get(position).getName());
-        Picasso.get().load(dummyData.get(position).getImage()).fit().centerCrop().into(holder.listImage);
-
+        holder.listTitle.setText(listsNames.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return dummyData.size();
+        return listsNames.size();
+    }
+
+    public void updateLists(ArrayList<String> listsNames){
+        this.listsNames = listsNames;
+        notifyDataSetChanged();
+    }
+
+
+    public void addList(String listName)
+    {
+        listsNames.add(listName);
+        notifyDataSetChanged();
+        myListViewModel.addList(listName);
     }
 
 

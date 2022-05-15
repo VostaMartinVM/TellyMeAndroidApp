@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import com.example.tellyme.R;
 import com.example.tellyme.utils.DelayUtils;
 import com.example.tellyme.utils.FragmentUtils;
+import com.example.tellyme.utils.KeyboardUtils;
 import com.example.tellyme.viewModel.SeachViewModels.SearchViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +40,7 @@ public class SearchFragment extends Fragment {
     private ImageButton showsButton;
     private ImageButton moviesButton;
     private ImageButton peopleButton;
+    private String argsString = "";
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -57,7 +61,23 @@ public class SearchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Bundle args = getArguments();
+        if (args != null)
+        {
+            if (!((String)args.get("enteredFrom")).isEmpty())
+            {
+                argsString = (String) args.get("enteredFrom");
+            }
+            else {
+                argsString = "";
+            }
+        }
+
         searchBox();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentUtils.hideAndShowFragment(fragmentManager.findFragmentById(R.id.fragmentLayout),
+                fragmentManager.findFragmentById(R.id.search_fragment_layout), fragmentManager);
+        searchTextFunctionality();
     }
 
     private void searchBox(){
@@ -65,6 +85,7 @@ public class SearchFragment extends Fragment {
         Fragment fragmentLayout = fragmentManager.findFragmentById(R.id.fragmentLayout);
         FrameLayout searchLayout = view.findViewById(R.id.search_frame);
         view.post(() -> {
+            searchText.setText("");
             searchText.setVisibility(View.GONE);
             searchImage.setVisibility(View.GONE);
             showsButton.setVisibility(View.GONE);
@@ -97,21 +118,51 @@ public class SearchFragment extends Fragment {
 
         });
 
-
         showsButton.setOnClickListener(view1 -> {
+            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
             SearchShowsFragment searchShowsFragment = SearchShowsFragment.newInstance();
-            FragmentUtils.changeFragment(searchShowsFragment, R.id.search_list_dummy_frame, "sldf",getParentFragmentManager() );
+            FragmentUtils.changeFragmentWithArgument(searchShowsFragment, R.id.search_list_dummy_frame, "sldf",getParentFragmentManager(),
+                    "enteredFrom", argsString);
         });
 
         moviesButton.setOnClickListener(view1 -> {
+            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
             SearchMoviesFragment searchMoviesFragment = SearchMoviesFragment.newInstance();
-            FragmentUtils.changeFragment(searchMoviesFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager());
+            FragmentUtils.changeFragmentWithArgument(searchMoviesFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager(),
+                    "enteredFrom", argsString);
         });
 
         peopleButton.setOnClickListener(view1 -> {
+            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
             SearchPeopleFragment searchPeopleFragment = SearchPeopleFragment.newInstance();
-            FragmentUtils.changeFragment(searchPeopleFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager());
+            FragmentUtils.changeFragmentWithArgument(searchPeopleFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager(),
+                    "enteredFrom", argsString);
         });
+
+    }
+
+    private void searchTextFunctionality()
+    {
+        searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                SearchedPrograms searchedPrograms = new SearchedPrograms();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentUtils.changeFragmentWithArgument(searchedPrograms, R.id.search_list_dummy_frame, "sldf"
+                        , fragmentManager, "enteredFrom", argsString);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     @Override
@@ -144,9 +195,6 @@ public class SearchFragment extends Fragment {
                 searchFrame.setScaleY(1);
             }
         });
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentUtils.hideAndShowFragment(fragmentManager.findFragmentById(R.id.fragmentLayout),
-                fragmentManager.findFragmentById(R.id.search_fragment_layout), fragmentManager);
 
         super.onAttach(activity);
     }
@@ -168,7 +216,8 @@ public class SearchFragment extends Fragment {
                 searchFrame.setScaleX(1);
                 searchFrame.setScaleY(1);
             }
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+            FragmentManager fragmentManager = getParentFragmentManager();
 
             Fragment fragmentLayout = fragmentManager.findFragmentById(R.id.fragmentLayout);
             FragmentUtils.showFragment(fragmentLayout, fragmentManager);
