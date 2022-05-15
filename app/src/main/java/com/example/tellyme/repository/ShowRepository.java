@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.tellyme.BuildConfig;
+import com.example.tellyme.model.Movie;
 import com.example.tellyme.model.Show;
 import com.example.tellyme.model.ShowRequest;
 import com.example.tellyme.network.ShowServiceInterface;
@@ -30,6 +32,7 @@ import retrofit2.Response;
 
 public class ShowRepository {
     private static ShowRepository instance;
+    private ShowServiceInterface apiService;
     private MutableLiveData<ArrayList<Show>> shows;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -45,6 +48,7 @@ public class ShowRepository {
         mAuth = FirebaseAuth.getInstance();
         showIds = new ArrayList<>();
         showListHelper = new ArrayList<>();
+        apiService = TMDBServiceGenerator.getRetrofitInstance().create(ShowServiceInterface.class);
     }
 
     public static ShowRepository getInstance() {
@@ -57,7 +61,6 @@ public class ShowRepository {
 
     public MutableLiveData<ArrayList<Show>> getShows() {
         shows = new MutableLiveData<>();
-        ShowServiceInterface apiService = TMDBServiceGenerator.getRetrofitInstance().create(ShowServiceInterface.class);
         Call<ShowRequest> call = apiService.getAllShows();
         call.enqueue(new Callback<ShowRequest>() {
             @Override
@@ -73,36 +76,65 @@ public class ShowRepository {
         return shows;
     }
 
+    public MutableLiveData<ArrayList<Show>> getShowsBySearchedText(String searchedText){
+        shows = new MutableLiveData<>();
+        Call<ShowRequest> call = apiService.getShowsBySearchedText(BuildConfig.TMDB_API_KEY, searchedText);
+        call.enqueue(new Callback<ShowRequest>() {
+            @Override
+            public void onResponse(Call<ShowRequest> call, Response<ShowRequest> response) {
+                if (response.body() != null)
+                {
+                    shows.setValue(response.body().getResults());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShowRequest> call, Throwable t) {
+
+            }
+        });
+        return shows;
+    }
+
     public void addShowToList(String listName, int showID){
         Map<String, Object> show = new HashMap<>();
-        show.put(listName, FieldValue.arrayUnion(showID));
+        Map<String, Object> id = new HashMap<>();
+        id.put("showID", FieldValue.arrayUnion(showID));
+        show.put(listName, id);
         db.collection(mAuth.getCurrentUser().getUid())
-                .document("Show lists")
-                .set(show, SetOptions.merge())
-                .addOnSuccessListener(documentReference -> Toast.makeText(context, Html.fromHtml("<big>Successfully added</big>"), Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(documentReference ->  Toast.makeText(context, Html.fromHtml("<big>Error, could not be added</big>"), Toast.LENGTH_SHORT));
+                .document("Lists")
+                .set(show, SetOptions.merge());
     }
 
     public MutableLiveData<ArrayList<Show>> getShowsForSpecificList(String listName)
     {
         shows = new MutableLiveData<>();
-        DocumentReference docRef = db.collection(mAuth.getCurrentUser().getUid()).document("Show lists");
+        DocumentReference docRef = db.collection(mAuth.getCurrentUser().getUid()).document("Lists");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        showIds = (ArrayList<Long>) document.get(listName);
-                        Integer[] showIdsArray = new Integer[showIds.size()];
-                        for (int i = 0; i < showIds.size(); i++) {
-                            showIdsArray[i] = ((Long) showIds.get(i)).intValue();
-                        }
+                        if (document.get(listName) instanceof Map)
+                        {
+                            Map<String, Object> temp = (Map<String, Object>) document.get(listName);
+                            if (temp != null)
+                            {
+                                showIds = (ArrayList<Long>) temp.get("showID");
+                                if (showIds != null)
+                                {
+                                    Integer[] showIdsArray = new Integer[showIds.size()];
+                                    for (int i = 0; i < showIds.size(); i++) {
+                                        showIdsArray[i] = ((Long) showIds.get(i)).intValue();
+                                    }
+                                    showListHelper = new ArrayList<>();
 
-                        showListHelper = new ArrayList<>();
-
-                        for (int i = 0; i < showIdsArray.length; i++) {
-                            getSpecificShowsHelper(showIdsArray[i]);
+                                    for (int i = 0; i < showIdsArray.length; i++) {
+                                        getSpecificShowsHelper(showIdsArray[i]);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -112,7 +144,6 @@ public class ShowRepository {
     }
 
     private void getSpecificShowsHelper(int id) {
-        ShowServiceInterface apiService = TMDBServiceGenerator.getRetrofitInstance().create(ShowServiceInterface.class);
         Call<Show> call = apiService.getSpecificShow(id);
         call.enqueue(new Callback<Show>() {
             @Override
@@ -132,4 +163,5 @@ public class ShowRepository {
     public void setContext(Context context) {
         this.context = context;
     }
+
 }

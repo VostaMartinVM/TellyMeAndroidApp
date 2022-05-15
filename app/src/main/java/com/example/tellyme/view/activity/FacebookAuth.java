@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.tellyme.repository.ListRepository;
 import com.example.tellyme.repository.UserRepository;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -16,7 +17,6 @@ import com.facebook.login.LoginResult;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,6 +72,8 @@ public class FacebookAuth extends SignInActivity {
                         user.put("username", mAuth.getCurrentUser().getDisplayName());
                         UserRepository userRepository = UserRepository.getInstance();
                         userRepository.newUser(user, mAuth.getUid());
+                        ListRepository listRepository = ListRepository.getInstance();
+                        listRepository.defaultLists();
                         updateUI();
                     } else {
                     }

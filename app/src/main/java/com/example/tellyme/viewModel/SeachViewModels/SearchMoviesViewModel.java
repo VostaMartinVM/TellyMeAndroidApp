@@ -23,4 +23,9 @@ public class SearchMoviesViewModel extends AndroidViewModel {
     {
         return movieRepository.getMovies();
     }
+
+    public void addMovieToSpecificList(String listName, int movieID)
+    {
+        movieRepository.addMovieToList(listName, movieID);
+    }
 }

@@ -74,6 +74,7 @@ public class WatchListShowsFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 Intent i = new Intent(getActivity(), SpecificShow.class);
+                i.putExtra("loadedShow", shows.get(position));
                 startActivity(i);
             }
         };

@@ -35,9 +35,6 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.movie_watch_list_item, parent, false);
-        int height = parent.getHeight()/6;
-        int width = parent.getWidth();
-        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
@@ -49,7 +46,8 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
             Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getBackdropPath()).fit().centerCrop().into(holder.movieImage);
         }
         else {
-            Picasso.get().load("dummy path").into(holder.movieImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getPosterPath())
+                    .fit().centerCrop().into(holder.movieImage);
         }
     }
 

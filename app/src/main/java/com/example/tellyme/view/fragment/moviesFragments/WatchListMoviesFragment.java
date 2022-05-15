@@ -77,6 +77,7 @@ public class WatchListMoviesFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 Intent i = new Intent(getActivity(), SpecificMovie.class);
+                i.putExtra("loadedMovie", movies.get(position));
                 startActivity(i);
             }
         };

@@ -1,28 +1,32 @@
 package com.example.tellyme.viewModel.ListsViewModels;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.List;
+import com.example.tellyme.repository.ListRepository;
 
 import java.util.ArrayList;
 
-public class MyListViewModel extends ViewModel {
+public class MyListViewModel extends AndroidViewModel {
 
-    ArrayList<List> lists;
+    private ListRepository listRepository;
 
-    public MyListViewModel()
-    {
-        List MyMovies = new List("MyMovies", R.mipmap.lists_background);
-        List MyShows = new List("MyShows", R.mipmap.lists_background);
-        List Favorites = new List("Favorites", R.mipmap.lists_background);
-        lists = new ArrayList<>();
-        lists.add(MyMovies);
-        lists.add(MyShows);
-        lists.add(Favorites);
+    public MyListViewModel(@NonNull Application application) {
+        super(application);
+        listRepository = ListRepository.getInstance();
     }
 
+    public LiveData<ArrayList<String>> getLists() {
+        return listRepository.getLists();
+    }
 
-
-    // TODO: Implement the ViewModel
+    public void addList(String listName){
+        listRepository.newList(listName);
+    }
 }

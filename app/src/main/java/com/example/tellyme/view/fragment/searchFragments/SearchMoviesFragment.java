@@ -48,9 +48,6 @@ public class SearchMoviesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        moviesListAdapter = new SearchMoviesListAdapter(movies, getContext(), listener);
-        recyclerView.setAdapter(moviesListAdapter);
-
         mViewModel = new ViewModelProvider(this).get(SearchMoviesViewModel.class);
         mViewModel.getMovies().observe(getViewLifecycleOwner(), movieList -> {
             if(movieList != null) {
@@ -58,6 +55,11 @@ public class SearchMoviesFragment extends Fragment {
                 moviesListAdapter.setMovies(movieList);
             }
         });
+
+        Bundle args = getArguments();
+        moviesListAdapter = new SearchMoviesListAdapter(movies, mViewModel,getContext(), listener, (String) args.get("enteredFrom"));
+        recyclerView.setAdapter(moviesListAdapter);
+
         return view;
     }
 
@@ -68,6 +70,7 @@ public class SearchMoviesFragment extends Fragment {
                 FragmentActivity activity = getActivity();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificMovie.class);
+                i.putExtra("loadedMovie", movies.get(position));
                 startActivity(i);
                 fragmentManager.popBackStackImmediate();
                 fragmentManager.popBackStackImmediate();

@@ -23,4 +23,9 @@ public class SearchShowsViewModel extends AndroidViewModel {
    {
        return showRepository.getShows();
    }
+
+   public void addShowsToSpecificList(String listName, int showId)
+   {
+        showRepository.addShowToList(listName, showId);
+   }
 }

@@ -5,21 +5,22 @@ import android.content.Intent;
 
 import androidx.core.app.ActivityCompat;
 
+import com.example.tellyme.repository.ListRepository;
 import com.example.tellyme.repository.UserRepository;
 import com.example.tellyme.view.activity.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
 public class AuthWithEmailAndPass {
     private FirebaseAuth mAuth;
     private UserRepository userRepository;
+    private ListRepository listRepository;
 
     public AuthWithEmailAndPass() {
         mAuth = FirebaseAuth.getInstance();
         userRepository = UserRepository.getInstance();
+        listRepository = ListRepository.getInstance();
     }
 
     public void createAccount(Activity activity, String email, String username, String password, String confirmationPass)
@@ -33,6 +34,7 @@ public class AuthWithEmailAndPass {
                             user.put("email", email);
                             user.put("username", username);
                             userRepository.newUser(user, task.getResult().getUser().getUid());
+                            listRepository.defaultLists();
                             Intent intent = new Intent(activity, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             activity.startActivity(intent);

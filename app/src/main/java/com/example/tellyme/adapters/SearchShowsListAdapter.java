@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.Show;
-import com.example.tellyme.repository.ShowRepository;
+import com.example.tellyme.viewModel.SeachViewModels.SearchShowsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
@@ -21,14 +21,18 @@ import java.util.ArrayList;
 public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsListAdapter.ViewHolder> {
 
     private ArrayList<Show> shows;
-    private ShowRepository showRepository;
     private RecyclerViewOnClickListener listener;
+    private SearchShowsViewModel searchShowsViewModel;
+    private Context context;
+    private String args;
 
-    public SearchShowsListAdapter (ArrayList<Show> shows, Context context, RecyclerViewOnClickListener listener){
+    public SearchShowsListAdapter (ArrayList<Show> shows, SearchShowsViewModel searchShowsViewModel,
+                                   Context context, RecyclerViewOnClickListener listener, String args){
         this.shows = shows;
         this.listener = listener;
-        showRepository = ShowRepository.getInstance();
-        showRepository.setContext(context);
+        this.context = context;
+        this.searchShowsViewModel = searchShowsViewModel;
+        this.args = args;
     }
 
     @NonNull
@@ -36,9 +40,6 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.search_list_item, parent, false);
-        int height = parent.getHeight()/6;
-        int width = parent.getWidth();
-        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
@@ -50,10 +51,19 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
             Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdropPath()).fit().centerCrop().into(holder.showImage);
         }
         else {
-            Picasso.get().load("dummy path").into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getPosterPath()).fit().centerCrop().into(holder.showImage);
         }
-        holder.showButton.setOnClickListener(view -> {
-            showRepository.addShowToList("Watch list", shows.get(position).getId());
+        holder.addButton.setOnClickListener(view -> {
+                if (args == null || args.isEmpty())
+                {
+                    searchShowsViewModel.addShowsToSpecificList("Shows", shows.get(position).getId());
+                }
+                else {
+                    if (!args.matches("Movies"))
+                    {
+                        searchShowsViewModel.addShowsToSpecificList(args, shows.get(position).getId());
+                    }
+                }
         });
     }
 
@@ -70,14 +80,14 @@ public class SearchShowsListAdapter extends RecyclerView.Adapter<SearchShowsList
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView showTitle;
         private final ShapeableImageView showImage;
-        private final FloatingActionButton showButton;
+        private final FloatingActionButton addButton;
 
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
             this.showTitle = itemView.findViewById(R.id.search_title);
-            this.showImage = itemView.findViewById(R.id.user_image);
-            this.showButton = itemView.findViewById(R.id.search_add_button);
+            this.showImage = itemView.findViewById(R.id.program_image);
+            this.addButton = itemView.findViewById(R.id.search_add_button);
             itemView.setOnClickListener(this);
         }
 

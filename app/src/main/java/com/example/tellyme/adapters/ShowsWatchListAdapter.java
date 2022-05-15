@@ -34,9 +34,6 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.shows_watch_list_item, parent, false);
-        int height = parent.getHeight()/8;
-        int width = parent.getWidth();
-        view.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         return new ViewHolder(view);
     }
 
@@ -49,7 +46,7 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
             Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getBackdropPath()).fit().centerCrop().into(holder.showImage);
         }
         else {
-            Picasso.get().load("dummy path").into(holder.showImage);
+            Picasso.get().load("https://image.tmdb.org/t/p/original" + shows.get(position).getPosterPath()).fit().centerCrop().into(holder.showImage);
         }
     }
 

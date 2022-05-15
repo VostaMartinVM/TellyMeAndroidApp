@@ -1,10 +1,11 @@
 package com.example.tellyme.model;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Movie {
+public class Movie implements Serializable {
 
     @SerializedName("adult")
     @Expose
@@ -183,4 +184,5 @@ public class Movie {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
+
 }
