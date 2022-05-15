@@ -27,7 +27,7 @@
             android:name=".view.activity.Settings"
             android:exported="false" />
         <activity
-            android:name=".view.activity.UserPage"
+            android:name=".view.activity.UserPageActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.SpecificShow"

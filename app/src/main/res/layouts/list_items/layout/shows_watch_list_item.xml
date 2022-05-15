@@ -21,7 +21,9 @@
         <ImageView
             android:id="@+id/show_watchlist_image"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:contentDescription="@string/show_image"
+            tools:ignore="ImageContrastCheck" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"

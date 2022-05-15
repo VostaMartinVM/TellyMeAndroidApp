@@ -18,7 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UserPage extends AppCompatActivity {
+public class UserPageActivity extends AppCompatActivity {
 
     private static int PICK_PROFILE_IMAGE = 100;
     private static int PICK_AVATAR_IMAGE = 101;

@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -21,9 +20,6 @@ import com.example.tellyme.view.fragment.listsFragments.MyListsFragment;
 import com.example.tellyme.view.fragment.searchFragments.SearchFragment;
 import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.utils.ToolBarUtils;
-import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,17 +43,6 @@ public class MainActivity extends AppCompatActivity{
         {
             bottomNavigationCreate();
             toolbarCreate();
-
-            //logout
-            ImageView logo = findViewById(R.id.logoIcon);
-            logo.setOnClickListener(view -> {
-                LoginManager.getInstance().logOut();
-                GoogleSignIn.getClient(this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
-                        .signOut();
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(this, SignInActivity.class);
-                startActivity(i);
-            });
         }
         else {
             Intent i = new Intent(this, SignInActivity.class);
@@ -154,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
                     checkIfPostOpened();
                     FragmentUtils.changeFragment(myListFragment, R.id.fragmentLayout, "mf", fragmentManager);
                     break;
-                case R.id.tv_series_item:
+                case R.id.shows_item:
                     showsFragment = ShowsFragment.newInstance();
                     checkIfPostOpened();
                     FragmentUtils.changeFragment(showsFragment, R.id.fragmentLayout, "mf", fragmentManager);
@@ -179,7 +164,7 @@ public class MainActivity extends AppCompatActivity{
         FragmentManager fragmentManager = getSupportFragmentManager();
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.user_button) {
-                Intent intent = new Intent(this, UserPage.class);
+                Intent intent = new Intent(this, UserPageActivity.class);
                 startActivity(intent);
             }
             return true;
