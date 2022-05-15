@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tellyme.R;
 import com.example.tellyme.model.Movie;
 import com.example.tellyme.model.Show;
+import com.example.tellyme.viewModel.SeachViewModels.SearchedProgramsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
@@ -21,12 +22,16 @@ public class SearchedProgramsAdapter extends RecyclerView.Adapter<SearchedProgra
 
     private ArrayList<Object> tvPrograms;
     private RecyclerViewOnClickListener listener;
+    private SearchedProgramsViewModel searchedProgramsViewModel;
     private String args = "";
 
-    public SearchedProgramsAdapter(ArrayList<Object> tvPrograms, RecyclerViewOnClickListener listener)
+    public SearchedProgramsAdapter(ArrayList<Object> tvPrograms, RecyclerViewOnClickListener listener,
+                                   SearchedProgramsViewModel searchedProgramsViewModel, String args)
     {
         this.tvPrograms = tvPrograms;
         this.listener = listener;
+        this.args = args;
+        this.searchedProgramsViewModel = searchedProgramsViewModel;
     }
 
     @NonNull
@@ -54,12 +59,12 @@ public class SearchedProgramsAdapter extends RecyclerView.Adapter<SearchedProgra
             holder.addButton.setOnClickListener(view -> {
                 if (args == null || args.isEmpty())
                 {
-                    //add to watchlist
+                    searchedProgramsViewModel.addShowToSpecificList("Shows", show.getId());
                 }
                 else {
                     if (!args.matches("Movies"))
                     {
-                        //add to the specific list
+                        searchedProgramsViewModel.addShowToSpecificList(args, show.getId());
                     }
                 }
             });
@@ -78,12 +83,12 @@ public class SearchedProgramsAdapter extends RecyclerView.Adapter<SearchedProgra
             holder.addButton.setOnClickListener(view -> {
                 if (args == null || args.isEmpty())
                 {
-                    //add to watchlist
+                    searchedProgramsViewModel.addMovieToSpecificList("Movies", movie.getId());
                 }
                 else {
                     if (!args.matches("Shows"))
                     {
-                        //add to the specific list
+                        searchedProgramsViewModel.addMovieToSpecificList(args, movie.getId());
                     }
                 }
             });

@@ -67,7 +67,8 @@ public class SearchedPrograms extends Fragment {
             searchedProgramsAdapter.updateTvPrograms(tvPrograms);
         });
 
-        searchedProgramsAdapter = new SearchedProgramsAdapter(tvPrograms, listener);
+
+        searchedProgramsAdapter = new SearchedProgramsAdapter(tvPrograms, listener,mViewModel, (String) args.get("enteredFrom"));
         recyclerView.setAdapter(searchedProgramsAdapter);
 
         return view;

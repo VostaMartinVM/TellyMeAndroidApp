@@ -29,4 +29,14 @@ public class SearchedProgramsViewModel extends AndroidViewModel {
         tvPrograms.addSource(showRepository.getShowsBySearchedText(searchedText), shows -> tvPrograms.setValue(shows));
         return tvPrograms;
     }
+
+    public void addShowToSpecificList(String listName, int showID)
+    {
+        showRepository.addShowToList(listName, showID);
+    }
+
+    public void addMovieToSpecificList(String listName, int movieID)
+    {
+        movieRepository.addMovieToList(listName, movieID);
+    }
 }
