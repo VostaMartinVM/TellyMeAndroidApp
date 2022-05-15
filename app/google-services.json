@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "521645695023-v0jko1rb5tgcp7sc4r6vv7vc5ctcrfle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tellyme",
+            "certificate_hash": "73f53c2620aecaf6c412d65f2e371bce82fbf413"
+          }
+        },
+        {
           "client_id": "521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com",
           "client_type": 3
         }
