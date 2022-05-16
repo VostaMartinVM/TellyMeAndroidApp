@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/show_border">
 
             <TextView
                 android:id="@+id/textView3"
@@ -48,9 +49,11 @@
         </LinearLayout>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
+            android:id="@+id/show_info_fragment"
+            android:name="com.example.tellyme.view.fragment.showsFragments.AboutShowFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7" />
+            android:layout_weight="7"
+            tools:layout="@layout/about_show_fragment"/>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

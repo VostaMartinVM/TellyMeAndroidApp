@@ -11,11 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
-import com.example.tellyme.model.DummyData;
-import com.example.tellyme.repository.ShowRepository;
 import com.example.tellyme.viewModel.ListsViewModels.MyListViewModel;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
