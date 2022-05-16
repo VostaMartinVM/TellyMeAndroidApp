@@ -24,17 +24,10 @@
                 android:id="@+id/WatchList"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/watchlist" />
 
-            <TextView
-                android:id="@+id/Upcoming"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/upcoming" />
         </LinearLayout>
 
         <androidx.fragment.app.FragmentContainerView

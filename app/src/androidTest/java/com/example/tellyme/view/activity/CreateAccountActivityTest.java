@@ -25,5 +25,12 @@ public class CreateAccountActivityTest {
         onView(withId(R.id.switch_to_create_account)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void clickOnCreateAccountWithEmptyFields() throws Exception {
+        onView(withId(R.id.create_account)).perform(click());
+
+        onView(withId(R.id.create_account_error_msg)).check(matches(isDisplayed()));
+    }
+
 
 }

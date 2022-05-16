@@ -20,7 +20,7 @@ public class AuthWithEmailAndPass {
     private FirebaseAuth mAuth;
     private UserRepository userRepository;
     private ListRepository listRepository;
-    private TextView errorMsg;
+    private TextView errorMsgCreateAccount;
     private Boolean isValid;
 
     public AuthWithEmailAndPass() {
@@ -50,17 +50,17 @@ public class AuthWithEmailAndPass {
                             if (task.getException().getMessage()
                                     .matches("The email address is already in use by another account"));
                             {
-                                errorMsg.setText("This email is already taken");
-                                errorMsg.setVisibility(View.VISIBLE);
+                                errorMsgCreateAccount.setText("This email is already taken");
+                                errorMsgCreateAccount.setVisibility(View.VISIBLE);
                             }
                         }
                     });
     }
 
     public void validate(Activity activity, String email, String username, String password,
-                         String confirmationPass, TextView errorMsg)
+                         String confirmationPass, TextView errorMsgCreateAccount)
     {
-        this.errorMsg = errorMsg;
+        this.errorMsgCreateAccount = errorMsgCreateAccount;
         isValid = true;
 
         userRepository.getAllUsernames("usernames", new UserRepository.OnCompleteCallback() {
@@ -71,25 +71,26 @@ public class AuthWithEmailAndPass {
                  for (int i = 0; i < usernames.size(); i++) {
                      if (username.matches(usernames.get(i)))
                      {
-                         errorMsg.setText("Username already exists");
-                         errorMsg.setVisibility(View.VISIBLE);
+                         errorMsgCreateAccount.setText("Username already exists");
+                         errorMsgCreateAccount.setVisibility(View.VISIBLE);
                          isValid = false;
                      }
                  }
                  if (email.isEmpty() || username.isEmpty() || password.isEmpty() || confirmationPass.isEmpty()) {
-                     errorMsg.setText("All fields must be filled");
-                     errorMsg.setVisibility(View.VISIBLE);
+                     errorMsgCreateAccount.setText("All fields must be filled");
+                     errorMsgCreateAccount.setVisibility(View.VISIBLE);
+                     isValid = false;
+                 }
+
+                 if (!password.equals(confirmationPass)){
+                     errorMsgCreateAccount.setText("Password and confirm password must match");
+                     errorMsgCreateAccount.setVisibility(View.VISIBLE);
                      isValid = false;
                  }
                  if (password.length() < 6)
                  {
-                     errorMsg.setText("Your password must be at least 6 characters long");
-                     errorMsg.setVisibility(View.VISIBLE);
-                     isValid = false;
-                 }
-                 if (!password.equals(confirmationPass)){
-                     errorMsg.setText("Password and confirm password must match");
-                     errorMsg.setVisibility(View.VISIBLE);
+                     errorMsgCreateAccount.setText("Your password must be at least 6 characters long");
+                     errorMsgCreateAccount.setVisibility(View.VISIBLE);
                      isValid = false;
                  }
                  if (isValid)
@@ -102,7 +103,7 @@ public class AuthWithEmailAndPass {
     }
 
 
-    public void login(Activity activity, String email, String password)
+    public void login(Activity activity, String email, String password, TextView errorMsgLogin)
     {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> {
             if (task.isSuccessful()) {
@@ -110,7 +111,15 @@ public class AuthWithEmailAndPass {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity.startActivity(intent);
                 ActivityCompat.finishAffinity(activity);
+                errorMsgLogin.setVisibility(View.INVISIBLE);
             }
+            else
+            {
+                errorMsgLogin.setText(task.getException().getMessage());
+                errorMsgLogin.setVisibility(View.VISIBLE);
+            }
+
+
         });
     }
 }

@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
+    private TextView errorMsg;
 
     private void login()
     {
@@ -31,8 +32,9 @@ public class LoginActivity extends AppCompatActivity {
             AuthWithEmailAndPass auth = new AuthWithEmailAndPass();
             email = findViewById(R.id.email_login_field);
             password = findViewById(R.id.password_login_field);
+            errorMsg = findViewById(R.id.error_msg_login);
 
-            auth.login(this, email.getText().toString().trim(), password.getText().toString().trim());
+            auth.login(this, email.getText().toString().trim(), password.getText().toString().trim(), errorMsg);
         });
     }
 
