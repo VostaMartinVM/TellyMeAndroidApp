@@ -2,9 +2,6 @@ package com.example.tellyme.view.fragment.searchFragments;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -26,13 +23,10 @@ import com.example.tellyme.R;
 import com.example.tellyme.utils.DelayUtils;
 import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.utils.KeyboardUtils;
-import com.example.tellyme.viewModel.SeachViewModels.SearchViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SearchFragment extends Fragment {
-
-    private SearchViewModel mViewModel;
 
     private View view;
     private EditText searchText;
@@ -119,21 +113,21 @@ public class SearchFragment extends Fragment {
         });
 
         showsButton.setOnClickListener(view1 -> {
-            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
+            KeyboardUtils.hideSoftKeyboard(requireContext(), view1);
             SearchShowsFragment searchShowsFragment = SearchShowsFragment.newInstance();
             FragmentUtils.changeFragmentWithArgument(searchShowsFragment, R.id.search_list_dummy_frame, "sldf",getParentFragmentManager(),
                     "enteredFrom", argsString);
         });
 
         moviesButton.setOnClickListener(view1 -> {
-            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
+            KeyboardUtils.hideSoftKeyboard(requireContext(), view1);
             SearchMoviesFragment searchMoviesFragment = SearchMoviesFragment.newInstance();
             FragmentUtils.changeFragmentWithArgument(searchMoviesFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager(),
                     "enteredFrom", argsString);
         });
 
         peopleButton.setOnClickListener(view1 -> {
-            KeyboardUtils.hideSoftKeyboard(getContext(), view1);
+            KeyboardUtils.hideSoftKeyboard(requireContext(), view1);
             SearchPeopleFragment searchPeopleFragment = SearchPeopleFragment.newInstance();
             FragmentUtils.changeFragmentWithArgument(searchPeopleFragment, R.id.search_list_dummy_frame, "sldf", getParentFragmentManager(),
                     "enteredFrom", argsString);
@@ -165,25 +159,23 @@ public class SearchFragment extends Fragment {
 
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onAttach(@NonNull Activity activity) {
         FloatingActionButton searchActionButton = activity.findViewById(R.id.searchButton);
         searchActionButton.setClickable(false);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         toolbar.getMenu().getItem(0).setEnabled(false);
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottomNavigationView);
         for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
             bottomNavigationView.getMenu().getItem(i).setEnabled(false);
         }
-        DelayUtils.delay(250, new DelayUtils.DelayCallback() {
-            @Override
-            public void afterDelay() {
-                searchActionButton.setClickable(true);
-                for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
-                    if (i != 2)
-                    {
-                        bottomNavigationView.getMenu().getItem(i).setEnabled(true);
-                    }
+        DelayUtils.delay(250, () -> {
+            searchActionButton.setClickable(true);
+            for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+                if (i != 2)
+                {
+                    bottomNavigationView.getMenu().getItem(i).setEnabled(true);
                 }
             }
         });
@@ -196,21 +188,23 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        //noinspection deprecation
         super.onAttach(activity);
     }
 
     @Override
     public void onPause() {
         searchText.setAlpha(0);
+        //noinspection deprecation
         searchImage.setAlpha(0);
         searchText.setVisibility(View.GONE);
         searchImage.setVisibility(View.GONE);
         moviesButton.setVisibility(View.GONE);
         showsButton.setVisibility(View.GONE);
         peopleButton.setVisibility(View.GONE);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         toolbar.getMenu().getItem(0).setEnabled(true);
-        FrameLayout searchFrame = getActivity().findViewById(R.id.search_frame);
+        FrameLayout searchFrame = requireActivity().findViewById(R.id.search_frame);
         DelayUtils.delay(10, () -> {
             if (searchFrame != null) {
                 searchFrame.setScaleX(1);
@@ -225,10 +219,10 @@ public class SearchFragment extends Fragment {
         super.onPause();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         // TODO: Use the ViewModel
     }
 

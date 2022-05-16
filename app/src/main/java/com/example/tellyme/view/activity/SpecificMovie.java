@@ -2,22 +2,19 @@ package com.example.tellyme.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.Movie;
-import com.example.tellyme.model.Show;
 import com.squareup.picasso.Picasso;
 
 public class SpecificMovie extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

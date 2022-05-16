@@ -18,9 +18,10 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FacebookAuth extends SignInActivity {
 
@@ -35,7 +36,7 @@ public class FacebookAuth extends SignInActivity {
 
         mCallbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList("public_profile"));
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -69,13 +70,12 @@ public class FacebookAuth extends SignInActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> user = new HashMap<>();
-                        user.put("username", mAuth.getCurrentUser().getDisplayName());
+                        user.put("username", Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName());
                         UserRepository userRepository = UserRepository.getInstance();
                         userRepository.newUser(user, mAuth.getUid());
                         ListRepository listRepository = ListRepository.getInstance();
                         listRepository.defaultLists();
                         updateUI();
-                    } else {
                     }
                 });
     }

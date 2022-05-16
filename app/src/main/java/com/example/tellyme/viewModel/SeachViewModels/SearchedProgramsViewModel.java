@@ -1,6 +1,7 @@
 package com.example.tellyme.viewModel.SeachViewModels;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -11,10 +12,13 @@ import com.example.tellyme.repository.ShowRepository;
 
 import java.util.ArrayList;
 
+
+@SuppressWarnings("rawtypes")
 public class SearchedProgramsViewModel extends AndroidViewModel {
-    private MovieRepository movieRepository;
-    private ShowRepository showRepository;
-    private MediatorLiveData tvPrograms;
+    private final MovieRepository movieRepository;
+    private final ShowRepository showRepository;
+    private final MediatorLiveData tvPrograms;
+    private Context context;
 
     public SearchedProgramsViewModel(Application application){
         super(application);
@@ -23,10 +27,13 @@ public class SearchedProgramsViewModel extends AndroidViewModel {
         tvPrograms = new MediatorLiveData();
     }
 
+    @SuppressWarnings("unchecked")
     public LiveData<ArrayList> getSearchedPrograms(String searchedText)
     {
-        tvPrograms.addSource(movieRepository.getMoviesBySearchedText(searchedText), movies -> tvPrograms.setValue(movies));
-        tvPrograms.addSource(showRepository.getShowsBySearchedText(searchedText), shows -> tvPrograms.setValue(shows));
+        movieRepository.setContext(context);
+        showRepository.setContext(context);
+        tvPrograms.addSource(movieRepository.getMoviesBySearchedText(searchedText), tvPrograms::setValue);
+        tvPrograms.addSource(showRepository.getShowsBySearchedText(searchedText), tvPrograms::setValue);
         return tvPrograms;
     }
 
@@ -38,5 +45,9 @@ public class SearchedProgramsViewModel extends AndroidViewModel {
     public void addMovieToSpecificList(String listName, int movieID)
     {
         movieRepository.addMovieToList(listName, movieID);
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

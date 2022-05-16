@@ -13,11 +13,6 @@ public class DelayUtils {
 
     public static void delay(int milliseconds, final DelayCallback delayCallback){
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                delayCallback.afterDelay();
-            }
-        }, milliseconds);
+        handler.postDelayed(delayCallback::afterDelay, milliseconds);
     }
 }

@@ -2,7 +2,6 @@ package com.example.tellyme.view.fragment.homeFragments;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,14 +18,11 @@ import android.widget.Button;
 import com.example.tellyme.view.activity.MessageSystemActivity;
 import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.utils.ToolBarUtils;
-import com.example.tellyme.viewModel.HomeViewModels.HomeViewModel;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
-
-    private HomeViewModel mViewModel;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -43,9 +39,9 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onResume() {
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         ToolBarUtils.changeUserIcon(-1, toolbar);
         super.onResume();
     }
@@ -59,9 +55,7 @@ public class HomeFragment extends Fragment {
     private void messageButtonFunctionality(View view)
     {
         FloatingActionButton messageButton = view.findViewById(R.id.home_message_button);
-        messageButton.setOnClickListener((tempView) -> {
-            startMessageActivity();
-        });
+        messageButton.setOnClickListener((tempView) -> startMessageActivity());
     }
 
     private void postButtonFunctionality(View view)
@@ -75,10 +69,10 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         // TODO: Use the ViewModel
     }
 

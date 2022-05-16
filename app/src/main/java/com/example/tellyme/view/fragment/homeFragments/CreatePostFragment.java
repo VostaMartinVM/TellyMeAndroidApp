@@ -1,8 +1,6 @@
 package com.example.tellyme.view.fragment.homeFragments;
 
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
@@ -24,14 +22,11 @@ import com.example.tellyme.utils.DelayUtils;
 import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.utils.HeightProperty;
 import com.example.tellyme.utils.KeyboardUtils;
-import com.example.tellyme.viewModel.HomeViewModels.CreatePostViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CreatePostFragment extends Fragment {
 
-    private CreatePostViewModel mViewModel;
     private View view;
-    private int postDefaultHeight;
 
     public static CreatePostFragment newInstance() {
         return new CreatePostFragment();
@@ -55,7 +50,7 @@ public class CreatePostFragment extends Fragment {
         });
 
         //hide keyboard
-        FrameLayout homeLayout = getActivity().findViewById(R.id.home_frame_layout);
+        FrameLayout homeLayout = requireActivity().findViewById(R.id.home_frame_layout);
         homeLayout.setOnClickListener(view1 -> {
             if (getContext() != null)
             {
@@ -66,7 +61,7 @@ public class CreatePostFragment extends Fragment {
         //bringing up keyboard
         KeyboardUtils.showSoftKeyboard(getActivity(), postEditText);
         //animation
-        postDefaultHeight = postEditText.getHeight();
+        int postDefaultHeight = postEditText.getHeight();
         ObjectAnimator animator = ObjectAnimator.ofInt(postEditText, new HeightProperty(), postDefaultHeight, 1000);
         animator.setDuration(500);
         animator.setInterpolator(new DecelerateInterpolator());
@@ -74,9 +69,7 @@ public class CreatePostFragment extends Fragment {
 
         //delete functionality
         ImageButton deleteButton = view.findViewById(R.id.delete_post_button);
-        deleteButton.setOnClickListener(view -> {
-            getActivity().onBackPressed();
-        });
+        deleteButton.setOnClickListener(view -> requireActivity().onBackPressed());
 
         //adding button functionality
         FloatingActionButton addToPostButton = view.findViewById(R.id.add_movie_to_post_button);
@@ -100,10 +93,10 @@ public class CreatePostFragment extends Fragment {
         super.onPause();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CreatePostViewModel.class);
         // TODO: Use the ViewModel
     }
 }

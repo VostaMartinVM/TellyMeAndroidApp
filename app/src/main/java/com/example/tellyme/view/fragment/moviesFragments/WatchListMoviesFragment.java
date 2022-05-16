@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 public class WatchListMoviesFragment extends Fragment {
 
-    private WatchListMoviesViewModel watchListMoviesViewModel;
     private ArrayList<Movie> movies = new ArrayList<>();
     private MovieWatchListListAdapter movieWatchListListAdapter;
     private MovieWatchListListAdapter.RecyclerViewOnClickListener listener;
@@ -56,7 +55,8 @@ public class WatchListMoviesFragment extends Fragment {
         movieWatchListListAdapter = new MovieWatchListListAdapter(movies, listener);
         recyclerView.setAdapter(movieWatchListListAdapter);
 
-        watchListMoviesViewModel = new ViewModelProvider(this).get(WatchListMoviesViewModel.class);
+        WatchListMoviesViewModel watchListMoviesViewModel = new ViewModelProvider(this).get(WatchListMoviesViewModel.class);
+        watchListMoviesViewModel.setContext(getContext());
         watchListMoviesViewModel.getMovies().observe(getViewLifecycleOwner(), movieList -> {
             if(movieList != null)
             {
@@ -67,16 +67,14 @@ public class WatchListMoviesFragment extends Fragment {
     }
 
     private void setOnClickListener(){
-        listener = new MovieWatchListListAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent i = new Intent(getActivity(), SpecificMovie.class);
-                i.putExtra("loadedMovie", movies.get(position));
-                startActivity(i);
-            }
+        listener = (view, position) -> {
+            Intent i = new Intent(getActivity(), SpecificMovie.class);
+            i.putExtra("loadedMovie", movies.get(position));
+            startActivity(i);
         };
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

@@ -14,8 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UserPageViewModel extends AndroidViewModel {
-    private ImageRepository imageRepository;
-    private  FirebaseUser user;
+    private final ImageRepository imageRepository;
+    private final FirebaseUser user;
 
     public UserPageViewModel(@NonNull Application application) {
         super(application);

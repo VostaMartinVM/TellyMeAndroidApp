@@ -1,22 +1,15 @@
 package com.example.tellyme.repository;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.Html;
-import android.text.method.MovementMethod;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.tellyme.BuildConfig;
+import com.example.tellyme.R;
 import com.example.tellyme.model.Movie;
 import com.example.tellyme.model.MovieRequest;
-import com.example.tellyme.model.Show;
 import com.example.tellyme.network.MovieServiceInterface;
-import com.example.tellyme.network.ShowServiceInterface;
 import com.example.tellyme.network.TMDBServiceGenerator;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,17 +20,19 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieRepository {
+    @SuppressLint("StaticFieldLeak")
     private static MovieRepository instance;
-    private MovieServiceInterface apiService;
+    private final MovieServiceInterface apiService;
     private MutableLiveData<ArrayList<Movie>> movies;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    private final FirebaseAuth mAuth;
+    private final FirebaseFirestore db;
     private Context context;
 
     private ArrayList<Long> movieIds;
@@ -60,15 +55,15 @@ public class MovieRepository {
 
     public MutableLiveData<ArrayList<Movie>> getMovies() {
         movies = new MutableLiveData<>();
-        Call<MovieRequest> call = apiService.getAllMovies();
+        Call<MovieRequest> call = apiService.getAllMovies(context.getString(R.string.tmdb_api_key));
         call.enqueue(new Callback<MovieRequest>() {
             @Override
-            public void onResponse(Call<MovieRequest> call, Response<MovieRequest> response) {
-                movies.setValue(response.body().getResults());
+            public void onResponse(@NonNull Call<MovieRequest> call, @NonNull Response<MovieRequest> response) {
+                movies.setValue(Objects.requireNonNull(response.body()).getResults());
             }
 
             @Override
-            public void onFailure(Call<MovieRequest> call, Throwable t) {
+            public void onFailure(@NonNull Call<MovieRequest> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -77,10 +72,10 @@ public class MovieRepository {
 
     public MutableLiveData<ArrayList<Movie>> getMoviesBySearchedText(String searchedText){
         movies = new MutableLiveData<>();
-        Call<MovieRequest> call = apiService.getMoviesBySearchedText(BuildConfig.TMDB_API_KEY, searchedText);
+        Call<MovieRequest> call = apiService.getMoviesBySearchedText(context.getString(R.string.tmdb_api_key), searchedText);
         call.enqueue(new Callback<MovieRequest>() {
             @Override
-            public void onResponse(Call<MovieRequest> call, Response<MovieRequest> response) {
+            public void onResponse(@NonNull Call<MovieRequest> call, @NonNull Response<MovieRequest> response) {
                 if (response.body() != null)
                 {
                     movies.setValue(response.body().getResults());
@@ -88,8 +83,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<MovieRequest> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<MovieRequest> call, @NonNull Throwable t) {
             }
         });
         return movies;
@@ -100,39 +94,38 @@ public class MovieRepository {
         Map<String, Object> id = new HashMap<>();
         id.put("movieID", FieldValue.arrayUnion(movieID));
         movie.put(listName, id);
-        db.collection(mAuth.getCurrentUser().getUid())
+        db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .document("Lists")
                 .set(movie, SetOptions.merge());
     }
 
+    @SuppressWarnings("unchecked")
     public MutableLiveData<ArrayList<Movie>> getMoviesForSpecificList(String listName)
     {
         movies = new MutableLiveData<>();
-        DocumentReference docRef = db.collection(mAuth.getCurrentUser().getUid()).document("Lists");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if (document.get(listName) instanceof Map)
+        DocumentReference docRef = db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .document("Lists");
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    if (document.get(listName) instanceof Map)
+                    {
+                        Map<String, Object> temp = (Map<String, Object>) document.get(listName);
+                        if (temp != null)
                         {
-                            Map<String, Object> temp = (Map<String, Object>) document.get(listName);
-                            if (temp != null)
+                            movieIds = (ArrayList<Long>) temp.get("movieID");
+                            if (movieIds != null)
                             {
-                                movieIds = (ArrayList<Long>) temp.get("movieID");
-                                if (movieIds != null)
-                                {
-                                    Integer[] showIdsArray = new Integer[movieIds.size()];
-                                    for (int i = 0; i < movieIds.size(); i++) {
-                                        showIdsArray[i] = ((Long) movieIds.get(i)).intValue();
-                                    }
+                                Integer[] showIdsArray = new Integer[movieIds.size()];
+                                for (int i = 0; i < movieIds.size(); i++) {
+                                    showIdsArray[i] = ((Long) movieIds.get(i)).intValue();
+                                }
 
-                                    movieListHelper = new ArrayList<>();
+                                movieListHelper = new ArrayList<>();
 
-                                    for (int i = 0; i < showIdsArray.length; i++) {
-                                        getSpecificMoviesHelper(showIdsArray[i]);
-                                    }
+                                for (Integer integer : showIdsArray) {
+                                    getSpecificMoviesHelper(integer);
                                 }
                             }
                         }
@@ -144,15 +137,15 @@ public class MovieRepository {
     }
 
     private void getSpecificMoviesHelper(int id) {
-        Call<Movie> call = apiService.getSpecificMovie(id);
+        Call<Movie> call = apiService.getSpecificMovie(id, context.getString(R.string.tmdb_api_key));
         call.enqueue(new Callback<Movie>() {
             @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
+            public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
                 movieListHelper.add(response.body());
                 movies.setValue(movieListHelper);
             }
             @Override
-            public void onFailure(Call<Movie> call, Throwable t) {
+            public void onFailure(@NonNull Call<Movie> call, @NonNull Throwable t) {
             }
         });
     }

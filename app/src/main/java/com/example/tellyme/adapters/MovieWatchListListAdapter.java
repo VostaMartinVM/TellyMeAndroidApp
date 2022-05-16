@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.Movie;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
 
 
     private ArrayList<Movie> movies;
-    private RecyclerViewOnClickListener listener;
+    private final RecyclerViewOnClickListener listener;
 
 
     public MovieWatchListListAdapter(ArrayList<Movie> movies, RecyclerViewOnClickListener listener){
@@ -55,6 +55,7 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
         return movies.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateMovies(ArrayList<Movie> movies)
     {
         this.movies = movies;
@@ -64,14 +65,12 @@ public class MovieWatchListListAdapter extends RecyclerView.Adapter<MovieWatchLi
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView movieTitle;
         private final ImageView movieImage;
-        private final FloatingActionButton movieButton;
 
         ViewHolder(View itemView)
         {
             super(itemView);
             movieTitle = itemView.findViewById(R.id.movie_title_watchlist);
             movieImage = itemView.findViewById(R.id.movie_image_watchlist);
-            movieButton = itemView.findViewById(R.id.button_movie_watch_list);
             itemView.setOnClickListener(this);
         }
 

@@ -1,6 +1,7 @@
 package com.example.tellyme.viewModel.SeachViewModels;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class SearchShowsViewModel extends AndroidViewModel {
     ShowRepository showRepository;
+    Context context;
 
    public SearchShowsViewModel (Application application)
    {
@@ -21,6 +23,7 @@ public class SearchShowsViewModel extends AndroidViewModel {
 
    public LiveData<ArrayList<Show>> getShows()
    {
+       showRepository.setContext(context);
        return showRepository.getShows();
    }
 
@@ -28,4 +31,8 @@ public class SearchShowsViewModel extends AndroidViewModel {
    {
         showRepository.addShowToList(listName, showId);
    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 }

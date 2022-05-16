@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class MovieRequest implements Serializable {
     @SerializedName("page")
     @Expose

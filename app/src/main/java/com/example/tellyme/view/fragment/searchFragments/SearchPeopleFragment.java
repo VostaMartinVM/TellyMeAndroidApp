@@ -1,6 +1,5 @@
 package com.example.tellyme.view.fragment.searchFragments;
 
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
@@ -13,11 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tellyme.R;
-import com.example.tellyme.viewModel.SeachViewModels.SearchPeopleViewModel;
 
 public class SearchPeopleFragment extends Fragment {
-
-    private SearchPeopleViewModel mViewModel;
 
     public static SearchPeopleFragment newInstance() {
         return new SearchPeopleFragment();
@@ -29,10 +25,10 @@ public class SearchPeopleFragment extends Fragment {
         return inflater.inflate(R.layout.search_people_fragment, container, false);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SearchPeopleViewModel.class);
         // TODO: Use the ViewModel
     }
 

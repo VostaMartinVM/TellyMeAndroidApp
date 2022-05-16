@@ -1,7 +1,6 @@
 package com.example.tellyme.model;
 
-import com.example.tellyme.R;
-
+@SuppressWarnings("unused")
 public class List {
 
     String ListText;

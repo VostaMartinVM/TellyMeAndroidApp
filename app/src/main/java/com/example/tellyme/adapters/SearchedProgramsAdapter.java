@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,9 @@ import java.util.ArrayList;
 public class SearchedProgramsAdapter extends RecyclerView.Adapter<SearchedProgramsAdapter.ViewHolder> {
 
     private ArrayList<Object> tvPrograms;
-    private RecyclerViewOnClickListener listener;
-    private SearchedProgramsViewModel searchedProgramsViewModel;
-    private String args = "";
+    private final RecyclerViewOnClickListener listener;
+    private final SearchedProgramsViewModel searchedProgramsViewModel;
+    private final String args;
 
     public SearchedProgramsAdapter(ArrayList<Object> tvPrograms, RecyclerViewOnClickListener listener,
                                    SearchedProgramsViewModel searchedProgramsViewModel, String args)
@@ -100,6 +101,7 @@ public class SearchedProgramsAdapter extends RecyclerView.Adapter<SearchedProgra
         return tvPrograms.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateTvPrograms(ArrayList<Object> tvPrograms)
     {
         this.tvPrograms = tvPrograms;

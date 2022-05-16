@@ -21,10 +21,8 @@ public class KeyboardUtils {
                         keyboard.showSoftInput(editText, 0);
                     }
                     , 200);
-        } catch (NullPointerException npe) {
+        } catch (Exception npe) {
             npe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

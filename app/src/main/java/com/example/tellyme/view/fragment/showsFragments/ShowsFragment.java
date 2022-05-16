@@ -1,8 +1,6 @@
 package com.example.tellyme.view.fragment.showsFragments;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tellyme.utils.ToolBarUtils;
-import com.example.tellyme.viewModel.ShowsViewModels.ShowsViewModel;
 import com.example.tellyme.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ShowsFragment extends Fragment {
 
-    private ShowsViewModel mViewModel;
+public class ShowsFragment extends Fragment {
 
     public static ShowsFragment newInstance() {
         return new ShowsFragment();
@@ -29,23 +25,22 @@ public class ShowsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.shows_fragment, container, false);
-        return view;
+        return inflater.inflate(R.layout.shows_fragment, container, false);
     }
 
     @Override
     public void onResume() {
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().getItem(3).setChecked(true);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         ToolBarUtils.changeUserIcon(-1, toolbar);
         super.onResume();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ShowsViewModel.class);
         // TODO: Use the ViewModel
     }
 

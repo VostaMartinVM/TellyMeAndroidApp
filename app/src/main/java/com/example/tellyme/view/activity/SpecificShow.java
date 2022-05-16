@@ -1,15 +1,11 @@
 package com.example.tellyme.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.Show;
-import com.example.tellyme.utils.ArgumentUtils;
 import com.example.tellyme.utils.FragmentUtils;
 import com.example.tellyme.view.fragment.showsFragments.AboutShowFragment;
 import com.squareup.picasso.Picasso;

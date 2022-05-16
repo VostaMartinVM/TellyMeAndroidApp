@@ -19,9 +19,9 @@ import java.util.Objects;
 public class TwitterAuth extends SignInActivity {
 
     private FirebaseAuth firebaseAuth;
-    private Map<String, Object> user = new HashMap<>();
-    private UserRepository userRepository = UserRepository.getInstance();
-    private ListRepository listRepository = ListRepository.getInstance();
+    private final Map<String, Object> user = new HashMap<>();
+    private final UserRepository userRepository = UserRepository.getInstance();
+    private final ListRepository listRepository = ListRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class TwitterAuth extends SignInActivity {
                                 ActivityCompat.finishAffinity(TwitterAuth.this);
                             })
                     .addOnFailureListener(
-                            e -> e.printStackTrace());
+                            Throwable::printStackTrace);
         } else {
             firebaseAuth
                     .startActivityForSignInWithProvider(this, provider.build())
@@ -59,9 +59,7 @@ public class TwitterAuth extends SignInActivity {
                                 ActivityCompat.finishAffinity(TwitterAuth.this);
                             })
                     .addOnFailureListener(
-                            e -> {
-                                e.printStackTrace();
-                            });
+                            Throwable::printStackTrace);
 
         }
     }

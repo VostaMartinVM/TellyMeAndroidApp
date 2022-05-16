@@ -25,6 +25,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity{
 
@@ -71,11 +73,8 @@ public class MainActivity extends AppCompatActivity{
         {
             new AlertDialog.Builder(this).setTitle("Delete post").setMessage("Are you sure " +
                     "you want to delete this post?").setPositiveButton("Yes",
-                    (dialogInterface, i) -> {
-                        DelayUtils.delay(300, () ->{
-                            super.onBackPressed();
-                        });
-                    }).setNegativeButton("no",
+                    (dialogInterface, i) ->
+                            DelayUtils.delay(300, super::onBackPressed)).setNegativeButton("no",
                     null).show();
         }
         else {
@@ -119,6 +118,8 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    @SuppressWarnings("deprecation")
+    @SuppressLint("NonConstantResourceId")
     private void bottomNavigationButtonFun(FragmentManager fragmentManager)
     {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -161,7 +162,6 @@ public class MainActivity extends AppCompatActivity{
     {
         Toolbar toolbar = findViewById(R.id.toolbar);
         ToolBarUtils.changeUserIcon(-1, toolbar);
-        FragmentManager fragmentManager = getSupportFragmentManager();
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.user_button) {
                 Intent intent = new Intent(this, UserPageActivity.class);
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity{
         if (size > 0)
         {
             String tag = getSupportFragmentManager().getBackStackEntryAt(size-1).getName();
-            if (tag.equals("pf"))
+            if (Objects.requireNonNull(tag).equals("pf"))
             {
                 getSupportFragmentManager().popBackStack();
             }

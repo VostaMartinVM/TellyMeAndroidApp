@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.viewModel.ListsViewModels.MyListViewModel;
-import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 
 public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> {
 
     private ArrayList<String> listsNames;
-    private RecyclerViewOnClickListener listener;
-    private MyListViewModel myListViewModel;
+    private final RecyclerViewOnClickListener listener;
+    private final MyListViewModel myListViewModel;
 
     public ListsAdapter (ArrayList<String> listsNames, MyListViewModel myListViewModel, RecyclerViewOnClickListener listener){
         this.listsNames = listsNames;
@@ -46,12 +46,14 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
         return listsNames.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateLists(ArrayList<String> listsNames){
         this.listsNames = listsNames;
         notifyDataSetChanged();
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     public void addList(String listName)
     {
         listsNames.add(listName);
@@ -62,13 +64,11 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView listTitle;
-        private final ShapeableImageView listImage;
 
         ViewHolder (@NonNull View itemView)
         {
             super(itemView);
             this.listTitle = itemView.findViewById(R.id.lists_text);
-            this.listImage = itemView.findViewById(R.id.lists_image);
             itemView.setOnClickListener(this);
         }
 

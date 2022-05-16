@@ -31,7 +31,6 @@ public class SearchShowsFragment extends Fragment {
     private ArrayList<Show> shows = new ArrayList<>();
     private SearchShowsListAdapter showsListAdapter;
     private SearchShowsListAdapter.RecyclerViewOnClickListener listener;
-    private View view;
 
     public static SearchShowsFragment newInstance() {
         return new SearchShowsFragment();
@@ -40,7 +39,7 @@ public class SearchShowsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.search_shows_fragment, container, false);
+        View view = inflater.inflate(R.layout.search_shows_fragment, container, false);
         setOnClickListener();
         //show all shows
         RecyclerView recyclerView = view.findViewById(R.id.search_shows_recycler_view);
@@ -48,6 +47,7 @@ public class SearchShowsFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         mViewModel = new ViewModelProvider(this).get(SearchShowsViewModel.class);
+        mViewModel.setContext(getContext());
         mViewModel.getShows().observe(getViewLifecycleOwner(), showList -> {
             if(showList != null) {
                 shows = showList;
@@ -57,18 +57,20 @@ public class SearchShowsFragment extends Fragment {
 
         Bundle args = getArguments();
 
-        showsListAdapter = new SearchShowsListAdapter(shows, mViewModel, getContext(), listener,
-                (String) args.get("enteredFrom"));
+        if (args != null) {
+            showsListAdapter = new SearchShowsListAdapter(shows, mViewModel, listener,
+                    (String) args.get("enteredFrom"));
+        }
         recyclerView.setAdapter(showsListAdapter);
         return view;
     }
     private void setOnClickListener()
     {
-        listener = new SearchShowsListAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                FragmentActivity activity = getActivity();
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        listener = (view, position) -> {
+            FragmentActivity activity = getActivity();
+            FragmentManager fragmentManager;
+            if (activity != null) {
+                fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificShow.class);
                 i.putExtra("loadedShow", shows.get(position));
                 startActivity(i);
@@ -80,6 +82,7 @@ public class SearchShowsFragment extends Fragment {
 
 
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

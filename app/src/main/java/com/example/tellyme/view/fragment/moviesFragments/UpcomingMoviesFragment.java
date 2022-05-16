@@ -1,7 +1,5 @@
 package com.example.tellyme.view.fragment.moviesFragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tellyme.R;
-import com.example.tellyme.viewModel.MoviesViewModels.UpcomingMoviesViewModel;
 
 public class UpcomingMoviesFragment extends Fragment {
-
-    private UpcomingMoviesViewModel mViewModel;
 
     public static UpcomingMoviesFragment newInstance() {
         return new UpcomingMoviesFragment();
@@ -29,10 +24,10 @@ public class UpcomingMoviesFragment extends Fragment {
         return inflater.inflate(R.layout.upcoming_movies_fragment, container, false);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(UpcomingMoviesViewModel.class);
         // TODO: Use the ViewModel
     }
 

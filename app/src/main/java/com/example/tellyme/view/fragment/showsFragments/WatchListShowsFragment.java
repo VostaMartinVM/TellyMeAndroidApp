@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class WatchListShowsFragment extends Fragment {
 
-    private WatchListShowsViewModel watchListShowsViewModel;
     private ArrayList<Show> shows = new ArrayList<>();
     private ShowsWatchListAdapter showsWatchListAdapter;
     private ShowsWatchListAdapter.RecyclerViewOnClickListener listener;
@@ -54,7 +53,8 @@ public class WatchListShowsFragment extends Fragment {
         showsWatchListAdapter = new ShowsWatchListAdapter(shows, listener);
         recyclerView.setAdapter(showsWatchListAdapter);
 
-        watchListShowsViewModel = new ViewModelProvider(this).get(WatchListShowsViewModel.class);
+        WatchListShowsViewModel watchListShowsViewModel = new ViewModelProvider(this).get(WatchListShowsViewModel.class);
+        watchListShowsViewModel.setContext(getContext());
         watchListShowsViewModel.getShows().observe(getViewLifecycleOwner(), showList -> {
             if (showList != null)
             {
@@ -65,16 +65,14 @@ public class WatchListShowsFragment extends Fragment {
     }
 
     private void setOnClickListener(){
-        listener = new ShowsWatchListAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent i = new Intent(getActivity(), SpecificShow.class);
-                i.putExtra("loadedShow", shows.get(position));
-                startActivity(i);
-            }
+        listener = (view, position) -> {
+            Intent i = new Intent(getActivity(), SpecificShow.class);
+            i.putExtra("loadedShow", shows.get(position));
+            startActivity(i);
         };
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

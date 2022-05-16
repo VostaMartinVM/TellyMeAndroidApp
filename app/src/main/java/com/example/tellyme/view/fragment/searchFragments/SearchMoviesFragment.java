@@ -31,7 +31,6 @@ public class SearchMoviesFragment extends Fragment {
     private SearchMoviesListAdapter moviesListAdapter;
     private ArrayList<Movie> movies = new ArrayList<>();
     private SearchMoviesListAdapter.RecyclerViewOnClickListener listener;
-    private View view;
 
 
     public static SearchMoviesFragment newInstance() {
@@ -41,7 +40,7 @@ public class SearchMoviesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.search_movies_fragment, container, false);
+        View view = inflater.inflate(R.layout.search_movies_fragment, container, false);
         setOnClickListener();
         //show all movies
         RecyclerView recyclerView = view.findViewById(R.id.search_movies_recycler_view);
@@ -49,6 +48,7 @@ public class SearchMoviesFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         mViewModel = new ViewModelProvider(this).get(SearchMoviesViewModel.class);
+        mViewModel.setContext(getContext());
         mViewModel.getMovies().observe(getViewLifecycleOwner(), movieList -> {
             if(movieList != null) {
                 movies = movieList;
@@ -57,17 +57,20 @@ public class SearchMoviesFragment extends Fragment {
         });
 
         Bundle args = getArguments();
-        moviesListAdapter = new SearchMoviesListAdapter(movies, mViewModel,getContext(), listener, (String) args.get("enteredFrom"));
-        recyclerView.setAdapter(moviesListAdapter);
+        if (args != null)
+        {
+            moviesListAdapter = new SearchMoviesListAdapter(movies, mViewModel, listener, (String) args.get("enteredFrom"));
+            recyclerView.setAdapter(moviesListAdapter);
+        }
 
         return view;
     }
 
     private void setOnClickListener(){
-        listener = new SearchMoviesListAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                FragmentActivity activity = getActivity();
+        listener = (view, position) -> {
+            FragmentActivity activity = getActivity();
+            if (activity!=null)
+            {
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 Intent i = new Intent(getActivity(), SpecificMovie.class);
                 i.putExtra("loadedMovie", movies.get(position));
@@ -79,6 +82,7 @@ public class SearchMoviesFragment extends Fragment {
     }
 
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

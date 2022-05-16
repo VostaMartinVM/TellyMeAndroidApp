@@ -5,40 +5,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.ContentResolver;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tellyme.R;
 import com.example.tellyme.viewModel.UserViewModels.UserPageViewModel;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
 
 public class UserPageActivity extends AppCompatActivity {
 
     private UserPageViewModel userPageViewModel;
 
-    private static int PICK_PROFILE_IMAGE = 100;
-    private static int PICK_AVATAR_IMAGE = 101;
-    private Uri profileImageUri;
+    private static final int PICK_PROFILE_IMAGE = 100;
+    private static final int PICK_AVATAR_IMAGE = 101;
     private ImageView profileCover;
-    private Uri avatarImageUri;
     private ImageView avatarImage;
 
     @Override
@@ -93,25 +83,25 @@ public class UserPageActivity extends AppCompatActivity {
         profileCover.setImageBitmap(userPageViewModel.getImage("profile cover", profileCover));
         avatarImage.setImageBitmap(userPageViewModel.getImage("avatar image", avatarImage));
 
-        profileCover.setOnClickListener(view -> {
-            openGalleryForProfile();
-        });
+        profileCover.setOnClickListener(view -> openGalleryForProfile());
 
-        avatarImage.setOnClickListener(view -> {
-            openGalleryForAvatar();
-        });
+        avatarImage.setOnClickListener(view -> openGalleryForAvatar());
     }
 
+    @SuppressWarnings("deprecation")
+    @SuppressLint("IntentReset")
     private void openGalleryForProfile()
     {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        @SuppressLint("IntentReset") Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         gallery.setType("image/*");
         startActivityForResult(gallery, PICK_PROFILE_IMAGE);
     }
 
+    @SuppressWarnings("deprecation")
+    @SuppressLint("IntentReset")
     private void openGalleryForAvatar()
     {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        @SuppressLint("IntentReset") Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         gallery.setType("image/*");
         startActivityForResult(gallery, PICK_AVATAR_IMAGE);
     }
@@ -121,15 +111,21 @@ public class UserPageActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PICK_PROFILE_IMAGE)
         {
-            profileImageUri = data.getData();
-            profileCover.setImageURI(profileImageUri);
-            userPageViewModel.uploadImage(this, profileImageUri, "profile cover");
+            Uri profileImageUri;
+            if (data != null) {
+                profileImageUri = data.getData();
+                profileCover.setImageURI(profileImageUri);
+                userPageViewModel.uploadImage(this, profileImageUri, "profile cover");
+            }
         }
         if (resultCode == RESULT_OK && requestCode == PICK_AVATAR_IMAGE)
         {
-            avatarImageUri = data.getData();
-            avatarImage.setImageURI(avatarImageUri);
-            userPageViewModel.uploadImage(this, avatarImageUri, "avatar image");
+            Uri avatarImageUri;
+            if (data != null) {
+                avatarImageUri = data.getData();
+                avatarImage.setImageURI(avatarImageUri);
+                userPageViewModel.uploadImage(this, avatarImageUri, "avatar image");
+            }
         }
     }
 

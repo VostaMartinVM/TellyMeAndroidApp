@@ -2,8 +2,6 @@ package com.example.tellyme.view.fragment.listsFragments;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,7 +27,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MyListsFragment extends Fragment {
 
@@ -37,7 +34,6 @@ public class MyListsFragment extends Fragment {
     private ArrayList<String> listsNames = new ArrayList<>();
     private ListsAdapter listsAdapter;
     private ListsAdapter.RecyclerViewOnClickListener listener;
-    private MyListViewModel viewModel;
     private String newListName = "";
 
     public static MyListsFragment newInstance() {
@@ -56,13 +52,13 @@ public class MyListsFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        viewModel = new ViewModelProvider(this).get(MyListViewModel.class);
+        MyListViewModel viewModel = new ViewModelProvider(this).get(MyListViewModel.class);
 
         viewModel.getLists().observe(getViewLifecycleOwner(), lists ->{
             listsNames = lists;
             listsAdapter.updateLists(lists);
         });
-        listsAdapter = new ListsAdapter(listsNames, viewModel ,listener);
+        listsAdapter = new ListsAdapter(listsNames, viewModel,listener);
         recyclerView.setAdapter(listsAdapter);
 
         addList();
@@ -71,14 +67,11 @@ public class MyListsFragment extends Fragment {
 
     }
     private void setOnClickListener(){
-        listener = new ListsAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onCLick(View view, int position) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                SpecificListFragment specificListFrag = new SpecificListFragment();
-                FragmentUtils.changeFragmentWithArgument(specificListFrag, R.id.list_dummy_fragment, "ldf", fragmentManager,
-                        "loadedList",   listsNames.get(position));
-            }
+        listener = (view, position) -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            SpecificListFragment specificListFrag = new SpecificListFragment();
+            FragmentUtils.changeFragmentWithArgument(specificListFrag, R.id.list_dummy_fragment, "ldf", fragmentManager,
+                    "loadedList",   listsNames.get(position));
         };
     }
 
@@ -86,7 +79,7 @@ public class MyListsFragment extends Fragment {
     {
         FloatingActionButton addListButton = view.findViewById(R.id.add_list_button);
         addListButton.setOnClickListener(view1 -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
             builder.setTitle("List Name");
 
             final EditText input = new EditText(getContext());
@@ -113,9 +106,7 @@ public class MyListsFragment extends Fragment {
                     }
                 });
                 Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-                negativeButton.setOnClickListener(view -> {
-                    dialogInterface.dismiss();
-                });
+                negativeButton.setOnClickListener(view -> dialogInterface.dismiss());
             });
             alertDialog.show();
         });
@@ -123,13 +114,14 @@ public class MyListsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().getItem(1).setChecked(true);
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         ToolBarUtils.changeUserIcon(-1, toolbar);
         super.onResume();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

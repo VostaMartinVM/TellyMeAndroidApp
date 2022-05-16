@@ -1,20 +1,16 @@
 package com.example.tellyme.repository;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.Html;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.tellyme.BuildConfig;
-import com.example.tellyme.model.Movie;
+import com.example.tellyme.R;
 import com.example.tellyme.model.Show;
 import com.example.tellyme.model.ShowRequest;
 import com.example.tellyme.network.ShowServiceInterface;
 import com.example.tellyme.network.TMDBServiceGenerator;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,17 +21,19 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ShowRepository {
+    @SuppressLint("StaticFieldLeak")
     private static ShowRepository instance;
-    private ShowServiceInterface apiService;
+    private final ShowServiceInterface apiService;
     private MutableLiveData<ArrayList<Show>> shows;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    private final FirebaseAuth mAuth;
+    private final FirebaseFirestore db;
     private Context context;
 
     private ArrayList<Long> showIds;
@@ -61,15 +59,15 @@ public class ShowRepository {
 
     public MutableLiveData<ArrayList<Show>> getShows() {
         shows = new MutableLiveData<>();
-        Call<ShowRequest> call = apiService.getAllShows();
+        Call<ShowRequest> call = apiService.getAllShows(context.getString(R.string.tmdb_api_key));
         call.enqueue(new Callback<ShowRequest>() {
             @Override
-            public void onResponse(Call<ShowRequest> call, Response<ShowRequest> response) {
-                shows.setValue(response.body().getResults());
+            public void onResponse(@NonNull Call<ShowRequest> call, @NonNull Response<ShowRequest> response) {
+                shows.setValue(Objects.requireNonNull(response.body()).getResults());
             }
 
             @Override
-            public void onFailure(Call<ShowRequest> call, Throwable t) {
+            public void onFailure(@NonNull Call<ShowRequest> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -78,10 +76,10 @@ public class ShowRepository {
 
     public MutableLiveData<ArrayList<Show>> getShowsBySearchedText(String searchedText){
         shows = new MutableLiveData<>();
-        Call<ShowRequest> call = apiService.getShowsBySearchedText(BuildConfig.TMDB_API_KEY, searchedText);
+        Call<ShowRequest> call = apiService.getShowsBySearchedText(context.getString(R.string.tmdb_api_key), searchedText);
         call.enqueue(new Callback<ShowRequest>() {
             @Override
-            public void onResponse(Call<ShowRequest> call, Response<ShowRequest> response) {
+            public void onResponse(@NonNull Call<ShowRequest> call, @NonNull Response<ShowRequest> response) {
                 if (response.body() != null)
                 {
                     shows.setValue(response.body().getResults());
@@ -89,7 +87,7 @@ public class ShowRepository {
             }
 
             @Override
-            public void onFailure(Call<ShowRequest> call, Throwable t) {
+            public void onFailure(@NonNull Call<ShowRequest> call, @NonNull Throwable t) {
 
             }
         });
@@ -101,38 +99,37 @@ public class ShowRepository {
         Map<String, Object> id = new HashMap<>();
         id.put("showID", FieldValue.arrayUnion(showID));
         show.put(listName, id);
-        db.collection(mAuth.getCurrentUser().getUid())
+        db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .document("Lists")
                 .set(show, SetOptions.merge());
     }
 
+    @SuppressWarnings("unchecked")
     public MutableLiveData<ArrayList<Show>> getShowsForSpecificList(String listName)
     {
         shows = new MutableLiveData<>();
-        DocumentReference docRef = db.collection(mAuth.getCurrentUser().getUid()).document("Lists");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if (document.get(listName) instanceof Map)
+        DocumentReference docRef = db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .document("Lists");
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    if (document.get(listName) instanceof Map)
+                    {
+                        Map<String, Object> temp = (Map<String, Object>) document.get(listName);
+                        if (temp != null)
                         {
-                            Map<String, Object> temp = (Map<String, Object>) document.get(listName);
-                            if (temp != null)
+                            showIds = (ArrayList<Long>) temp.get("showID");
+                            if (showIds != null)
                             {
-                                showIds = (ArrayList<Long>) temp.get("showID");
-                                if (showIds != null)
-                                {
-                                    Integer[] showIdsArray = new Integer[showIds.size()];
-                                    for (int i = 0; i < showIds.size(); i++) {
-                                        showIdsArray[i] = ((Long) showIds.get(i)).intValue();
-                                    }
-                                    showListHelper = new ArrayList<>();
+                                Integer[] showIdsArray = new Integer[showIds.size()];
+                                for (int i = 0; i < showIds.size(); i++) {
+                                    showIdsArray[i] = ((Long) showIds.get(i)).intValue();
+                                }
+                                showListHelper = new ArrayList<>();
 
-                                    for (int i = 0; i < showIdsArray.length; i++) {
-                                        getSpecificShowsHelper(showIdsArray[i]);
-                                    }
+                                for (Integer integer : showIdsArray) {
+                                    getSpecificShowsHelper(integer);
                                 }
                             }
                         }
@@ -144,16 +141,16 @@ public class ShowRepository {
     }
 
     private void getSpecificShowsHelper(int id) {
-        Call<Show> call = apiService.getSpecificShow(id);
+        Call<Show> call = apiService.getSpecificShow(id, context.getString(R.string.tmdb_api_key));
         call.enqueue(new Callback<Show>() {
             @Override
-            public void onResponse(Call<Show> call, Response<Show> response) {
+            public void onResponse(@NonNull Call<Show> call, @NonNull Response<Show> response) {
                 showListHelper.add(response.body());
                 shows.setValue(showListHelper);
             }
 
             @Override
-            public void onFailure(Call<Show> call, Throwable t) {
+            public void onFailure(@NonNull Call<Show> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });

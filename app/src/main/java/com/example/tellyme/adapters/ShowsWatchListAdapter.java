@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tellyme.R;
 import com.example.tellyme.model.Show;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAdapter.ViewHolder>{
 
     private ArrayList<Show> shows;
-    private RecyclerViewOnClickListener listener;
+    private final RecyclerViewOnClickListener listener;
 
 
     public ShowsWatchListAdapter(ArrayList<Show> shows, RecyclerViewOnClickListener listener) {
@@ -55,6 +54,7 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
         return shows.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateShows(ArrayList<Show> shows) {
         this.shows = shows;
         notifyDataSetChanged();
@@ -63,7 +63,6 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView showTitle;
         private final TextView episodeTitle;
-        private final FloatingActionButton showButton;
         private final ImageView showImage;
 
         ViewHolder (@NonNull View itemView)
@@ -72,7 +71,6 @@ public class ShowsWatchListAdapter extends RecyclerView.Adapter<ShowsWatchListAd
             this.showTitle = itemView.findViewById(R.id.show_watchlist_title);
             this.episodeTitle = itemView.findViewById(R.id.episode_watchlist_title);
             this.showImage = itemView.findViewById(R.id.show_watchlist_image);
-            this.showButton = itemView.findViewById(R.id.button_show_watchlist);
             itemView.setOnClickListener(this);
         }
 

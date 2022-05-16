@@ -1,16 +1,11 @@
 package com.example.tellyme.repository;
 
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
+import android.content.Context;
+
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
-import com.example.tellyme.model.Movie;
-import com.example.tellyme.model.Show;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -22,19 +17,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ListRepository {
     private static ListRepository instance;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-    private MovieRepository movieRepository;
-    private ShowRepository showRepository;
+    private final FirebaseAuth mAuth;
+    private final FirebaseFirestore db;
+    private final MovieRepository movieRepository;
+    private final ShowRepository showRepository;
 
     private ArrayList<String> listsNamesHelper;
     private MutableLiveData<ArrayList<String>> listsNames;
+    @SuppressWarnings("rawtypes")
     private MediatorLiveData<ArrayList> tvPrograms;
 
-    private String[] defaultLists = {"Shows", "Movies", "Favourites"};
+    private final String[] defaultLists = {"Shows", "Movies", "Favourites"};
+    private Context context;
 
     public static ListRepository getInstance() {
         if (instance == null) {
@@ -60,17 +58,19 @@ public class ListRepository {
     }
 
     private void getListsHelper() {
-        DocumentReference movieDocumentReference = db.collection(mAuth.getCurrentUser().getUid()).document("Lists");
-        movieDocumentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    if (documentSnapshot.exists()) {
-                        Map<String, Object> namesMap = documentSnapshot.getData();
+        DocumentReference movieDocumentReference = db.collection(Objects.requireNonNull(mAuth.getCurrentUser())
+                .getUid()).document("Lists");
+        movieDocumentReference.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot documentSnapshot = task.getResult();
+                if (documentSnapshot.exists()) {
+                    Map<String, Object> namesMap = documentSnapshot.getData();
+                    if (namesMap != null) {
                         reorderList(namesMap, 0);
                         reorderList(namesMap, 1);
                         reorderList(namesMap, 2);
+                    }
+                    if (namesMap != null) {
                         for (Map.Entry<String, Object> entry : namesMap.entrySet()) {
                             if (!Arrays.asList(defaultLists).contains(entry.getKey()))
                             {
@@ -80,8 +80,8 @@ public class ListRepository {
                         }
                     }
                 }
-
             }
+
         });
     }
 
@@ -108,21 +108,29 @@ public class ListRepository {
         map.put("Shows", showId);
         map.put("Movies", movieId);
         map.put("Favourites", favouriteId);
-        db.collection(mAuth.getCurrentUser().getUid()).document("Lists").set(map, SetOptions.merge());
+        db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .document("Lists").set(map, SetOptions.merge());
     }
 
     public void newList(String listName) {
         Map<String, Object> list = new HashMap<>();
         list.put(listName, FieldValue.arrayUnion());
-        db.collection(mAuth.getCurrentUser().getUid()).document("Lists").set(list, SetOptions.merge());
+        db.collection(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .document("Lists").set(list, SetOptions.merge());
     }
 
+    @SuppressWarnings("rawtypes")
     public MediatorLiveData<ArrayList> getTVProgramsForList(String listName)
     {
         tvPrograms = new MediatorLiveData<>();
+        showRepository.setContext(context);
+        movieRepository.setContext(context);
         tvPrograms.addSource(showRepository.getShowsForSpecificList(listName), shows -> tvPrograms.setValue(shows));
         tvPrograms.addSource(movieRepository.getMoviesForSpecificList(listName), movies -> tvPrograms.setValue(movies));
         return tvPrograms;
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
 }

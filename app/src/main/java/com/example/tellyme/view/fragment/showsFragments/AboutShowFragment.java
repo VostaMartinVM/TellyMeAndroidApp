@@ -1,7 +1,6 @@
 package com.example.tellyme.view.fragment.showsFragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,23 +16,19 @@ import android.widget.TextView;
 import com.example.tellyme.R;
 import com.example.tellyme.model.Show;
 import com.example.tellyme.utils.ArgumentUtils;
-import com.example.tellyme.viewModel.ShowsViewModels.AboutShowViewModel;
-import com.facebook.appevents.ml.Utils;
 
 public class AboutShowFragment extends Fragment {
-
-    private AboutShowViewModel mViewModel;
-    private View view;
 
     public static AboutShowFragment newInstance() {
         return new AboutShowFragment();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.about_show_fragment, container, false);
+        View view = inflater.inflate(R.layout.about_show_fragment, container, false);
 
         Bundle args = getArguments();
 
@@ -57,10 +52,10 @@ public class AboutShowFragment extends Fragment {
         return view;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AboutShowViewModel.class);
         // TODO: Use the ViewModel
     }
 

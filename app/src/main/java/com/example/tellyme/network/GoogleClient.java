@@ -1,7 +1,6 @@
 package com.example.tellyme.network;
 import android.content.Context;
 
-import com.example.tellyme.BuildConfig;
 import com.example.tellyme.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -9,7 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 public class GoogleClient {
     private static GoogleClient instance;
-    private GoogleSignInClient googleSignInClient;
+    private final GoogleSignInClient googleSignInClient;
 
     public static GoogleClient getInstance(Context context) {
         if (instance == null)

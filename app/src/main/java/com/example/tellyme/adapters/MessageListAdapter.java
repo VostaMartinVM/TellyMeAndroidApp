@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,9 @@ import com.example.tellyme.R;
 public class MessageListAdapter extends BaseAdapter {
 
     Context context;
-    String personsName[];
-    String personsLastMessage[];
-    int personsProfilePicture[];
+    String[] personsName;
+    String[] personsLastMessage;
+    int[] personsProfilePicture;
     LayoutInflater inflater;
 
 
@@ -44,6 +45,7 @@ public class MessageListAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint({"ViewHolder", "InflateParams"})
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.messages_item, null);

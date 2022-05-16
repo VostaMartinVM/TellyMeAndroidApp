@@ -1,5 +1,6 @@
 package com.example.tellyme.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tellyme.R;
 import com.example.tellyme.model.Movie;
 import com.example.tellyme.model.Show;
-import com.example.tellyme.viewModel.ListsViewModels.SpecificListViewModel;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapter.ViewHolder> {
 
     private ArrayList<Object> tvPrograms;
-    private RecyclerViewOnClickListener listener;
+    private final RecyclerViewOnClickListener listener;
 
 
     public SpecificListAdapter (ArrayList<Object> tvPrograms, RecyclerViewOnClickListener listener){
@@ -69,6 +69,7 @@ public class SpecificListAdapter extends RecyclerView.Adapter<SpecificListAdapte
         return tvPrograms.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateTVPrograms(ArrayList<Object> tvPrograms){
         this.tvPrograms = tvPrograms;
         notifyDataSetChanged();

@@ -36,7 +36,6 @@ public class SpecificListFragment extends Fragment {
     private ArrayList<Object> tvPrograms;
     private SpecificListAdapter specificListAdapter;
     private SpecificListAdapter.RecyclerViewOnClickListener listener;
-    private SpecificListViewModel viewModel;
     private Bundle args;
 
     public static SpecificListFragment newInstance() {
@@ -56,7 +55,8 @@ public class SpecificListFragment extends Fragment {
 
         tvPrograms = new ArrayList<>();
 
-        viewModel = new ViewModelProvider(this).get(SpecificListViewModel.class);
+        SpecificListViewModel viewModel = new ViewModelProvider(this).get(SpecificListViewModel.class);
+        viewModel.setContext(getContext());
         viewModel.getTVPrograms(args.getString("loadedList")).observe(getViewLifecycleOwner(), programList ->{
             for (int i = 0; i < programList.size(); i++) {
                 if (!tvPrograms.contains(programList.get(i)))
@@ -77,21 +77,18 @@ public class SpecificListFragment extends Fragment {
     }
 
     private void setOnClickListener(){
-        listener = new SpecificListAdapter.RecyclerViewOnClickListener() {
-            @Override
-            public void onCLick(View view, int position) {
-                Intent i;
-                if(tvPrograms.get(position) instanceof Show)
-                {
-                    i = new Intent(getActivity(), SpecificShow.class);
-                    i.putExtra("loadedShow", (Show)tvPrograms.get(position));
-                }
-                else {
-                    i = new Intent(getActivity(), SpecificMovie.class);
-                    i.putExtra("loadedMovie", (Movie)tvPrograms.get(position));
-                }
-                startActivity(i);
+        listener = (view, position) -> {
+            Intent i;
+            if(tvPrograms.get(position) instanceof Show)
+            {
+                i = new Intent(getActivity(), SpecificShow.class);
+                i.putExtra("loadedShow", (Show)tvPrograms.get(position));
             }
+            else {
+                i = new Intent(getActivity(), SpecificMovie.class);
+                i.putExtra("loadedMovie", (Movie)tvPrograms.get(position));
+            }
+            startActivity(i);
         };
     }
 
@@ -108,6 +105,7 @@ public class SpecificListFragment extends Fragment {
     }
 
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

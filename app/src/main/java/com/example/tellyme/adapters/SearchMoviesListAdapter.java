@@ -1,5 +1,5 @@
 package com.example.tellyme.adapters;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +18,15 @@ import java.util.ArrayList;
 public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesListAdapter.ViewHolder> {
 
     private ArrayList<Movie> movies;
-    private View view;
-    private SearchMoviesViewModel searchMoviesViewModel;
-    private RecyclerViewOnClickListener listener;
-    private Context context;
-    private String args;
+    private final SearchMoviesViewModel searchMoviesViewModel;
+    private final RecyclerViewOnClickListener listener;
+    private final String args;
 
-    public SearchMoviesListAdapter (ArrayList<Movie> movies, SearchMoviesViewModel searchMoviesViewModel
-            , Context context, RecyclerViewOnClickListener listener, String args){
+    public SearchMoviesListAdapter (ArrayList<Movie> movies, SearchMoviesViewModel searchMoviesViewModel,
+                                    RecyclerViewOnClickListener listener, String args){
         this.movies = movies;
         this.listener = listener;
         this.searchMoviesViewModel = searchMoviesViewModel;
-        this.context = context;
         this.args = args;
     }
 
@@ -37,7 +34,7 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        view = layoutInflater.inflate(R.layout.search_list_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.search_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,7 +49,7 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
             Picasso.get().load("https://image.tmdb.org/t/p/original" + movies.get(position).getPosterPath()).fit().centerCrop().into(holder.movieImage);
         }
         holder.addButton.setOnClickListener(view -> {
-            if (args.isEmpty() || args == null){
+            if (args.isEmpty()){
                 searchMoviesViewModel.addMovieToSpecificList("Movies", movies.get(position).getId());
             }
             else {
@@ -69,6 +66,7 @@ public class SearchMoviesListAdapter extends RecyclerView.Adapter<SearchMoviesLi
         return movies.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setMovies(ArrayList<Movie> movies) {
         this.movies = movies;
         notifyDataSetChanged();
