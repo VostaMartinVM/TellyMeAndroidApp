@@ -103,21 +103,26 @@ public class AuthWithEmailAndPass {
 
     public void login(Activity activity, String email, String password, TextView errorMsgLogin)
     {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> {
+        if (email.isEmpty() || password.isEmpty())
+        {
+            errorMsgLogin.setText("All fields must be filled");
+            errorMsgLogin.setVisibility(View.VISIBLE);
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> {
             if (task.isSuccessful()) {
                 Intent intent = new Intent(activity, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity.startActivity(intent);
                 ActivityCompat.finishAffinity(activity);
                 errorMsgLogin.setVisibility(View.INVISIBLE);
-            }
-            else
-            {
+            } else {
                 errorMsgLogin.setText(Objects.requireNonNull(task.getException()).getMessage());
                 errorMsgLogin.setVisibility(View.VISIBLE);
             }
-
-
         });
+
+
+        }
     }
 }
