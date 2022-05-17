@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.homeFragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_message_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="48dp"
+            android:clickable="true"
+            android:contentDescription="@string/message_button"
+            android:focusable="true"
+            android:src="@drawable/message_icon"
+            app:backgroundTint="@color/custom_purple"
+            app:fabCustomSize="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="30dp"
+            tools:ignore="RedundantDescriptionCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/openPostWindow"
+            android:layout_width="315dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="@color/white"
+            android:text="@string/post_edit_text"
+            android:textAllCaps="false"
+            android:textColor="@color/hint_text_color"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="41dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/user_icon"
+            android:elevation="2dp"
+            android:src="@drawable/avatar_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/openPostWindow"
+            app:layout_constraintStart_toStartOf="@+id/openPostWindow"
+            app:layout_constraintTop_toTopOf="@+id/openPostWindow"
+            app:tint="@color/hint_text_color" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/post_dummy_fragment"
+            android:layout_width="315dp"
+            android:layout_height="400dp"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/openPostWindow"
+            app:layout_constraintEnd_toEndOf="@+id/openPostWindow"
+            app:layout_constraintStart_toStartOf="@+id/openPostWindow"
+            app:layout_constraintTop_toTopOf="@+id/openPostWindow"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

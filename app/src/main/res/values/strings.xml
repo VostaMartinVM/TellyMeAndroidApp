@@ -1,10 +1,54 @@
 <resources>
 
-    <string name="app_name">CCTV</string>
-
-    <!-- Activity main -->
-    <string name="logo_content_description">Logo</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">TellyMe</string>
+    <string name="logo">Logo</string>
+    <string name="background_image">Background image</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_account">Create account</string>
+    <string name="login">Login</string>
+    <string name="email_username">Email / Username</string>
+    <string name="button">Button</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="delete_button">Delete button</string>
+    <string name="send">Send</string>
+    <string name="post_edit_text">Post...</string>
+    <string name="add">Add</string>
+    <string name="message_button">Message button</string>
+    <string name="user_icon">User icon</string>
+    <string name="list_name">List name</string>
+    <string name="message">Message</string>
+    <string name="show_title">Show title</string>
+    <string name="episode_title">Episode title</string>
+    <string name="movie_title">Movie title</string>
+    <string name="show_image">Show image</string>
+    <string name="profile_cover">Profile cover</string>
+    <string name="movie_image">Movie image</string>
+    <string name="search_people">Search people</string>
+    <string name="search_movies">Search movies</string>
+    <string name="search_shows">Search shows</string>
+    <string name="search_hint">Search...</string>
+    <string name="search_icon">Search icon</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="about">About</string>
+    <string name="episodes">Episodes</string>
+    <string name="login_with_email">Login with email</string>
+    <string name="check_button">Check button</string>
+    <string name="timer">000 DAYS</string>
+    <string name="login_error">The email or password you entered is incorrect</string>
+    <string name="password_doest_match">Password and confirm password does not match</string>
+    <string name="password_must_include">Your password must include ...</string>
+    <string name="log_out">Log out</string>
+    <string name="settings">Settings</string>
+    <string name="about_text">This Project has been created as a part of an android assignment from the 4th semester at VIA University College. The project aims to create an android application for viewing movie and shows description and sorting them as well as keeping track of them. Further users should be able to post about shows and movies as well as see posts from other people and be able to chat with them.</string>
+    <string name="work_in_progress">Work in progress</string>
+    <string name="release_date">Release date</string>
+    <string name="program_description">Description</string>
+    <string name="rating">rating</string>
 </resources>

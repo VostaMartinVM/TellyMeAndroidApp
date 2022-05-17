@@ -13,7 +13,7 @@
         android:id="@+id/placeholder"
         android:title="" />
     <item
-        android:id="@+id/tv_series_item"
+        android:id="@+id/shows_item"
         android:icon="@drawable/tv_series_icon"
         android:title="shows"/>
     <item

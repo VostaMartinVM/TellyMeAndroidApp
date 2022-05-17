@@ -1,29 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.watchtracker">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.tellyme">
+
+    <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> <!-- allows app to access Facebook app features -->
+        <provider android:authorities="com.facebook.orca.provider.PlatformProvider" /> <!-- allows sharing to Messenger app -->
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="sensorPortrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fab_Bottom_app_bar">
+        android:theme="@style/Theme.Fab_Bottom_app_bar"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
         <activity
-            android:name=".view.activity.MessageSystem"
-            android:exported="false" />
+            android:name=".view.activity.About"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.activity.ListsItem"
-            android:exported="false" />
+            android:name=".view.activity.Settings"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.UserPageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.SpecificShow"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.SpecificMovie"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.TwitterAuth"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.FacebookAuth"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.CreateAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.SignInActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.MessagesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.MessageSystemActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
     </application>
 
 </manifest>

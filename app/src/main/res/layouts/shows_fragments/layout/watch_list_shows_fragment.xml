@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/watch_list_shows_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.showsFragments.WatchListShowsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/watch_list_shows_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/specific_show_dummy_fagment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "WatchTracker"
+rootProject.name = "TellyMe"
 include ':app'

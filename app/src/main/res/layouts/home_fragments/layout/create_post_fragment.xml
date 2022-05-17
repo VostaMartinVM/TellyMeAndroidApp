@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_post_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.homeFragments.CreatePostFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/post_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/rounded_edit_text"
+            android:gravity="start|end"
+            android:hint="@string/post_edit_text"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="70dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/delete_post_button"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/delete_button"
+            android:src="@drawable/delete_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/post_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="@+id/post_edit_text"
+            app:layout_constraintTop_toTopOf="@+id/post_edit_text"
+            app:layout_constraintVertical_bias="0.03000000"
+            app:tint="@color/delete_post"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/post_button_divider"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            app:layout_constraintBottom_toBottomOf="@+id/post_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="@+id/post_edit_text"
+            app:layout_constraintTop_toTopOf="@+id/post_edit_text"
+            app:layout_constraintVertical_bias="0.95">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_movie_to_post_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/custom_purple"
+                android:clickable="true"
+                android:contentDescription="@string/add"
+                android:focusable="true"
+                android:src="@drawable/plus_icon"
+                app:borderWidth="0dp"
+                app:fabCustomSize="40dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/send_post_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/custom_purple"
+                android:clickable="true"
+                android:contentDescription="@string/send"
+                android:focusable="true"
+                android:src="@drawable/send_icon"
+                app:borderWidth="0dp"
+                app:fabCustomSize="50dp"
+                tools:contentDescription="@string/send"
+                tools:fabCustomSize="40dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

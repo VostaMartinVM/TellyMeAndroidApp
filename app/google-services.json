@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "521645695023",
+    "project_id": "tellyme-4ec38",
+    "storage_bucket": "tellyme-4ec38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521645695023:android:358832813f2c3d7731e6da",
+        "android_client_info": {
+          "package_name": "com.example.tellyme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521645695023-g9b4ajh599neeui51ikh2crtqkku35qr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tellyme",
+            "certificate_hash": "94657f6d041ffdc8d523c28c2bd3dba1daacea42"
+          }
+        },
+        {
+          "client_id": "521645695023-v0jko1rb5tgcp7sc4r6vv7vc5ctcrfle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tellyme",
+            "certificate_hash": "73f53c2620aecaf6c412d65f2e371bce82fbf413"
+          }
+        },
+        {
+          "client_id": "521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhjE4GRPIA--lPs8KtniGWx09GfWH_C6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521645695023-4retbj4th3rl0uks2qm8bf7t9cip7dmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:translationZ="3dp"
+    tools:context=".view.fragment.searchFragments.SearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/search_frame"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rounded_search_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97">
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/search_edit_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/search_edit_text"
+                app:layout_constraintTop_toBottomOf="@+id/search_edit_text">
+
+                <ImageButton
+                    android:id="@+id/search_people_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="-20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_people"
+                    android:src="@drawable/people_icon" />
+
+                <ImageButton
+                    android:id="@+id/search_shows_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="-20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_shows"
+                    android:src="@drawable/tv_series_icon" />
+
+                <ImageButton
+                    android:id="@+id/search_movies_button"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bookmark_icon"
+                    android:backgroundTint="@color/grey_background_color"
+                    android:contentDescription="@string/search_movies"
+                    android:src="@drawable/movie_icon" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/search_edit_text"
+                android:layout_width="315dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="@string/search_hint"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/search_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/search_icon"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/search_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/search_edit_text"
+                app:layout_constraintStart_toStartOf="@+id/search_edit_text"
+                app:layout_constraintTop_toTopOf="@+id/search_edit_text"
+                app:tint="@color/hint_text_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/search_list_dummy_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7">
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</FrameLayout>
